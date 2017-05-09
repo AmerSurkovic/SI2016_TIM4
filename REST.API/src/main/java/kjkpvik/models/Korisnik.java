@@ -21,6 +21,14 @@ public class Korisnik {
     private String password;
     private String email;
 
+    public Korisnik () {}
+
+    public Korisnik (String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
     // veza sa rolom
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Rola.class)
     private Rola rolaID;

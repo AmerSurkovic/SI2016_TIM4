@@ -25,6 +25,15 @@ public class Pitanje {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pitanjeID", targetEntity = Odgovor.class)
     private List<Odgovor> odgovori = new ArrayList<>();
 
+    public Pitanje() {
+    }
+
+    public Pitanje(String tekst, Anketa anketaID) {
+
+        this.tekst = tekst;
+        this.anketaID = anketaID;
+    }
+
     public Long getID() {
         return ID;
     }

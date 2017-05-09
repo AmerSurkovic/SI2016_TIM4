@@ -18,6 +18,14 @@ public class ZabranjenaRijec {
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Korisnik.class)
     private Korisnik korisnikID;
 
+    public ZabranjenaRijec() {
+    }
+
+    public ZabranjenaRijec(String rijec) {
+
+        this.rijec = rijec;
+    }
+
     public Long getID() {
         return ID;
     }

@@ -42,4 +42,12 @@ public class Rola {
     public void setKorisnici(List<Korisnik> korisnici) {
         this.korisnici = korisnici;
     }
+
+    public Rola (){}
+
+    public Rola(String naziv)
+    {
+        this.naziv = naziv;
+
+    }
 }

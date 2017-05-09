@@ -20,6 +20,14 @@ public class Lokacija {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "lokacijaID", targetEntity = ObavijestLokacija.class)
     private List<ObavijestLokacija> ol= new ArrayList<>(); //?
 
+    public Lokacija() {
+    }
+
+    public Lokacija(String naziv) {
+
+        this.naziv = naziv;
+    }
+
     public Long getID() {
         return ID;
     }

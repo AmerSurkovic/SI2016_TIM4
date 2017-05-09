@@ -22,4 +22,14 @@ public class Odgovor {
     // veza sa pitanjem
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Pitanje.class)
     private Pitanje pitanjeID;
+
+    public Odgovor() {
+    }
+
+    public Odgovor(String tekst, Korisnik korisnikID, Pitanje pitanjeID) {
+
+        this.tekst = tekst;
+        this.korisnikID = korisnikID;
+        this.pitanjeID = pitanjeID;
+    }
 }

@@ -22,6 +22,17 @@ public class Zalba {
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Korisnik.class)
     private Korisnik korisnikID;
 
+    public Zalba() {
+    }
+
+    public Zalba(Date vrijemePostavljanja, String tekst, Boolean privatna, Korisnik korisnikID) {
+
+        this.vrijemePostavljanja = vrijemePostavljanja;
+        this.tekst = tekst;
+        this.privatna = privatna;
+        this.korisnikID = korisnikID;
+    }
+
     public Long getID() {
         return ID;
     }
