@@ -11,7 +11,82 @@ import {Footer} from './app/components/footer';
 var ObavijestiService = require('./app/service/obavijesti.service');
 
 
+const mockObavijesti={
+  niz: [
+  {
+      naziv: "naziv",
+      desc:"prvi",
+      lokacija:"lokacija1",
+      datum:"dd.mm.yyyy",
+  },
+  {
+      naziv: "naziv",
+      desc:"drugi",
+      lokacija:"lokacija2",
+      datum:"dd.mm.yyyy",
+  },
+  {
+      naziv: "naziv",
+      desc:"treci",
+      lokacija:"lokacija3",
+      datum:"dd.mm.yyyy",
+  },
+  {
+      naziv: "naziv",
+      desc:"cetvrti",
+      lokacija:"lokacija4",
+      datum:"dd.mm.yyyy",
+  },
+  {
+      naziv: "naziv",
+      desc:"peti",
+      lokacija:"lokacija5",
+      datum:"dd.mm.yyyy",
+  },
+  {
+      naziv: "naziv",
+      desc:"sesti",
+      lokacija:"lokacija6",
+      datum:"dd.mm.yyyy",
+  },
+]
+}
 
+
+const mockZalbe = {
+  niz:[
+    {
+      korisnickoIme: "Korisnicko Ime 1",
+      tekstZalbe: "Tekst zalbe 1",
+      datum: "dd.mm.yyyy"
+    },
+    {
+      korisnickoIme: "Korisnicko Ime 2",
+      tekstZalbe: "Tekst zalbe 2",
+      datum: "dd.mm.yyyy"
+    },
+    {
+      korisnickoIme: "Korisnicko Ime 3",
+      tekstZalbe: "Tekst zalbe 3",
+      datum: "dd.mm.yyyy"
+    },
+    {
+      korisnickoIme: "Korisnicko Ime 4",
+      tekstZalbe: "Tekst zalbe 4",
+      datum: "dd.mm.yyyy"
+    },
+    {
+      korisnickoIme: "Korisnicko Ime 5",
+      tekstZalbe: "Tekst zalbe 5",
+      datum: "dd.mm.yyyy"
+    },
+    {
+      korisnickoIme: "Korisnicko Ime 6",
+      tekstZalbe: "Tekst zalbe 6",
+      datum: "dd.mm.yyyy"
+    },
+  ]
+}
 
 
 
@@ -56,7 +131,7 @@ class Home extends React.Component {
           Sakrij zalbe
         </div>
       </a>
-        <Zalbe />
+        <Zalbe zalbe={mockZalbe} />
         </div>;
     }else{
       x =
@@ -73,7 +148,7 @@ class Home extends React.Component {
       <div className="pocetni">
         <Header />
         <br/>
-          <Obavijesti />
+          <Obavijesti obavijesti={mockObavijesti}/>
         <br/>
           {x}
         <br/>

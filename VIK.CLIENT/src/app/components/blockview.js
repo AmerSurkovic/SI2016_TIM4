@@ -2,9 +2,6 @@ import React from 'react';
 
 import '../styles/blockview.css';
 
-const a={
-  "margin": "auto 10px auto 10px"
-}
 
 export class BlockView extends React.Component{
 

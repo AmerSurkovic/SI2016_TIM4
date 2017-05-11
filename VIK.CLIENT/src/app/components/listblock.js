@@ -16,16 +16,18 @@ export class ListBlock extends React.Component{
   }
 
 
-
   kliknutJe(i){
-
+    
     this.props.dajKliknuti(i);
   }
 
   render(){
     let x = [];
-    for(let i = 0; i<6; i++){
-      let tmp = (<Block onClick={() => this.kliknutJe(i)} naziv={this.props.naziv} lijevitext={this.props.lijevitext} desnitext={this.props.desnitext}/>);
+
+    //let m =
+    let niz = this.props.niz.niz;
+    for(let i = 0; i<niz.length; i++) {
+      let tmp = (<Block onClick={() => this.kliknutJe(i)} naziv={niz[i].naziv} lijevitext={niz[i].lijevitext} desnitext={niz[i].desnitext}/>);
       x.push(tmp);
     }
 
