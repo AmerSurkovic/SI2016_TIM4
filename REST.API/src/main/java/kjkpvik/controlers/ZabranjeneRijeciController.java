@@ -1,34 +1,19 @@
 package kjkpvik.controlers;
 
-import kjkpvik.models.ZabranjenaRijec;
 import kjkpvik.services.ZabranjeneRijeciService;
-import kjkpvik.viewmodels.KorisnikVM;
 import kjkpvik.viewmodels.ZabranjeneRijeciVM;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Created by Siii on 5/9/2017.
+ * Created by Kemal Halilbegović on 11.05.2017..
  */
-//API prema korisnicima
 @RestController
-@RequestMapping(path="/obavijesti")
-public class test {
-
-    @RequestMapping(value = "/all", method = RequestMethod.GET) // prikaz svih oglasa iz kategorije, treba dodati request parameter za odabranu kat.
-    public String getAll() {
-        return "anisa";
-    }
-
-}
-//test za servis zabranjenih rijeci
-/*@RestController
 @RequestMapping(path = "/zrijeci")
-public class test {
+public class ZabranjeneRijeciController {
     private ZabranjeneRijeciService zabranjeneRijeciService;
     @Autowired
     public void setService(ZabranjeneRijeciService zabranjeneRijeciService){
@@ -67,4 +52,4 @@ public class test {
                     .body(e.getLocalizedMessage());
         }
     }
-}*/
+}
