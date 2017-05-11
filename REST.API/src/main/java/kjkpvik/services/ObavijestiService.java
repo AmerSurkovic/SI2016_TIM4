@@ -45,7 +45,16 @@ public class ObavijestiService {
         return (kreirana != null);
     }
 
-    public void Delete(){};
+    public boolean Delete(Long id){
+
+        if(id == null) return false;
+         if(iObavijestiRepository.exists(id))
+            {
+                iObavijestiRepository.delete(id);
+                return true;
+            }
+        return false;
+    }
 /*    public Boolean dodajZabranjenuRijec(ZabranjeneRijeciVM rijec){//unutar ovoga se nalazi i korisnikID
 
         ZabranjenaRijec zabranjenaRijec = new ZabranjenaRijec(rijec.getRijec());

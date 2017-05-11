@@ -47,9 +47,21 @@ public class KorisnikService {
         return  null;
     }
 
+    public boolean isValidEmailAddress(String email) {
+        String ePattern = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
+    }
+
+
+
     public Boolean dodajKorisnika(KorisnikVM korisnikVM){
 
-        // validacija emaila
+        if(korisnikVM == null || !isValidEmailAddress(korisnikVM.getEmail()))
+            return false;
+
+        // fali ispitivanje za postojanje istog korisnika
 
         Korisnik mojKorisnik = new Korisnik(korisnikVM.getUsername(), korisnikVM.getPassword(), korisnikVM.getEmail());
         List<Rola> sveRole = (List<Rola>) rolaRepository.findAll();
@@ -65,8 +77,8 @@ public class KorisnikService {
             Rola kreirana = rolaRepository.save(mojaRola);
             x = kreirana;
         }
-        // ovdje treba jos malo validacije
-        mojKorisnik.setRolaID(x); // hardkodirano
+
+        mojKorisnik.setRolaID(x);
         Korisnik kreiran = korisnikRepository.save(mojKorisnik);
 
         return (kreiran != null);

@@ -6,10 +6,7 @@ import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,6 +33,13 @@ public class ObavijestController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(e.getLocalizedMessage());
         }
+    }
+
+    //dodaj obavijest
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE )
+    public ResponseEntity deleteObavijest(@PathVariable("id") Long id) {
+
+        return ResponseEntity.ok(obavijestiService.Delete(id));
     }
 
     //izmijeni obavijest

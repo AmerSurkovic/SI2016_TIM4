@@ -1,12 +1,10 @@
 package kjkpvik.services;
 
 import kjkpvik.models.Lokacija;
-import kjkpvik.models.ZabranjenaRijec;
 import kjkpvik.repositories.ILokacijaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import  kjkpvik.viewmodels.LokacijaVM;
-import  kjkpvik.viewmodels.ObavijestiVM;
 
 import java.util.List;
 
