@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * Created by Delila on 11.05.2017.
  */
@@ -18,9 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path="/obavijest")
 public class ObavijestController {
 
-    private ObavijestiService obavijestService;
+    private ObavijestiService obavijestiService;
     @Autowired
-    public void SetService (ObavijestiService obavijestService) {this.obavijestService = obavijestService;}
+    public void SetService (ObavijestiService obavijestService) {this.obavijestiService = obavijestService;}
 
     //dodaj obavijest
     @RequestMapping(value = "/dodajobavijest", method = RequestMethod.POST )
@@ -28,7 +30,7 @@ public class ObavijestController {
     {
         try {
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(obavijestService.DodajObavijest(obavijestVM));
+                    .body(obavijestiService.DodajObavijest(obavijestVM));
         }
         catch (ServiceException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -42,11 +44,29 @@ public class ObavijestController {
     {
         try {
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(obavijestService.Update(obavijestVM));
+                    .body(obavijestiService.Update(obavijestVM));
         }
         catch (ServiceException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(e.getLocalizedMessage());
         }
+    }
+
+    // prikazi sve obavijesti
+    @RequestMapping(value = "/sve", method = RequestMethod.GET)
+    public List<ObavijestVM> getObavijesti(){
+        return obavijestiService.GetObavijesti();
+    }
+
+    // filtriraj obavijesti po lokaciji
+    @RequestMapping(value = "/filtriraj", method = RequestMethod.GET)
+    public List<ObavijestVM> filtrirajObavijesti(Long lokacijaId){
+        return obavijestiService.filtrirajObavijesti(lokacijaId);
+    }
+
+    // sortiraj obavijesti po lokaciji
+    @RequestMapping(value = "/sortiraj", method = RequestMethod.GET)
+    public List<ObavijestVM> sortirajObavijesti(Long lokacijaId){
+        return obavijestiService.sortirajObavijesti(lokacijaId);
     }
 }
