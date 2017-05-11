@@ -2,6 +2,7 @@ package kjkpvik.services;
 
 import kjkpvik.models.Obavijest;
 import kjkpvik.repositories.IObavijestiRepository;
+import kjkpvik.viewmodels.ObavijestiVM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,10 @@ public class ObavijestiService {
 
     public void Update(){};
 
-    public void Delete(){};
+    public void Delete(ObavijestiVM obavijest){
+        
+
+    };
 
     public void DodajObavijest(){};
 

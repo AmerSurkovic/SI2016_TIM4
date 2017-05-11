@@ -1,0 +1,47 @@
+package kjkpvik.controlers;
+
+import kjkpvik.viewmodels.LokacijaVM;
+import org.hibernate.service.spi.ServiceException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import kjkpvik.services.LokacijaService;
+
+/**
+ * Created by Mersida on 11.5.2017.
+ */
+
+@RestController
+@RequestMapping (path= "/lokacija")
+public class LokacijaController {
+
+    private LokacijaService lokacijaService;
+
+    @Autowired
+    public void setService (LokacijaService korisnikService) {
+        this.lokacijaService = korisnikService;
+    }
+
+    @RequestMapping (value = "/dodajlokaciju", method = RequestMethod.POST)
+    public ResponseEntity dodajLokaciju (@RequestBody LokacijaVM lokacija){
+
+        try {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(lokacijaService.dodajLokaciju(lokacija));
+        }
+        catch (ServiceException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getLocalizedMessage());
+        }
+    }
+
+    //@RequestMapping (value = "/getlokaciju" , method = RequestMethod.GET)
+    //public ResponseEntity getLokacija (@RequestBody LokacijaVM lokacija){
+
+    //}
+
+}
