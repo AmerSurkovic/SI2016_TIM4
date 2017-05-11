@@ -29,7 +29,11 @@ public class ObavijestiService {
     private IObavijestiRepository iObavijestiRepository;
     private IKorisnikRepository ikorisnikRepository;
 
-    public String GetObavijesti(){ return "anisaaaaaaaa";}
+    public List<ObavijestVM> GetObavijesti(){
+        Sort sortiraj=new Sort(Sort.Direction.DESC, "vrijemeObjave");
+        List<Obavijest> obavijesti=(List<Obavijest>)iObavijestiRepository.findAll(sortiraj);
+        return obavijestiVMlista(obavijesti);
+    }
 
     public boolean Update(ObavijestVM obavijest)
     {
