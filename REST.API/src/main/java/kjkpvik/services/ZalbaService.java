@@ -101,18 +101,28 @@ public class ZalbaService {
         List<ZabranjenaRijec> rijeci=(List<ZabranjenaRijec>)iZabranjeneRijeciRepository.findAll();
 
         for(ZabranjenaRijec r:rijeci){
-            Pattern p1=Pattern.compile(".*[^a-zA-Zčćđšž]"+r.getRijec()+"[^a-zA-Zčćđšž].*");
-            Matcher m1 = p1.matcher(tekst);
+            Pattern p1=Pattern.compile(".*[^a-zčćđšž]"+r.getRijec()+"[^a-zčćđšž].*");
+            Matcher m1 = p1.matcher(tekst.toLowerCase());
 
-            Pattern p2=Pattern.compile("^"+r.getRijec()+"[^a-zA-Zčćđšž].*");
-            Matcher m2 = p2.matcher(tekst);
+            Pattern p2=Pattern.compile("^"+r.getRijec()+"[^a-zčćđšž].*");
+            Matcher m2 = p2.matcher(tekst.toLowerCase());
 
-            Pattern p3=Pattern.compile(".*[^a-zA-Zčćđšž]"+r.getRijec()+"$");
-            Matcher m3 = p3.matcher(tekst);
+            Pattern p3=Pattern.compile(".*[^a-zčćđšž]"+r.getRijec()+"$");
+            Matcher m3 = p3.matcher(tekst.toLowerCase());
 
             if(m1.matches() || m2.matches() || m3.matches()){
                 return true;
             }
+
+            // ili da se stavi:
+            /*
+            Pattern p=Pattern.compile(".*"+r.getRijec()+".*"); zabranjene rijeci su mala slova ili da se to ovdje uradi
+            Matcher m=p.matcher(tekst.toLowerCase());
+
+            if(m.matches()){
+                return true;
+            }
+            */
         }
 
         return false;
