@@ -5,11 +5,9 @@ import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import kjkpvik.services.LokacijaService;
+
 
 /**
  * Created by Mersida on 11.5.2017.
@@ -39,9 +37,28 @@ public class LokacijaController {
         }
     }
 
-    //@RequestMapping (value = "/getlokaciju" , method = RequestMethod.GET)
-    //public ResponseEntity getLokacija (@RequestBody LokacijaVM lokacija){
+    @RequestMapping (value = "/getlokaciju" , method = RequestMethod.GET)
+    public ResponseEntity getLokacija(@RequestParam("ID")Long id)
+    {
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(lokacijaService.getLokacija(id));
+        }
+        catch(ServiceException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getLocalizedMessage());
+        }
+    }
 
-    //}
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    public ResponseEntity deleteLokacija (@RequestBody LokacijaVM lokacija)
+    {
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(lokacijaService.brisiLokaciju(lokacija));
+        }
+        catch(ServiceException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getLocalizedMessage());
+        }
+    }
 
 }

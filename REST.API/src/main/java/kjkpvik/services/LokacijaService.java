@@ -16,6 +16,7 @@ import java.util.List;
  */
 @Service
 public class LokacijaService {
+
    @Autowired
    private ILokacijaRepository lokacijaRepository;
 
@@ -31,7 +32,7 @@ public class LokacijaService {
     }
 
     //brisanje
-    private Boolean brisiLokaciju (LokacijaVM lokacija){
+    public Boolean brisiLokaciju (LokacijaVM lokacija){
         List<Lokacija> sveLokacije = (List<Lokacija>) lokacijaRepository.findAll();
         Lokacija x = new Lokacija();
 
