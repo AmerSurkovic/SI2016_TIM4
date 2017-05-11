@@ -16,6 +16,7 @@ public class ObavijestVM {
     private Date vrijemeObjave;
     private Long korisnikID;
     private List<String> lokacije;
+    private Long ID;
 
     public ObavijestVM(){
         lokacije=new ArrayList<String>();
@@ -38,6 +39,15 @@ public class ObavijestVM {
         for (ObavijestLokacija ol : obavijest.getLokacije()) {
             lokacije.add(ol.getLokacijaID().getNaziv());
         }
+    }
+
+    //ovaj konstruktor je potreban radi update, gdje treba ID obavijesti da bi se znalo koja se obavijest apdejta
+    public ObavijestVM (Long ID, String naziv, String tekst, Date vrijemeObjave)
+    {
+        this.setID(ID);
+        this.setNaziv(naziv);
+        this.setTekst(tekst);
+        this.setVrijemeObjave(vrijemeObjave);
     }
 
     public String getNaziv() {
@@ -78,5 +88,14 @@ public class ObavijestVM {
 
     public void setLokacije(List<String> lokacije) {
         this.lokacije = lokacije;
+    }
+
+
+    public Long getID() {
+        return ID;
+    }
+
+    public void setID(Long ID) {
+        this.ID = ID;
     }
 }

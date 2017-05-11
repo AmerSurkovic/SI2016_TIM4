@@ -37,7 +37,20 @@ public class Anketa {
         this.korisnikID = korisnikID;
         this.pitanja = pitanja;
     }
+    public Anketa(String opis, Date vrijemeAktivacije, Date vrijemeDeaktivacije, Korisnik korisnikID) {
 
+        this.opis = opis;
+        this.vrijemeAktivacije = vrijemeAktivacije;
+        this.korisnikID = korisnikID;
+        this.vrijemeDeaktivacije = vrijemeDeaktivacije;
+    }
+
+    public Anketa(String opis, Date vrijemeAktivacije, Date vrijemeDeaktivacije) {
+
+        this.opis = opis;
+        this.vrijemeAktivacije = vrijemeAktivacije;
+        this.vrijemeDeaktivacije = vrijemeDeaktivacije;
+    }
     public Long getID() {
         return ID;
     }

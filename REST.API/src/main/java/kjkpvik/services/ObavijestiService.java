@@ -31,7 +31,15 @@ public class ObavijestiService {
 
     public String GetObavijesti(){ return "anisaaaaaaaa";}
 
-    public void Update(){};
+    public boolean Update(ObavijestVM obavijest)
+    {
+        List<Obavijest> obavijesti = (List<Obavijest>) iObavijestiRepository.findAll();
+        Obavijest stara;
+        stara = iObavijestiRepository.findOne(obavijest.getID());
+        iObavijestiRepository.delete(stara);
+        Obavijest kreirana = iObavijestiRepository.save( new Obavijest(obavijest.getNaziv(), obavijest.getTekst(),obavijest.getVrijemeObjave(),ikorisnikRepository.findOne(obavijest.getKorisnikID())));
+        return (kreirana != null);
+    }
 
     public void Delete(){};
 /*    public Boolean dodajZabranjenuRijec(ZabranjeneRijeciVM rijec){//unutar ovoga se nalazi i korisnikID
