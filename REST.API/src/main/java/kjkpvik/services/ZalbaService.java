@@ -101,13 +101,13 @@ public class ZalbaService {
         List<ZabranjenaRijec> rijeci=(List<ZabranjenaRijec>)iZabranjeneRijeciRepository.findAll();
 
         for(ZabranjenaRijec r:rijeci){
-            Pattern p1=Pattern.compile(".*[^a-zA-Z]+"+r.getRijec()+"[^a-zA-Z]+.*");
+            Pattern p1=Pattern.compile(".*[^a-zA-Zčćđšž]"+r.getRijec()+"[^a-zA-Zčćđšž].*");
             Matcher m1 = p1.matcher(tekst);
 
-            Pattern p2=Pattern.compile("^"+r.getRijec()+"[^a-zA-Z]+.*");
+            Pattern p2=Pattern.compile("^"+r.getRijec()+"[^a-zA-Zčćđšž].*");
             Matcher m2 = p2.matcher(tekst);
 
-            Pattern p3=Pattern.compile(".*[^a-zA-Z]+"+r.getRijec()+"$");
+            Pattern p3=Pattern.compile(".*[^a-zA-Zčćđšž]"+r.getRijec()+"$");
             Matcher m3 = p3.matcher(tekst);
 
             if(m1.matches() || m2.matches() || m3.matches()){
