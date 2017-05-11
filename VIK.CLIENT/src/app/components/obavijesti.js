@@ -3,21 +3,9 @@ import React from 'react';
 
 import {ListBlock} from './listblock';
 import {BlockView} from './blockview';
+import '../styles/obavijesti.css';
 
-const a={
-  "border-left": "2px solid white",
-}
 
-const b={
-  "text-align": "left",
-  "color": "white",
-  "opacity": "0.8"
-}
-
-const c={
-  "margin": "25px auto auto 10px",
-  "opacity": "0.8"
-}
 
 const m={
   niz: [
@@ -84,13 +72,13 @@ export class Obavijesti extends React.Component{
     let x = this.state.obavijesti.niz[this.state.trenutnaObavijesti];
     return(
       <div>
-      <input type="text" className="col-md-3" style={c} />
-      <h1 className="col-md-offset-1 col-md-5" style={b}>OBAVIJESTI</h1>
+      <input type="text" className="col-md-3 oInput" />
+      <h1 className="col-md-offset-1 col-md-5 oHeader">OBAVIJESTI</h1>
       <div className="row">
         <div className="col-md-5 ">
           <ListBlock dajKliknuti={(klik) => this.kliknutJe(klik)} niz={this.state.obavijesti} naziv="naziv" lijevitext="lokacija" desnitext="datum"/>
         </div>
-        <div className="col-md-7" style={a}>
+        <div className="col-md-7 oBlockView" >
           <BlockView naziv={x.naziv} desc={x.desc}
           lokacija={x.lokacija} datum={x.datum}/>
         </div>

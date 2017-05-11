@@ -1,0 +1,15 @@
+.oBlockView{
+  border-left: 2px solid white;
+}
+
+.oHeader{
+  text-align: left;
+  color: white;
+  opacity: 0.8;
+}
+
+.oInput{
+  margin: 25px auto auto 10px;
+  opacity: 0.8;
+
+}

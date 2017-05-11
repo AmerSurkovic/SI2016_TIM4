@@ -12,7 +12,7 @@ export class BlockView extends React.Component{
     return(
       <div className="frameStyle">
         <h3>{this.props.naziv}</h3>
-        <hr style={a}/>
+        <hr className="bvHr"/>
         <h5 className="textInside">{this.props.desc}</h5>
         <br/>
         <h5 className="col-md-4">{this.props.lokacija}</h5>
