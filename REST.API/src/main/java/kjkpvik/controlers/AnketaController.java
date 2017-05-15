@@ -7,10 +7,7 @@ import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Sumejja on 10.05.2017..
@@ -38,8 +35,8 @@ public class AnketaController {
         }
     }
 
-    @RequestMapping(value = "/prikazipitanja", method = RequestMethod.POST )
-    public ResponseEntity prikaziPitanja(@RequestBody Long id){
+    @RequestMapping(value = "/prikazipitanja/{id}", method = RequestMethod.GET )
+    public ResponseEntity prikaziPitanja(@PathVariable Long id){
 
         try{
             return  ResponseEntity.status(HttpStatus.OK)
@@ -64,12 +61,12 @@ public class AnketaController {
         }
     }
 
-    @RequestMapping(value = "/dajodgovore", method = RequestMethod.POST )
-    public ResponseEntity dajOdgovore(@RequestBody AnketaVM anketa){
+    @RequestMapping(value = "/{id}/odgovori", method = RequestMethod.GET )
+    public ResponseEntity dajOdgovore(@PathVariable Long id){ // id ankete
 
         try{
             return  ResponseEntity.status(HttpStatus.OK)
-                    .body(anketeService.dajOdgovore(anketa));
+                    .body(anketeService.dajOdgovore(id));
         }
         catch (ServiceException e){
             return  ResponseEntity.status(HttpStatus.BAD_REQUEST)

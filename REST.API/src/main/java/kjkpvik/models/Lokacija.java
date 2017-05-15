@@ -17,7 +17,7 @@ public class Lokacija {
     private String naziv;
 
     //veza sa ObavijestLokacija
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "lokacijaID", targetEntity = ObavijestLokacija.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "lokacija", targetEntity = ObavijestLokacija.class)
     private List<ObavijestLokacija> ol= new ArrayList<>(); //?
 
     public Lokacija() {

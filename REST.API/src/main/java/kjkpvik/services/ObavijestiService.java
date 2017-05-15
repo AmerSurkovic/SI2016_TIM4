@@ -2,6 +2,7 @@
 package kjkpvik.services;
 
 import kjkpvik.models.Korisnik;
+import kjkpvik.models.Lokacija;
 import kjkpvik.models.Obavijest;
 import kjkpvik.models.ObavijestLokacija;
 import kjkpvik.repositories.IKorisnikRepository;
@@ -63,9 +64,14 @@ public class ObavijestiService {
 
         return (kreirana!=null);
     }*/
-    public boolean DodajObavijest(ObavijestVM obavijesti){
-        Korisnik korisnik = ikorisnikRepository.findOne(obavijesti.getKorisnikID());
-        Obavijest obavijest=new Obavijest(obavijesti.getNaziv(),obavijesti.getTekst(),obavijesti.getVrijemeObjave(),korisnik);
+    public boolean DodajObavijest(ObavijestVM obavijestVM){
+        Korisnik korisnik = ikorisnikRepository.findOne(obavijestVM.getKorisnikID());
+        Obavijest obavijest = new Obavijest(obavijestVM.getNaziv(),obavijestVM.getTekst(),obavijestVM.getVrijemeObjave(),korisnik);
+        List<ObavijestLokacija> obavijestLokacijaList = new ArrayList<>();
+        for (String lokacija :
+                obavijestVM.getLokacije()) {
+            obavijestLokacijaList.add(new ObavijestLokacija(obavijest, new Lokacija(lokacija)));
+        }
         Obavijest kreirana = iObavijestiRepository.save(obavijest);
         return (kreirana != null);
     }
@@ -87,7 +93,7 @@ public class ObavijestiService {
     }
 
     private static Predicate<ObavijestLokacija> imaLokacijuID(Long lokacijaId){
-        return l->l.getLokacijaID().getID().equals(lokacijaId);
+        return l->l.getLokacija().getID().equals(lokacijaId);
     }
 
     // ovo se odnosi na onu odabranu lokaciju

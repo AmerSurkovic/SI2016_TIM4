@@ -14,25 +14,30 @@ public class ObavijestLokacija {
     private Long ID;
     //veza sa obavijest
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Obavijest.class)
-    private Obavijest obavijestID;
+    private Obavijest obavijest;
+
+    public ObavijestLokacija(Obavijest obavijest, Lokacija lokacija) {
+        this.obavijest = obavijest;
+        this.lokacija = lokacija;
+    }
 
     //veza sa lokacija
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Lokacija.class)
-    private Lokacija lokacijaID;
+    private Lokacija lokacija;
 
-    public Obavijest getObavijestID() {
-        return obavijestID;
+    public Obavijest getObavijest() {
+        return obavijest;
     }
 
-    public void setObavijestID(Obavijest obavijestID) {
-        this.obavijestID = obavijestID;
+    public void setObavijestID(Obavijest obavijest) {
+        this.obavijest = obavijest;
     }
 
-    public Lokacija getLokacijaID() {
-        return lokacijaID;
+    public Lokacija getLokacija() {
+        return lokacija;
     }
 
-    public void setLokacijaID(Lokacija lokacijaID) {
-        this.lokacijaID = lokacijaID;
+    public void setLokacija(Lokacija lokacija) {
+        this.lokacija = lokacija;
     }
 }

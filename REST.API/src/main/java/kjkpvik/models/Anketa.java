@@ -21,27 +21,27 @@ public class Anketa {
 
     // veza sa korisnikom
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Korisnik.class)
-    private Korisnik korisnikID;
+    private Korisnik korisnik;
 
     // veza sa pitanjem
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "anketaID", targetEntity = Pitanje.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "anketa", targetEntity = Pitanje.class)
     private List<Korisnik> pitanja = new ArrayList<>();
 
     public Anketa() {
     }
 
-    public Anketa(String opis, Date vrijemeAktivacije, Korisnik korisnikID, List<Korisnik> pitanja) {
+    public Anketa(String opis, Date vrijemeAktivacije, Korisnik korisnik, List<Korisnik> pitanja) {
 
         this.opis = opis;
         this.vrijemeAktivacije = vrijemeAktivacije;
-        this.korisnikID = korisnikID;
+        this.korisnik = korisnik;
         this.pitanja = pitanja;
     }
-    public Anketa(String opis, Date vrijemeAktivacije, Date vrijemeDeaktivacije, Korisnik korisnikID) {
+    public Anketa(String opis, Date vrijemeAktivacije, Date vrijemeDeaktivacije, Korisnik korisnik) {
 
         this.opis = opis;
         this.vrijemeAktivacije = vrijemeAktivacije;
-        this.korisnikID = korisnikID;
+        this.korisnik = korisnik;
         this.vrijemeDeaktivacije = vrijemeDeaktivacije;
     }
 
@@ -83,12 +83,12 @@ public class Anketa {
         this.vrijemeDeaktivacije = vrijemeDeaktivacije;
     }
 
-    public Korisnik getKorisnikID() {
-        return korisnikID;
+    public Korisnik getKorisnik() {
+        return korisnik;
     }
 
-    public void setKorisnikID(Korisnik korisnikID) {
-        this.korisnikID = korisnikID;
+    public void setKorisnik(Korisnik korisnik) {
+        this.korisnik = korisnik;
     }
 
     public List<Korisnik> getPitanja() {

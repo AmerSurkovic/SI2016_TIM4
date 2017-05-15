@@ -16,7 +16,7 @@ public class Rola {
     private long ID;
     private String naziv;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "rolaID", targetEntity = Korisnik.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "rola", targetEntity = Korisnik.class)
     private List<Korisnik> korisnici = new ArrayList<>();
 
     public long getID() {

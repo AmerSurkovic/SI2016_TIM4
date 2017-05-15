@@ -17,20 +17,20 @@ public class Odgovor {
 
     //veza sa korisnikom
     @OneToOne(fetch = FetchType.LAZY)
-    private Korisnik korisnikID;
+    private Korisnik korisnik;
 
     // veza sa pitanjem
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Pitanje.class)
-    private Pitanje pitanjeID;
+    private Pitanje pitanje;
 
     public Odgovor() {
     }
 
-    public Odgovor(String tekst, Korisnik korisnikID, Pitanje pitanjeID) {
+    public Odgovor(String tekst, Korisnik korisnik, Pitanje pitanje) {
 
         this.tekst = tekst;
-        this.korisnikID = korisnikID;
-        this.pitanjeID = pitanjeID;
+        this.korisnik = korisnik;
+        this.pitanje = pitanje;
     }
 
     public Long getID() {
@@ -48,19 +48,19 @@ public class Odgovor {
         this.tekst = tekst;
     }
 
-    public Korisnik getKorisnikID() {
-        return korisnikID;
+    public Korisnik getKorisnik() {
+        return korisnik;
     }
 
-    public void setKorisnikID(Korisnik korisnikID) {
-        this.korisnikID = korisnikID;
+    public void setKorisnik(Korisnik korisnik) {
+        this.korisnik = korisnik;
     }
 
-    public Pitanje getPitanjeID() {
-        return pitanjeID;
+    public Pitanje getPitanje() {
+        return pitanje;
     }
 
-    public void setPitanjeID(Pitanje pitanjeID) {
-        this.pitanjeID = pitanjeID;
+    public void setPitanje(Pitanje pitanje) {
+        this.pitanje = pitanje;
     }
 }

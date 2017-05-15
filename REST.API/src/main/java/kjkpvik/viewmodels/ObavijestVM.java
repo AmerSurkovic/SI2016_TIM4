@@ -33,11 +33,11 @@ public class ObavijestVM {
         setTekst(obavijest.getTekst());
         setVrijemeObjave(obavijest.getVrijemeObjave());
 
-        setKorisnikID(obavijest.getKorisnikID().getID());
+        setKorisnikID(obavijest.getKorisnik().getID());
 
         lokacije = new ArrayList<String>();
         for (ObavijestLokacija ol : obavijest.getLokacije()) {
-            lokacije.add(ol.getLokacijaID().getNaziv());
+            lokacije.add(ol.getLokacija().getNaziv());
         }
     }
 

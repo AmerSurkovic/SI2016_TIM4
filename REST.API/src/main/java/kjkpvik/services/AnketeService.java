@@ -37,7 +37,7 @@ public class AnketeService {
 
         List<String> trazenaPitanja = new ArrayList<String>();
         for(Pitanje x: svaPitanja){
-            if(x.getAnketaID().getID().equals(id)) {
+            if(x.getAnketa().getID().equals(id)) {
                 trazenaPitanja.add(x.getTekst());
             }
         }
@@ -52,7 +52,7 @@ public class AnketeService {
         List<Korisnik> sviKorisnici = (List<Korisnik>) korisnikRepository.findAll();
         for(Korisnik r: sviKorisnici){
             if(r.getID().equals(anketa.getKorisnik_id()));
-            novaAnketa.setKorisnikID(r);
+            novaAnketa.setKorisnik(r);
         }
 
         List<String> novaPitanja = anketa.getPitanja(); //anketa mora imati barem jedno pitanje
@@ -65,7 +65,7 @@ public class AnketeService {
         }
 
         Anketa kreirana = new Anketa();
-        if(novaAnketa.getKorisnikID().getID() != null) {
+        if(novaAnketa.getKorisnik().getID() != null) {
             kreirana = anketaRepository.save(novaAnketa);
         }
         return (kreirana != null);
@@ -73,12 +73,12 @@ public class AnketeService {
 
 
     // daj odgovore na anketu -> za HR za analizu - testirano
-    public List<Odgovor> dajOdgovore(AnketaVM anketa){
+    public List<Odgovor> dajOdgovore(Long idAnkete){
         List<Odgovor> sviOdgovori = (List<Odgovor>) odgovorRepository.findAll();
         List<Odgovor> trazeniOdgovori = new ArrayList<Odgovor>();
 
         for(Odgovor odgovor: sviOdgovori){
-            if(odgovor.getPitanjeID().getAnketaID().getID().equals(anketa.getID()))
+            if(odgovor.getPitanje().getAnketa().getID().equals(idAnkete))
                 trazeniOdgovori.add(odgovor);
         }
 
@@ -94,14 +94,14 @@ public class AnketeService {
 
         for(Odgovor x: sviOdgovori)
         {
-            if(x.getPitanjeID().getID().equals(anketa.getID())){
+            if(x.getPitanje().getID().equals(anketa.getID())){
                 odgovorRepository.delete(x);
             }
         }
 
         for(Pitanje x: svaPitanja)
         {
-            if(x.getAnketaID().getID().equals(anketa.getID())){
+            if(x.getAnketa().getID().equals(anketa.getID())){
                 pitanjaRepository.delete(x);
             }
         }

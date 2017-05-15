@@ -31,27 +31,27 @@ public class Korisnik {
 
     // veza sa rolom
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Rola.class)
-    private Rola rolaID;
+    private Rola rola;
 
     //veza sa anketom
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnikID", targetEntity = Anketa.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik", targetEntity = Anketa.class)
     private List<Anketa> ankete = new ArrayList<>();
 
     //veza sa odgovorom
-    @OneToOne(fetch = FetchType.LAZY, targetEntity = Odgovor.class, mappedBy = "korisnikID", cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, targetEntity = Odgovor.class, mappedBy = "korisnik", cascade = CascadeType.ALL)
     @NotFound(action = NotFoundAction.IGNORE)
     private Odgovor odgovor;
 
     //veza sa zalbom
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnikID", targetEntity = Zalba.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik", targetEntity = Zalba.class)
     private List<Zalba> zalbe = new ArrayList<>();
 
     //vaza sa zabranjenomRijeci
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnikID", targetEntity = ZabranjenaRijec.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik", targetEntity = ZabranjenaRijec.class)
     private List<ZabranjenaRijec> zabranjeneRijeci = new ArrayList<>();
 
     //vaza sa obavijesti
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnikID", targetEntity = Obavijest.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik", targetEntity = Obavijest.class)
     private List<Obavijest> obavijesti = new ArrayList<>();
 
     public Long getID() {
@@ -86,12 +86,12 @@ public class Korisnik {
         this.email = email;
     }
 
-    public Rola getRolaID() {
-        return rolaID;
+    public Rola getRola() {
+        return rola;
     }
 
-    public void setRolaID(Rola rolaID) {
-        this.rolaID = rolaID;
+    public void setRola(Rola rola) {
+        this.rola = rola;
     }
 
     public List<Anketa> getAnkete() {

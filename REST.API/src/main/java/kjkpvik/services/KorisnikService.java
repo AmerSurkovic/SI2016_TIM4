@@ -78,7 +78,7 @@ public class KorisnikService {
             x = kreirana;
         }
 
-        mojKorisnik.setRolaID(x);
+        mojKorisnik.setRola(x);
         Korisnik kreiran = korisnikRepository.save(mojKorisnik);
 
         return (kreiran != null);

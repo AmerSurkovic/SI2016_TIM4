@@ -26,7 +26,7 @@ public class ZabranjeneRijeciService {
     public Boolean dodajZabranjenuRijec(ZabranjeneRijeciVM rijec){//unutar ovoga se nalazi i korisnikID
 
         ZabranjenaRijec zabranjenaRijec = new ZabranjenaRijec(rijec.getRijec());
-        zabranjenaRijec.setKorisnikID(korisnikRepository.findOne(rijec.getKorisnikID()));
+        zabranjenaRijec.setKorisnik(korisnikRepository.findOne(rijec.getKorisnikID()));
         ZabranjenaRijec kreirana = zabranjeneRijeciRepository.save(zabranjenaRijec);
 
         return (kreirana!=null);

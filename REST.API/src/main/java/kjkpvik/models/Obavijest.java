@@ -22,21 +22,21 @@ public class Obavijest {
 
     // veza sa korisnikom
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Korisnik.class)
-    private Korisnik korisnikID;
+    private Korisnik korisnik;
 
     //veza sa obavijestLokacija
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "obavijestID", targetEntity = ObavijestLokacija.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "obavijest", targetEntity = ObavijestLokacija.class)
     private List<ObavijestLokacija> lokacije = new ArrayList<>();
 
     public Obavijest() {
     }
 
-    public Obavijest(String naziv, String tekst, Date vrijemeObjave, Korisnik korisnikID) {
+    public Obavijest(String naziv, String tekst, Date vrijemeObjave, Korisnik korisnik) {
 
         this.naziv = naziv;
         this.tekst = tekst;
         this.vrijemeObjave = vrijemeObjave;
-        this.korisnikID = korisnikID;
+        this.korisnik = korisnik;
     }
 
 
@@ -72,12 +72,12 @@ public class Obavijest {
         this.vrijemeObjave = vrijemeObjave;
     }
 
-    public Korisnik getKorisnikID() {
-        return korisnikID;
+    public Korisnik getKorisnik() {
+        return korisnik;
     }
 
-    public void setKorisnikID(Korisnik korisnikID) {
-        this.korisnikID = korisnikID;
+    public void setKorisnik(Korisnik korisnik) {
+        this.korisnik = korisnik;
     }
 
     public List<ObavijestLokacija> getLokacije() {

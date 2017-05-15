@@ -20,17 +20,17 @@ public class Zalba {
 
     // veza sa korisnikom
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Korisnik.class)
-    private Korisnik korisnikID;
+    private Korisnik korisnik;
 
     public Zalba() {
     }
 
-    public Zalba(Date vrijemePostavljanja, String tekst, Boolean privatna, Korisnik korisnikID) {
+    public Zalba(Date vrijemePostavljanja, String tekst, Boolean privatna, Korisnik korisnik) {
 
         this.vrijemePostavljanja = vrijemePostavljanja;
         this.tekst = tekst;
         this.privatna = privatna;
-        this.korisnikID = korisnikID;
+        this.korisnik = korisnik;
     }
 
     public Long getID() {
@@ -66,10 +66,10 @@ public class Zalba {
     }
 
     public Korisnik getKorisnikID() {
-        return korisnikID;
+        return korisnik;
     }
 
     public void setKorisnikID(Korisnik korisnikID) {
-        this.korisnikID = korisnikID;
+        this.korisnik = korisnikID;
     }
 }

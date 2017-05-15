@@ -19,19 +19,19 @@ public class Pitanje {
 
     // veza sa anketom
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Anketa.class)
-    private Anketa anketaID;
+    private Anketa anketa;
 
     //vaza sa odgovorom
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pitanjeID", targetEntity = Odgovor.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pitanje", targetEntity = Odgovor.class)
     private List<Odgovor> odgovori = new ArrayList<>();
 
     public Pitanje() {
     }
 
-    public Pitanje(String tekst, Anketa anketaID) {
+    public Pitanje(String tekst, Anketa anketa) {
 
         this.tekst = tekst;
-        this.anketaID = anketaID;
+        this.anketa = anketa;
     }
 
     public Long getID() {
@@ -50,12 +50,12 @@ public class Pitanje {
         this.tekst = tekst;
     }
 
-    public Anketa getAnketaID() {
-        return anketaID;
+    public Anketa getAnketa() {
+        return anketa;
     }
 
-    public void setAnketaID(Anketa anketaID) {
-        this.anketaID = anketaID;
+    public void setAnketa(Anketa anketa) {
+        this.anketa = anketa;
     }
 
     public List<Odgovor> getOdgovori() {
