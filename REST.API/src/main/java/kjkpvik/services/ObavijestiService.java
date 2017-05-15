@@ -64,14 +64,16 @@ public class ObavijestiService {
 
         return (kreirana!=null);
     }*/
-    public boolean DodajObavijest(ObavijestVM obavijestVM){
-        Korisnik korisnik = ikorisnikRepository.findOne(obavijestVM.getKorisnikID());
-        Obavijest obavijest = new Obavijest(obavijestVM.getNaziv(),obavijestVM.getTekst(),obavijestVM.getVrijemeObjave(),korisnik);
+    public boolean DodajObavijest(ObavijestVM obavijestVM, String username){
+        Korisnik korisnik = ikorisnikRepository.findKorisnikByUsername(username);
+        Obavijest obavijest = new Obavijest(obavijestVM.getNaziv(),obavijestVM.getTekst(),null,korisnik);
+        obavijest.setVrijemeObjave(new Date());
         List<ObavijestLokacija> obavijestLokacijaList = new ArrayList<>();
         for (String lokacija :
                 obavijestVM.getLokacije()) {
             obavijestLokacijaList.add(new ObavijestLokacija(obavijest, new Lokacija(lokacija)));
         }
+        obavijest.setLokacije(obavijestLokacijaList);
         Obavijest kreirana = iObavijestiRepository.save(obavijest);
         return (kreirana != null);
     }

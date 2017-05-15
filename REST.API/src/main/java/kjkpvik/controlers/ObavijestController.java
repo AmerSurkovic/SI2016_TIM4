@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -22,12 +23,12 @@ public class ObavijestController {
     public void SetService (ObavijestiService obavijestService) {this.obavijestiService = obavijestService;}
 
     //dodaj obavijest
-    @RequestMapping(value = "/dodajobavijest", method = RequestMethod.POST )
-    public ResponseEntity dodajObavijest(@RequestBody ObavijestVM obavijestVM)
+    @RequestMapping(value = "/dodaj", method = RequestMethod.POST )
+    public ResponseEntity dodajObavijest(@RequestBody ObavijestVM obavijestVM, Principal principal)
     {
         try {
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(obavijestiService.DodajObavijest(obavijestVM));
+                    .body(obavijestiService.DodajObavijest(obavijestVM, principal.getName()));
         }
         catch (ServiceException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
