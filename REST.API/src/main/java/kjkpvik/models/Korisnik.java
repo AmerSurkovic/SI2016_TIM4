@@ -29,28 +29,22 @@ public class Korisnik {
         this.email = email;
     }
 
-    // veza sa rolom
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Rola.class)
+    @ManyToOne(targetEntity = Rola.class)
     private Rola rola;
 
-    //veza sa anketom
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik", targetEntity = Anketa.class)
     private List<Anketa> ankete = new ArrayList<>();
 
-    //veza sa odgovorom
     @OneToOne(fetch = FetchType.LAZY, targetEntity = Odgovor.class, mappedBy = "korisnik", cascade = CascadeType.ALL)
     @NotFound(action = NotFoundAction.IGNORE)
     private Odgovor odgovor;
 
-    //veza sa zalbom
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik", targetEntity = Zalba.class)
     private List<Zalba> zalbe = new ArrayList<>();
 
-    //vaza sa zabranjenomRijeci
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik", targetEntity = ZabranjenaRijec.class)
     private List<ZabranjenaRijec> zabranjeneRijeci = new ArrayList<>();
 
-    //vaza sa obavijesti
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik", targetEntity = Obavijest.class)
     private List<Obavijest> obavijesti = new ArrayList<>();
 
