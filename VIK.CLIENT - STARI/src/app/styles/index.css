@@ -1,0 +1,40 @@
+body{
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+.pocetni{
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  background-color: #192334;
+  width: 100%;
+  display: table;
+  text-align: center;
+  color: black;
+  opacity: 0.9;
+  width: 100vw;
+  height: 100vh;
+}
+
+a{
+  font-size: 25px;
+  color: white;
+  opacity: 0.7;
+}
+
+a:hover{
+  text-decoration: none;
+  color: #7D7B6E;
+  opacity: 0.9;
+}
+
+hr{
+  margin-bottom: 5px;
+}
+
+.divZalba{
+  text-align: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-bottom: 3px solid white;
+}

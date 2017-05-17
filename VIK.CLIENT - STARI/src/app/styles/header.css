@@ -1,0 +1,24 @@
+.divich{
+  margin: auto 10px auto 10px;
+  background-color: white;
+  color: black;
+
+}
+
+.slika{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.opstiInfo{
+  margin-top: 5px;
+}
+
+button{
+  width: 100px;
+}
+
+.btn{
+  color: black;
+  margin-bottom: 5px;
+}
