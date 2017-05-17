@@ -28,6 +28,7 @@ public class KorisnikController {
         this.korisnikService = korisnikService;
     }
 
+    // STATUS: VJEROVATNO SE NECE KORISTITI
     @RequestMapping(value = "/kreirajrolu", method = RequestMethod.POST )
     public ResponseEntity dodajRolu(@RequestBody RolaVM rola)
     {
@@ -41,6 +42,7 @@ public class KorisnikController {
         }
     }
 
+    // STATUS: RADI
     @RequestMapping(value = "/kreiraj", method = RequestMethod.POST )
     public ResponseEntity dodajKorisnika(@RequestBody KorisnikVM korisnikVM)
     {
@@ -54,6 +56,7 @@ public class KorisnikController {
         }
     }
 
+    // STATUS: RADI
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_HR', 'ROLE_ADMIN')")
     @RequestMapping(value = "/rola", method = RequestMethod.GET)
     public RolaVM getRola(Principal principal) {
