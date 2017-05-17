@@ -12,7 +12,7 @@ const navbarInstance = (
   <Navbar inverse collapseOnSelect>
     <Navbar.Header>
       <Navbar.Brand>
-        <a href="#">React-Bootstrap</a>
+        <a href="#">KJKP - VIK</a>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
@@ -29,8 +29,8 @@ const navbarInstance = (
         </NavDropdown>
       </Nav>
       <Nav pullRight>
-        <NavItem eventKey={1} href="#">Link Right</NavItem>
-        <NavItem eventKey={2} href="#">Link Right</NavItem>
+        <NavItem eventKey={1} href="#">Prijavi se</NavItem>
+        <NavItem eventKey={2} href="#">Registruj se</NavItem>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
