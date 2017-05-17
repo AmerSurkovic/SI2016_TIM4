@@ -55,8 +55,8 @@ public class KorisnikService {
     }
 
 
-
-    public Boolean dodajKorisnika(KorisnikVM korisnikVM){
+    // radi
+    public Boolean dodajKorisnika(KorisnikVM korisnikVM, String rola){
 
         if(korisnikVM == null || !isValidEmailAddress(korisnikVM.getEmail()))
             return false;
@@ -64,26 +64,13 @@ public class KorisnikService {
         // fali ispitivanje za postojanje istog korisnika
 
         Korisnik mojKorisnik = new Korisnik(korisnikVM.getUsername(), korisnikVM.getPassword(), korisnikVM.getEmail());
-        List<Rola> sveRole = (List<Rola>) rolaRepository.findAll();
-        Rola x = new Rola();
-        for(Rola r : sveRole)
-        {
-            if(r.getNaziv().equals("Korisnik"))
-                x = r;
-        }
-        if(x.getNaziv() == null)
-        {
-            Rola mojaRola = new Rola("Korisnik");
-            Rola kreirana = rolaRepository.save(mojaRola);
-            x = kreirana;
-        }
-
-        mojKorisnik.setRola(x);
+        mojKorisnik.setRola(rolaRepository.findRolaByNaziv(rola));
         Korisnik kreiran = korisnikRepository.save(mojKorisnik);
 
         return (kreiran != null);
 
     }
+
 
     //edit -> mozda
 

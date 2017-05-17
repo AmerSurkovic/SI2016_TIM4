@@ -12,6 +12,6 @@ import javax.persistence.EntityManager;
  */
 public interface IRolaRepository extends PagingAndSortingRepository<Rola, Long> {
 
-
+    Rola findRolaByNaziv(String roleName);
 
 }

@@ -12,6 +12,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 /**
  * Created by Siii on 5/9/2017.
  */
@@ -38,12 +40,12 @@ public class KorisnikController {
         }
     }
 
-    @RequestMapping(value = "/kreirajkorisnika", method = RequestMethod.POST )
+    @RequestMapping(value = "/kreiraj", method = RequestMethod.POST )
     public ResponseEntity dodajKorisnika(@RequestBody KorisnikVM korisnikVM)
     {
         try {
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(korisnikService.dodajKorisnika(korisnikVM));
+                    .body(korisnikService.dodajKorisnika(korisnikVM, "ROLE_USER"));
         }
         catch (ServiceException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -52,7 +54,10 @@ public class KorisnikController {
     }
 
     @RequestMapping(value = "/rola", method = RequestMethod.GET)
-    public RolaVM getRola() {
+    public RolaVM getRola(Principal principal) {
+
+        //return
+
          Long var = new Long(1); //hardkodirala, potrebno mi je bilo radi formata
 
         return korisnikService.getRola( var);
