@@ -71,6 +71,11 @@ public class KorisnikService {
 
     }
 
+    public RolaVM getRolaForUser(String username) {
+        Korisnik korisnik = korisnikRepository.findKorisnikByUsername(username);
+        return new RolaVM(korisnik.getRola().getNaziv());
+    }
+
 
     //edit -> mozda
 

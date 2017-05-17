@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -53,14 +54,12 @@ public class KorisnikController {
         }
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_HR', 'ROLE_ADMIN')")
     @RequestMapping(value = "/rola", method = RequestMethod.GET)
     public RolaVM getRola(Principal principal) {
 
-        //return
+        return korisnikService.getRolaForUser(principal.getName());
 
-         Long var = new Long(1); //hardkodirala, potrebno mi je bilo radi formata
-
-        return korisnikService.getRola( var);
     }
 
 
