@@ -1,9 +1,8 @@
 var queryString = require ('query-string');
 
-var url = 'http://localhost:3306...';
+var url = 'http://localhost:8080/zalbe/dodaj_zalbu';
 var header = new Headers({
-    'Access-Control-Allow-Origin':'*',
-    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+    'Content-Type': 'application/json; charset=utf8'
 });
 
 var ComplaintService = new function() {
@@ -15,9 +14,12 @@ var ComplaintService = new function() {
           method: 'POST',
           headers: header,
           body: JSON.stringify({
-            message: text,
-            privacy: priv,
+            tekst: text,
+            privatna: priv,
+            korisnikID: 1
           })
         });
     }
 }
+
+export default ComplaintService;

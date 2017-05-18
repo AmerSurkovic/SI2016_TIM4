@@ -10,6 +10,7 @@ class App extends React.Component {
           <div>
             <NavbarInstance/>
             <ComplaintList/>
+            <ComplaintFormInstance/>
           </div>
         );
     }

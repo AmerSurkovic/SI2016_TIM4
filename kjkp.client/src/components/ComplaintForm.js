@@ -34,8 +34,13 @@ export var ComplaintFormInstance = React.createClass ({
 
     handleFormSubmit: function (formSubmitEvent) {
       formSubmitEvent.preventDefault();
-      ComplaintService.postComplaint(this.state.message, this.state.radio);
+      var priv = this.state.radio==='Privatni';
+
+      ComplaintService.postComplaint(this.state.message, priv);
+      formSubmitEvent.target.reset();
+
       console.log('You have selected:', this.state.radio);
+
     },
 
       render() {
@@ -45,7 +50,7 @@ export var ComplaintFormInstance = React.createClass ({
                <Row className="show-grid">
                  <Col md={8} mdOffset={2}>
                      <Panel header="Unos žalbe" bsStyle="danger">
-                       <form onSubmit={this.HandleFormSubmit}>
+                       <form onSubmit={this.handleFormSubmit}>
 
                          <FormGroup controlId="formControlsTextarea">
                            <ControlLabel>Unesite žalbu:</ControlLabel>
