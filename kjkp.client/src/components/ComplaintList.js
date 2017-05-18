@@ -10,10 +10,6 @@ var Col = rb.Col;
 var Panel = rb.Panel;
 
 export class ComplaintList extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
           <Grid>
@@ -29,7 +25,6 @@ export class ComplaintList extends React.Component {
               </Col>
             </Row>
           </Grid>
-
         );
     }
 }
