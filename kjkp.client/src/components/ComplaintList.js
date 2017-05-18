@@ -1,5 +1,6 @@
 import React from "react";
 import * as ReactBootstrap from 'react-bootstrap';
+import ComplaintService from '../services/ComplaintService';
 
 var rb = ReactBootstrap;
 var ListGroup = rb.ListGroup;
@@ -8,8 +9,18 @@ var Grid = rb.Grid;
 var Row = rb.Row;
 var Col = rb.Col;
 var Panel = rb.Panel;
+var Button = rb.Button;
 
-export class ComplaintList extends React.Component {
+export var ComplaintList = React.createClass ({
+
+    getInitialState: function () {
+        return { };
+    },
+
+    handleClick: function(e) {
+      var Complaints = ComplaintService.getPrivateComplaints();
+    },
+
     render() {
         return (
           <Grid>
@@ -21,10 +32,13 @@ export class ComplaintList extends React.Component {
                     <ListGroupItem>Item 2</ListGroupItem>
                     <ListGroupItem>...</ListGroupItem>
                   </ListGroup>
+
+                  <Button bsStyle="primary" onClick={this.handleClick}>Prikaži</Button>
+
                 </Panel>
               </Col>
             </Row>
           </Grid>
         );
     }
-}
+})

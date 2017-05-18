@@ -28,8 +28,6 @@ export var ComplaintFormInstance = React.createClass ({
       this.setState({
         radio: changeEvent.target.value
       });
-      console.log('You have selected:', this.state.radio);
-
     },
 
     handleFormSubmit: function (formSubmitEvent) {
@@ -38,13 +36,10 @@ export var ComplaintFormInstance = React.createClass ({
 
       ComplaintService.postComplaint(this.state.message, priv);
       formSubmitEvent.target.reset();
-
-      console.log('You have selected:', this.state.radio);
-
+      this.setState({ radio: 'Privatni' });
     },
 
       render() {
-          console.log('I was triggered during render')
           return (
             <Grid>
                <Row className="show-grid">

@@ -9,8 +9,8 @@ class App extends React.Component {
         return (
           <div>
             <NavbarInstance/>
-            <ComplaintList/>
             <ComplaintFormInstance/>
+            <ComplaintList/>
           </div>
         );
     }
