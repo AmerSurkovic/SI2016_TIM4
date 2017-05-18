@@ -28,7 +28,9 @@ public class ZalbaController {
     }
 
     // get
-
+    /**
+     * RADI!
+     */
     @RequestMapping(value = "/prikazi_zalbe", method = RequestMethod.GET)
     public List<ZalbaVM> getZalbe() {
         return zalbaService.getZalbe();
@@ -36,11 +38,17 @@ public class ZalbaController {
 
     // filtriraj
 
+    /**
+     * RADI!
+     */
     @RequestMapping(value = "/prikazi_privatne_zalbe", method = RequestMethod.GET)
     public List<ZalbaVM> getPrivatneZalbe() {
         return zalbaService.getPrivatneZalbe();
     }
 
+    /**
+     * RADI!
+     */
     @RequestMapping(value = "/prikazi_javne_zalbe", method = RequestMethod.GET)
     public List<ZalbaVM> getJavneZalbe() {
         return zalbaService.getJavneZalbe();
@@ -48,6 +56,9 @@ public class ZalbaController {
 
     // add
 
+    /**
+     * RADI!
+     */
     @RequestMapping(value = "/dodaj_zalbu", method = RequestMethod.POST )
     public ResponseEntity dodajZalbu(@RequestBody ZalbaVM zalba)
     {

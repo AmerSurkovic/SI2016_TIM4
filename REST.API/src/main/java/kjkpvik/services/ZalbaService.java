@@ -50,6 +50,9 @@ public class ZalbaService {
         return zalbeVMlista(zalbe);
     }
 
+    /**
+     * RADI!
+     */
     public List<ZalbaVM> getJavneZalbe(){
         List<Zalba> zalbe=iZalbaRepository.findByPrivatnaFalseOrderByVrijemePostavljanjaDesc();
         return zalbeVMlista(zalbe);
@@ -62,8 +65,7 @@ public class ZalbaService {
             return false;
         }
 
-        // inace bi vrijeme postvaljanja trebalo da bude trenutno
-        // ovo je samo radi testiranja
+        // Registruje se vrijeme kada je zalba upisana u bazu
         Date refVrijeme;
         if(zalbaVM.getVrijemePostavljanja()!=null){
             refVrijeme=new Date(zalbaVM.getVrijemePostavljanja().getTime());
@@ -75,10 +77,13 @@ public class ZalbaService {
 
         List<Zalba> pomZalbe=iZalbaRepository.findByVrijemePostavljanjaAfter(refVrijeme);
 
+        /**
+         * Ovo je kao provjera da li je korisnik postavio zalbu.... Treba prepravit
+         */
         pomZalbe=pomZalbe.stream().filter(korisnikPostavioZalbu(zalbaVM.getKorisnikID())).collect(Collectors.toList());
-        if(pomZalbe.size()!=0){
+       /* if(pomZalbe.size()!=0){
             return false;
-        }
+        }*/
 
         Zalba zalba=new Zalba();
 
