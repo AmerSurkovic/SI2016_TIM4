@@ -3,6 +3,9 @@ import React from 'react';
 import {NavbarInstance} from './components/NavbarInstance';
 import {ComplaintFormInstance} from './components/ComplaintForm';
 import {ComplaintList} from './components/ComplaintList';
+import {AddLocationForm} from './components/AddLocationForm';
+import {DeleteLocationForm} from './components/DeleteLocationForm';
+
 
 class App extends React.Component {
     render() {
@@ -10,6 +13,10 @@ class App extends React.Component {
           <div>
             <NavbarInstance/>
             <ComplaintFormInstance/>
+            <ComplaintList/>
+            <AddLocationForm/>
+            <DeleteLocationForm/>
+
           </div>
         );
     }
