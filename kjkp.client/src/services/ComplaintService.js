@@ -13,10 +13,7 @@ var ComplaintService = new function() {
           method: 'GET',
           headers: header,
         }).then(function(responseObj) {
-          return responseObj.json();
-        }).then(function(parsedData){
-          console.log(parsedData);
-          return parsedData;
+          return responseObj;
         });
     }
 
