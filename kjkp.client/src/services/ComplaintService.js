@@ -1,4 +1,5 @@
 var queryString = require ('query-string');
+import axios from 'axios';
 
 var url = 'http://localhost:8080/';
 var header = new Headers({
@@ -7,23 +8,24 @@ var header = new Headers({
 
 var ComplaintService = new function() {
 
-
     this.getPrivateComplaints = ()=>{
-        return fetch(url + 'zalbe/prikazi_zalbe', {
+      /*  return fetch(url + 'zalbe/prikazi_zalbe', {
           method: 'GET',
           headers: header,
-        }).then(function(responseObj) {
-          return responseObj;
-        });
+        }).then(results => results.json();)
+        . then(return items;);*/
     }
 
     this.getPublicComplaints = ()=>{
-        return fetch(url, {
+        var response;
+        this.state = {
+          tmp:[]
+        }
+        var req = makeCancelable(fetch(url + 'zalbe/prikazi_zalbe', {
           method: 'GET',
           headers: header,
-        }).then(function(responseObj) {
-          return responseObj;
-        });
+        }));
+
     }
 
     this.postComplaint = (text, priv)=>{

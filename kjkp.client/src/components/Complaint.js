@@ -13,3 +13,5 @@ class Complaint extends React.Component{
     }
 
 }
+
+export default Complaint;
