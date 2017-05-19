@@ -7,25 +7,6 @@ var header = new Headers({
 
 var ComplaintService = new function() {
 
-
-    this.getPrivateComplaints = ()=>{
-        return fetch(url, {
-          method: 'GET',
-          headers: header,
-        }).then(function(responseObj) {
-          return responseObj;
-        });
-    }
-
-    this.getPublicComplaints = ()=>{
-        return fetch(url, {
-          method: 'GET',
-          headers: header,
-        }).then(function(responseObj) {
-          return responseObj;
-        });
-    }
-
     this.postComplaint = (text, priv)=>{
         return fetch(url + 'zalbe/dodaj_zalbu', {
           method: 'POST',
