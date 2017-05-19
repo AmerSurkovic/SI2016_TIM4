@@ -1,6 +1,6 @@
 import React from "react";
 import * as ReactBootstrap from 'react-bootstrap';
-import ComplaintService from '../services/ComplaintService';
+import ComplaintService from '../../services/ComplaintService';
 
 var rb = ReactBootstrap;
 var ListGroup = rb.ListGroup;
@@ -22,7 +22,9 @@ export var ComplaintList = React.createClass ({
     },
 
     handleClick: function(e) {
-      var Complaints = ComplaintService.getPrivateComplaints();
+      var parsedData = ComplaintService.getPrivateComplaints();
+      console.log(parsedData);
+
       return;
     },
 

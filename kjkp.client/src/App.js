@@ -8,11 +8,18 @@ import {
 
 //import * as ReactBootstrap from 'react-bootstrap';
 import { NavbarInstance } from './components/NavbarInstance';
-import { ComplaintFormInstance } from './components/ComplaintForm';
-import { ComplaintList } from './components/ComplaintList';
-import { CreatingAccount } from './components/CreatingAccount';
-import { AddLocationForm } from './components/AddLocationForm';
-import { DeleteLocationForm } from './components/DeleteLocationForm';
+
+import { ComplaintFormInstance } from './components/complaint/ComplaintForm';
+import { ComplaintList } from './components/complaint/ComplaintList';
+
+import { Login } from './components/account/Login';
+import { CreatingAccount } from './components/account/CreatingAccount';
+
+import { AddLocationForm } from './components/location/AddLocationForm';
+import { DeleteLocationForm } from './components/location/DeleteLocationForm';
+
+import { AddingWord } from './components/forbiddenWords/AddingWord.js';
+
 
 class App extends React.Component {
   render() {
@@ -22,10 +29,12 @@ class App extends React.Component {
         <Router>
           <div>
             <Route exact path="/" component={ComplaintList} />
+            <Route path="/login" component={Login} />
             <Route path="/signup" component={CreatingAccount} />
             <Route path="/location/add" component={AddLocationForm} />
             <Route path="/complaint" component={ComplaintFormInstance} />
             <Route path="/location/delete" component={DeleteLocationForm} />
+            <Route path="/forbiddenwords/add" component={AddingWord} />
           </div>
         </Router>
       </div>
