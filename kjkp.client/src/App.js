@@ -9,7 +9,7 @@ import {
 //import * as ReactBootstrap from 'react-bootstrap';
 import { NavbarInstance } from './components/NavbarInstance';
 import { ComplaintFormInstance } from './components/ComplaintForm';
-import { ComplaintList } from './components/ComplaintList';
+import  ComplaintList  from './components/ComplaintList';
 import { CreatingAccount } from './components/CreatingAccount';
 import { AddLocationForm } from './components/AddLocationForm';
 import { DeleteLocationForm } from './components/DeleteLocationForm';
@@ -26,8 +26,10 @@ class App extends React.Component {
             <Route path="/location/add" component={AddLocationForm} />
             <Route path="/complaint" component={ComplaintFormInstance} />
             <Route path="/location/delete" component={DeleteLocationForm} />
+            <Route path="/complaintList" componet={ComplaintList}/>
           </div>
         </Router>
+        <ComplaintList/>
       </div>
     );
   }
