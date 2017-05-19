@@ -4,27 +4,23 @@ import {
   BrowserRouter as Router,
   Route,
   Link
-} from 'react-router-dom'
+} from 'react-router-dom';
 
 //import * as ReactBootstrap from 'react-bootstrap';
 import { NavbarInstance } from './components/NavbarInstance';
 import { ComplaintFormInstance } from './components/ComplaintForm';
 import { ComplaintList } from './components/ComplaintList';
-
 import { CreatingAccount } from './components/CreatingAccount';
-
 import { AddLocationForm } from './components/AddLocationForm';
 import { DeleteLocationForm } from './components/DeleteLocationForm';
-
-
 
 class App extends React.Component {
   render() {
     return (
       <div>
         <NavbarInstance />
-
         <Router>
+          <div>
             <Route exact path="/" component={ComplaintList} />
             <Route path="/signup" component={CreatingAccount} />
             <Route path="/location/add" component={AddLocationForm} />
@@ -32,7 +28,6 @@ class App extends React.Component {
             <Route path="/location/delete" component={DeleteLocationForm} />
           </div>
         </Router>
-
       </div>
     );
   }
@@ -68,8 +63,3 @@ export default App;
 // });
 //
 // export default MyComponent;
-
-// React.render(
-//   <MyComponent />,
-//   document.getElementById('root')
-// );

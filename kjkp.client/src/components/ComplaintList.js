@@ -11,9 +11,9 @@ var Col = rb.Col;
 var Panel = rb.Panel;
 var Button = rb.Button;
 
-var fillComplaintList = React.createClass ({
-  render: function
-})
+  // var fillComplaintList = React.createClass ({
+  //   render: function
+  // })
 
 export var ComplaintList = React.createClass ({
 
@@ -26,19 +26,19 @@ export var ComplaintList = React.createClass ({
       return;
     },
 
-    fillComplaintList: function(complaints) {
-        if(complaints == null)
-          return;
-
-        return(
-            <ListGroup>
-            for(complaint in complaints)
-            {
-              <ListGroupItem> { complaint.message } </ListGroupItem>
-            }
-            </ListGroup>
-        );
-    },
+    // fillComplaintList: function(complaints) {
+    //     if(complaints == null)
+    //       return;
+    //
+    //     return(
+    //         <ListGroup>
+    //         for(complaint in complaints)
+    //         {
+    //           <ListGroupItem> { complaint.message } </ListGroupItem>
+    //         }
+    //         </ListGroup>
+    //     );
+    // },
 
     render() {
         return (
