@@ -20,12 +20,36 @@ import { DeleteLocationForm } from './components/location/DeleteLocationForm';
 
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      auth: {
+        isAuthenticated: false,
+        username: "",
+        role: ""
+      }
+    }
+    this.onLoginSuccessful = this.onLoginSuccessful.bind(this);
+  }
+
+  updateAuth(authParam) {
+    this.setState(
+      auth: {
+        isAuthenticated: authParam.isAuthenticated,
+        username: authParam.username,
+        role: authParam.role
+      }
+    );
+  }
+
+
   render() {
     return (
       <div>
-        <NavbarInstance />
         <Router>
           <div>
+            <NavbarInstance />
+
             <Route exact path="/" component={ComplaintList} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={CreatingAccount} />
