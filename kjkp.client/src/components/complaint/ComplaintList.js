@@ -22,7 +22,9 @@ export var ComplaintList = React.createClass ({
     },
 
     handleClick: function(e) {
-      var Complaints = ComplaintService.getPrivateComplaints();
+      var parsedData = ComplaintService.getPrivateComplaints();
+      console.log(parsedData);
+
       return;
     },
 
