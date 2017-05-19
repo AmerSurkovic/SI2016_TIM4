@@ -9,11 +9,14 @@ var ComplaintService = new function() {
 
 
     this.getPrivateComplaints = ()=>{
-        return fetch(url, {
+        return fetch(url + 'zalbe/prikazi_zalbe', {
           method: 'GET',
           headers: header,
         }).then(function(responseObj) {
-          return responseObj;
+          return responseObj.json();
+        }).then(function(parsedData){
+          console.log(parsedData);
+          return parsedData;
         });
     }
 
