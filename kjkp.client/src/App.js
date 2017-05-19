@@ -4,10 +4,11 @@ import {
   BrowserRouter as Router,
   Route,
   Link
-} from 'react-router-dom'
+} from 'react-router-dom';
 
 //import * as ReactBootstrap from 'react-bootstrap';
 import { NavbarInstance } from './components/NavbarInstance';
+
 import { ComplaintFormInstance } from './components/complaint/ComplaintForm';
 import { ComplaintList } from './components/complaint/ComplaintList';
 
@@ -18,13 +19,11 @@ import { AddLocationForm } from './components/location/AddLocationForm';
 import { DeleteLocationForm } from './components/location/DeleteLocationForm';
 
 
-
 class App extends React.Component {
   render() {
     return (
       <div>
         <NavbarInstance />
-
         <Router>
           <div>
             <Route exact path="/" component={ComplaintList} />
@@ -35,8 +34,6 @@ class App extends React.Component {
             <Route path="/location/delete" component={DeleteLocationForm} />
           </div>
         </Router>
-
-
       </div>
     );
   }
@@ -72,8 +69,3 @@ export default App;
 // });
 //
 // export default MyComponent;
-
-// React.render(
-//   <MyComponent />,
-//   document.getElementById('root')
-// );
