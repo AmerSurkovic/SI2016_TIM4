@@ -8,13 +8,14 @@ import {
 
 //import * as ReactBootstrap from 'react-bootstrap';
 import { NavbarInstance } from './components/NavbarInstance';
-import { ComplaintFormInstance } from './components/ComplaintForm';
-import { ComplaintList } from './components/ComplaintList';
+import { ComplaintFormInstance } from './components/complaint/ComplaintForm';
+import { ComplaintList } from './components/complaint/ComplaintList';
 
-import { CreatingAccount } from './components/CreatingAccount';
+import { Login } from './components/account/Login';
+import { CreatingAccount } from './components/account/CreatingAccount';
 
-import { AddLocationForm } from './components/AddLocationForm';
-import { DeleteLocationForm } from './components/DeleteLocationForm';
+import { AddLocationForm } from './components/location/AddLocationForm';
+import { DeleteLocationForm } from './components/location/DeleteLocationForm';
 
 
 
@@ -27,6 +28,7 @@ class App extends React.Component {
         <Router>
           <div>
             <Route exact path="/" component={ComplaintList} />
+            <Route path="/login" component={Login} />
             <Route path="/signup" component={CreatingAccount} />
             <Route path="/location/add" component={AddLocationForm} />
             <Route path="/complaint" component={ComplaintFormInstance} />

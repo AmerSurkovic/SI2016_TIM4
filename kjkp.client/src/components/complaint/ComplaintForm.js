@@ -1,7 +1,7 @@
 import React from "react";
 import * as ReactBootstrap from 'react-bootstrap';
 
-import ComplaintService from '../services/ComplaintService';
+import ComplaintService from '../../services/ComplaintService';
 
 var rb = ReactBootstrap;
 var FormGroup = rb.FormGroup;
