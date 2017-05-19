@@ -1,5 +1,4 @@
 var queryString = require ('query-string');
-import axios from 'axios';
 
 var url = 'http://localhost:8080/';
 var header = new Headers({
