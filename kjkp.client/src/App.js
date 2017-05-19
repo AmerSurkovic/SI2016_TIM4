@@ -18,7 +18,10 @@ import { CreatingAccount } from './components/account/CreatingAccount';
 import { AddLocationForm } from './components/location/AddLocationForm';
 import { DeleteLocationForm } from './components/location/DeleteLocationForm';
 
-import { AddingWord } from './components/forbiddenWords/AddingWord.js';
+import { AddingWord } from './components/forbiddenWords/AddingWord';
+import { DeletingWord } from './components/forbiddenWords/DeletingWord';
+
+import { AddingContactInformations } from './components/contactInformations/AddingContactInformations';
 
 
 class App extends React.Component {
@@ -35,6 +38,8 @@ class App extends React.Component {
             <Route path="/complaint" component={ComplaintFormInstance} />
             <Route path="/location/delete" component={DeleteLocationForm} />
             <Route path="/forbiddenwords/add" component={AddingWord} />
+            <Route path="/forbiddenwords/delete" component={DeletingWord} />
+            <Route path="/contactinformations/add" component={AddingContactInformations} />
           </div>
         </Router>
       </div>
