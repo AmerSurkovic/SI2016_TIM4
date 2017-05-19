@@ -35,10 +35,9 @@ class App extends React.Component {
             <Route path="/complaint" component={ComplaintFormInstance} />
             <Route path="/location/delete" component={DeleteLocationForm} />
             <Route path="/forbiddenwords/add" component={AddingWord} />
-            <Route path="/complaintList" componet={ComplaintList}/>
+            <Route path="/complaintList" component={ComplaintList}/>
           </div>
         </Router>
-        <ComplaintList/>
       </div>
     );
   }

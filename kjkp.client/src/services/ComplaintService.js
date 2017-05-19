@@ -8,26 +8,6 @@ var header = new Headers({
 
 var ComplaintService = new function() {
 
-    this.getPrivateComplaints = ()=>{
-      /*  return fetch(url + 'zalbe/prikazi_zalbe', {
-          method: 'GET',
-          headers: header,
-        }).then(results => results.json();)
-        . then(return items;);*/
-    }
-
-    this.getPublicComplaints = ()=>{
-        var response;
-        this.state = {
-          tmp:[]
-        }
-        var req = makeCancelable(fetch(url + ' ', {
-          method: 'GET',
-          headers: header,
-        }));
-
-    }
-
     this.postComplaint = (text, priv)=>{
         return fetch(url + 'zalbe/dodaj_zalbu', {
           method: 'POST',
