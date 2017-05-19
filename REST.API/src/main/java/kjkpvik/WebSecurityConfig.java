@@ -30,6 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/korisnik/kreiraj").permitAll()
                 .antMatchers(HttpMethod.POST,"/login").permitAll()
+                .antMatchers(HttpMethod.GET, "/zalbe/prikazi_zalbe").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 // We filter the api/login requests
