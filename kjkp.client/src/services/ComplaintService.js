@@ -21,7 +21,7 @@ var ComplaintService = new function() {
         this.state = {
           tmp:[]
         }
-        var req = makeCancelable(fetch(url + 'zalbe/prikazi_zalbe', {
+        var req = makeCancelable(fetch(url + ' ', {
           method: 'GET',
           headers: header,
         }));
