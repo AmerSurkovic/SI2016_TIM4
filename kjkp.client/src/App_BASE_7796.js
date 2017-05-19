@@ -18,43 +18,16 @@ import { CreatingAccount } from './components/account/CreatingAccount';
 import { AddLocationForm } from './components/location/AddLocationForm';
 import { DeleteLocationForm } from './components/location/DeleteLocationForm';
 
-import { AddingWord } from './components/forbiddenWords/AddingWord';
-import { DeletingWord } from './components/forbiddenWords/DeletingWord';
-
-import { AddingContactInformations } from './components/contactInformations/AddingContactInformations';
+import { AddingWord } from './components/forbiddenWords/AddingWord.js';
 
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      auth: {
-        isAuthenticated: false,
-        username: "",
-        role: ""
-      }
-    };
-    this.updateAuth = this.updateAuth.bind(this);
-  }
-
-  updateAuth(authParam) {
-    // this.setState(
-    //   auth: {
-    //     isAuthenticated: authParam.isAuthenticated,
-    //     username: authParam.username,
-    //     role: authParam.role
-    //   }
-    // );
-  }
-
-
   render() {
     return (
       <div>
+        <NavbarInstance />
         <Router>
           <div>
-            <NavbarInstance />
-
             <Route exact path="/" component={ComplaintList} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={CreatingAccount} />
@@ -62,10 +35,6 @@ class App extends React.Component {
             <Route path="/complaint" component={ComplaintFormInstance} />
             <Route path="/location/delete" component={DeleteLocationForm} />
             <Route path="/forbiddenwords/add" component={AddingWord} />
-            <Route path="/forbiddenwords/delete" component={DeletingWord} />
-            <Route path="/contactinformations/add" component={AddingContactInformations} />
-
-            <Route path="/complaintList" component={ComplaintList} />
           </div>
         </Router>
       </div>

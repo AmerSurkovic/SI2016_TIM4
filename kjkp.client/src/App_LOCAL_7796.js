@@ -25,36 +25,12 @@ import { AddingContactInformations } from './components/contactInformations/Addi
 
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      auth: {
-        isAuthenticated: false,
-        username: "",
-        role: ""
-      }
-    };
-    this.updateAuth = this.updateAuth.bind(this);
-  }
-
-  updateAuth(authParam) {
-    // this.setState(
-    //   auth: {
-    //     isAuthenticated: authParam.isAuthenticated,
-    //     username: authParam.username,
-    //     role: authParam.role
-    //   }
-    // );
-  }
-
-
   render() {
     return (
       <div>
+        <NavbarInstance />
         <Router>
           <div>
-            <NavbarInstance />
-
             <Route exact path="/" component={ComplaintList} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={CreatingAccount} />
@@ -64,8 +40,6 @@ class App extends React.Component {
             <Route path="/forbiddenwords/add" component={AddingWord} />
             <Route path="/forbiddenwords/delete" component={DeletingWord} />
             <Route path="/contactinformations/add" component={AddingContactInformations} />
-
-            <Route path="/complaintList" component={ComplaintList} />
           </div>
         </Router>
       </div>

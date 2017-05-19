@@ -6,7 +6,26 @@ var header = new Headers({
 });
 
 var AccountService = new function(){
-  this.postUser = (usernameIN, emailIN, passwordIN)=>{
+
+    this.login = (credentials) => {
+        return fetch(url + 'login', {
+            method: "POST",
+            headers: new Headers({
+                'Content-Type' : 'application/json'
+            }),
+            body: JSON.stringify({
+                username: credentials.username,
+                password : credentials.password
+            })//.then(response => {
+
+            // }).catch(error => {
+
+            // })
+        });
+    }
+
+
+    this.postUser = (usernameIN, emailIN, passwordIN) => {
       return fetch(url + 'korisnik/kreiraj', {
         method: 'POST',
         headers: header,
@@ -16,7 +35,8 @@ var AccountService = new function(){
           password: passwordIN
         })
       });
-}
+    }
 }
 
 export default AccountService;
+

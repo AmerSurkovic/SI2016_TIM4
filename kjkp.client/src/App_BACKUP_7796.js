@@ -62,10 +62,12 @@ class App extends React.Component {
             <Route path="/complaint" component={ComplaintFormInstance} />
             <Route path="/location/delete" component={DeleteLocationForm} />
             <Route path="/forbiddenwords/add" component={AddingWord} />
+<<<<<<< HEAD
             <Route path="/forbiddenwords/delete" component={DeletingWord} />
             <Route path="/contactinformations/add" component={AddingContactInformations} />
-
+=======
             <Route path="/complaintList" component={ComplaintList} />
+>>>>>>> 16f68c87cd7ecb0dca7f15a7f368580dee46a9f3
           </div>
         </Router>
       </div>
