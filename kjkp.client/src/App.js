@@ -14,9 +14,10 @@ class App extends React.Component {
             <NavbarInstance/>
             <ComplaintFormInstance/>
             <ComplaintList/>
+          </div>
         );
     }
-}
+};
 
 export default App;
 

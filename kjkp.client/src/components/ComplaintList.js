@@ -11,6 +11,10 @@ var Col = rb.Col;
 var Panel = rb.Panel;
 var Button = rb.Button;
 
+var fillComplaintList = React.createClass ({
+  render: function
+})
+
 export var ComplaintList = React.createClass ({
 
     getInitialState: function () {
@@ -19,6 +23,21 @@ export var ComplaintList = React.createClass ({
 
     handleClick: function(e) {
       var Complaints = ComplaintService.getPrivateComplaints();
+      return;
+    },
+
+    fillComplaintList: function(complaints) {
+        if(complaints == null)
+          return;
+
+        return(
+            <ListGroup>
+            for(complaint in complaints)
+            {
+              <ListGroupItem> { complaint.message } </ListGroupItem>
+            }
+            </ListGroup>
+        );
     },
 
     render() {
@@ -27,11 +46,6 @@ export var ComplaintList = React.createClass ({
             <Row className="show-grid">
               <Col md={8} mdOffset={2}>
                 <Panel header="Pregled žalbi" bsStyle="info">
-                  <ListGroup>
-                    <ListGroupItem>Item 1</ListGroupItem>
-                    <ListGroupItem>Item 2</ListGroupItem>
-                    <ListGroupItem>...</ListGroupItem>
-                  </ListGroup>
 
                   <Button bsStyle="primary" onClick={this.handleClick}>Prikaži</Button>
 
