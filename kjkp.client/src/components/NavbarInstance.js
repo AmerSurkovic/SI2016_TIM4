@@ -20,23 +20,6 @@ export class NavbarInstance extends React.Component {
     this.onLogout = this.onLogout.bind(this);
   }
 
-
-  // handleLogin = () => {
-  //   browserHistory.push('/login');
-  // }
-
-  // handleRegister = () => {
-  //   browserHistory.push('/signup');
-  // }
-
-  // handleComplaint = () => {
-  //   browserHistory.push('/complaint');
-  // }
-
-  // handleForbiddenWord = () => {
-  //   browserHistory.push('/forbiddenwords/add')
-  // }
-
   onLogout() {
     if (AccountService.deleteAuthInfo()) {
       this.setState(this.state);
@@ -60,8 +43,8 @@ export class NavbarInstance extends React.Component {
 
     var ActionSection =
       <Nav>
-        <NavItem>Napisi zalbu</NavItem>
-        <NavItem>Popuni anketu - to be implemented</NavItem>
+        <NavItem><Link to="/complaintList">Pregled javnih zalbi</Link></NavItem>
+        <NavItem>Kontakt informacije</NavItem>
       </Nav>;
 
     if (AccountService.getAuthInfo() != null) {
@@ -74,6 +57,7 @@ export class NavbarInstance extends React.Component {
       AuthSection =
         <Nav pullRight>
           <NavDropdown title={"Welcome " + user}>
+            <MenuItem>Postavke profila</MenuItem>
             <MenuItem divider />
             <MenuItem onClick={this.onLogout}>Logout</MenuItem>
           </NavDropdown>
@@ -85,11 +69,14 @@ export class NavbarInstance extends React.Component {
             <Nav>
               <NavDropdown title="Upravljanje obavijestima">
                 <MenuItem>Kreiraj novu obavijest</MenuItem>
+                <MenuItem><Link to="/location/add">Dodaj novu lokaciju</Link></MenuItem>
               </NavDropdown>
               <NavDropdown title="Upravljanje anketama">
                 <MenuItem>Kreiraj novu anketu</MenuItem>
+                <MenuItem>Pregled aktivnih anketa</MenuItem>
               </NavDropdown>
-              <NavItem>Pregled zalbi</NavItem>
+              <NavItem>Izmjeni kontakt informacije</NavItem>
+              <NavItem><Link to="/complaintList">Pregled zalbi</Link></NavItem>
             </Nav>;
           break;
         case "ROLE_HR":
@@ -99,13 +86,19 @@ export class NavbarInstance extends React.Component {
                 <MenuItem>Kreiraj novu anketu</MenuItem>
                 <MenuItem>Pregled popunjenih anketa</MenuItem>
               </NavDropdown>
-              <NavItem>Pregled zalbi</NavItem>
+              <NavDropdown title="Upravljanje tabelom nedozvoljenih rijeci">
+                <MenuItem><Link to="/forbiddenwords/add">Dodaj nedozvoljenu rijec</Link></MenuItem>
+                <MenuItem>Pregled nedozvoljenih rijeci</MenuItem>
+              </NavDropdown>
+              <NavItem><Link to="/complaintList">Pregled zalbi</Link></NavItem>
             </Nav>;
           break;
         case "ROLE_USER":
           ActionSection =
             <Nav>
-              <NavItem>Pregled zalbi</NavItem>
+              <NavItem><Link to="/complaintList">Pregled zalbi</Link></NavItem>
+              <NavItem><Link to="/complaint">Popuni zalbu</Link></NavItem>
+              <NavItem>Pregled aktivnih anketa</NavItem>
               <NavItem>Kontakt informacije</NavItem>
             </Nav>;
           break;
