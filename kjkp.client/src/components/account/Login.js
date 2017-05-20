@@ -16,8 +16,10 @@ var Col = rb.Col;
 export class Login extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {username: '',
-                        password: ''};
+        this.state = {
+            username: '',
+            password: ''
+        };
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onLogin = this.onLogin.bind(this);
@@ -35,21 +37,41 @@ export class Login extends React.Component {
     }
 
     onLogin() {
-
-        var obj = {
+        var updateParent = this.props.onLoginCheck;
+        var creds = {
             username: this.state.username,
             password: this.state.password
         };
-        AccountService.login(obj)
-                    .then(response => {
-                        alert(response);
-                    }).catch(error => {
-                        alert(error);
-                    })
+        AccountService.login(creds)
+            .then(response => {
+                if (response.status == 200) {
+                    var auth = {
+                        isAuthenticated: true,
+                        username: creds.username,
+                        role: response.headers.get('role'),
+                        token: response.headers.get('authorization')
+                    };
+                    AccountService.storeAuthInfo(auth);
+                    updateParent(auth);
+                }
+                else {
+                    var auth = {
+                        isAuthenticated: false
+                    };
+                    updateParent(auth);
+                }
+
+
+            }).catch(error => {
+                alert(error);
+            })
         //alert(this.getState());
     }
 
     render() {
+        if (AccountService.getAuthInfo() != null) {
+            return (<div>You are already logged in!</div>);
+        }
         const form = (
 
             <Form horizontal>

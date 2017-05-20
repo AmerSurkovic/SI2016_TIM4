@@ -35,6 +35,7 @@ class App extends React.Component {
   }
 
   updateAuth(authParam) {
+    this.setState(this.state);
     // this.setState(
     //   auth: {
     //     isAuthenticated: authParam.isAuthenticated,
@@ -53,8 +54,10 @@ class App extends React.Component {
             <NavbarInstance />
 
             <Route exact path="/" component={ComplaintList} />
-            <Route path="/login" component={Login} />
+
+            <Route path="/login" component={() => (<Login onLoginCheck={this.updateAuth} />)} />
             <Route path="/signup" component={CreatingAccount} />
+
             <Route path="/location/add" component={AddLocationForm} />
             <Route path="/complaint" component={ComplaintFormInstance} />
             <Route path="/location/delete" component={DeleteLocationForm} />

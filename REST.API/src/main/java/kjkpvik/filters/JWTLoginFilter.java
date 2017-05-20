@@ -35,7 +35,7 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
         res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         res.setHeader("Access-Control-Max-Age", "3600");
         res.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept, X-Requested-With, remember-me, Access-Control-Allow-Headers, Origin, Access-Control-Request-Method, Access-Control-Request-Headers");
-        res.setHeader("Access-Control-Expose-Headers", "Authorization");
+        res.setHeader("Access-Control-Expose-Headers", "Authorization, Role");
         if(!req.getMethod().equals("POST")) {
             creds = new AccountCredentials();
             creds.setUsername("");
@@ -55,6 +55,6 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
     @Override
     protected void successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain chain, Authentication auth) throws IOException, ServletException {
-        TokenAuthenticationService.addAuthentication(res, auth.getName());
+        TokenAuthenticationService.addAuthentication(req, res, auth.getName());
     }
 }
