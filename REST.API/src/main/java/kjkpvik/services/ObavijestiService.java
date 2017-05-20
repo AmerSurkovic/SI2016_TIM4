@@ -6,6 +6,7 @@ import kjkpvik.models.Lokacija;
 import kjkpvik.models.Obavijest;
 import kjkpvik.models.ObavijestLokacija;
 import kjkpvik.repositories.IKorisnikRepository;
+import kjkpvik.repositories.ILokacijaRepository;
 import kjkpvik.repositories.IObavijestiRepository;
 import kjkpvik.viewmodels.ObavijestVM;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,10 @@ public class ObavijestiService {
 
     @Autowired
     private IObavijestiRepository iObavijestiRepository;
+    @Autowired
     private IKorisnikRepository ikorisnikRepository;
+    @Autowired
+    private ILokacijaRepository iLokacijaRepository;
 
     public List<ObavijestVM> GetObavijesti(){
         Sort sortiraj=new Sort(Sort.Direction.DESC, "vrijemeObjave");
@@ -64,14 +68,20 @@ public class ObavijestiService {
 
         return (kreirana!=null);
     }*/
+    // TESTIRANO - RADI
     public boolean DodajObavijest(ObavijestVM obavijestVM, String username){
         Korisnik korisnik = ikorisnikRepository.findKorisnikByUsername(username);
-        Obavijest obavijest = new Obavijest(obavijestVM.getNaziv(),obavijestVM.getTekst(),null,korisnik);
-        obavijest.setVrijemeObjave(new Date());
+        Obavijest obavijest = new Obavijest(obavijestVM.getNaziv(),obavijestVM.getTekst(),new Date(),korisnik);
         List<ObavijestLokacija> obavijestLokacijaList = new ArrayList<>();
         for (String lokacija :
                 obavijestVM.getLokacije()) {
-            obavijestLokacijaList.add(new ObavijestLokacija(obavijest, new Lokacija(lokacija)));
+
+            if(iLokacijaRepository.findLokacijaByNaziv(lokacija) == null) {
+                iLokacijaRepository.save(new Lokacija(lokacija));
+            }
+
+
+            obavijestLokacijaList.add(new ObavijestLokacija(obavijest, iLokacijaRepository.findLokacijaByNaziv(lokacija)));
         }
         obavijest.setLokacije(obavijestLokacijaList);
         Obavijest kreirana = iObavijestiRepository.save(obavijest);

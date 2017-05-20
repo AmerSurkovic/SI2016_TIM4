@@ -68,7 +68,7 @@ export class NavbarInstance extends React.Component {
           ActionSection =
             <Nav>
               <NavDropdown title="Upravljanje obavijestima">
-                <MenuItem>Kreiraj novu obavijest</MenuItem>
+                <MenuItem><Link to="news/add">Kreiraj novu obavijest</Link></MenuItem>
                 <MenuItem><Link to="/location/add">Dodaj novu lokaciju</Link></MenuItem>
               </NavDropdown>
               <NavDropdown title="Upravljanje anketama">
@@ -114,17 +114,6 @@ export class NavbarInstance extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           {ActionSection}
-          {/*<Nav>
-            <NavItem eventKey={1} href="#"><Link to="/complaint">Napisi zalbu</Link></NavItem>
-            <NavItem eventKey={2} href="#"><Link to="/forbiddenwords/add">Dodaj zabranjenu rijec</Link></NavItem>
-            <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1}>Action</MenuItem>
-              <MenuItem eventKey={3.2}>Another action</MenuItem>
-              <MenuItem eventKey={3.3}>Something else here</MenuItem>
-              <MenuItem divider />
-              <MenuItem eventKey={3.3}>Separated link</MenuItem>
-            </NavDropdown>
-          </Nav>*/}
           <Nav pullRight>
             {AuthSection}
           </Nav>

@@ -9,6 +9,8 @@ import {
 //import * as ReactBootstrap from 'react-bootstrap';
 import { NavbarInstance } from './components/NavbarInstance';
 
+import { AddNews } from './components/news/AddNews';
+
 import { ComplaintFormInstance } from './components/complaint/ComplaintForm';
 import { ComplaintList } from './components/complaint/ComplaintList';
 
@@ -58,6 +60,7 @@ class App extends React.Component {
             <Route path="/login" component={() => (<Login onLoginCheck={this.updateAuth} />)} />
             <Route path="/signup" component={CreatingAccount} />
 
+            <Route path="/news/add" component={AddNews}/>
             <Route path="/location/add" component={AddLocationForm} />
             <Route path="/complaint" component={ComplaintFormInstance} />
             <Route path="/location/delete" component={DeleteLocationForm} />

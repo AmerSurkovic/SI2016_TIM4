@@ -12,24 +12,27 @@ public class ObavijestLokacija {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", updatable = false, nullable = false)
     private Long ID;
-    //veza sa obavijest
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Obavijest.class)
+
+
+    @ManyToOne(targetEntity = Obavijest.class)
     private Obavijest obavijest;
+
+    @ManyToOne(targetEntity = Lokacija.class)
+    private Lokacija lokacija;
+
+    public ObavijestLokacija() {
+    }
 
     public ObavijestLokacija(Obavijest obavijest, Lokacija lokacija) {
         this.obavijest = obavijest;
         this.lokacija = lokacija;
     }
 
-    //veza sa lokacija
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Lokacija.class)
-    private Lokacija lokacija;
-
     public Obavijest getObavijest() {
         return obavijest;
     }
 
-    public void setObavijestID(Obavijest obavijest) {
+    public void setObavijest(Obavijest obavijest) {
         this.obavijest = obavijest;
     }
 
