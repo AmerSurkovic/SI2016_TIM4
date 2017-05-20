@@ -8,7 +8,10 @@ class Complaint extends React.Component{
 
     render(){
       return(
-        <ListGroupItem>{this.props.complaint.tekst}</ListGroupItem>
+        <ListGroupItem header={this.props.complaint.korisnikID}>
+        {this.props.complaint.tekst}<br/>
+        <b>Datum postavljanja: {this.props.complaint.vrijemePostavljanja}</b>
+        </ListGroupItem>
       );
     }
 

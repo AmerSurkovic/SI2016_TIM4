@@ -18,8 +18,7 @@ import { CreatingAccount } from './components/account/CreatingAccount';
 import { AddLocationForm } from './components/location/AddLocationForm';
 import { DeleteLocationForm } from './components/location/DeleteLocationForm';
 
-import { AddingWord } from './components/forbiddenWords/AddingWord.js';
-
+import { AddingWord } from './components/forbiddenWords/AddingWord';
 
 class App extends React.Component {
   constructor(props) {
@@ -63,6 +62,7 @@ class App extends React.Component {
             <Route path="/location/delete" component={DeleteLocationForm} />
             <Route path="/forbiddenwords/add" component={AddingWord} />
             <Route path="/complaintList" component={ComplaintList} />
+
           </div>
         </Router>
       </div>
