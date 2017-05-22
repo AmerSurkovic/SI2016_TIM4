@@ -15,8 +15,8 @@ public class Korisnik {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", updatable = false, nullable = false)
-    private Long ID;
+    @Column(name = "id", updatable = false, nullable = false)
+    private Long id;
     private String username;
     private String password;
     private String email;
@@ -49,11 +49,11 @@ public class Korisnik {
     private List<Obavijest> obavijesti = new ArrayList<>();
 
     public Long getID() {
-        return ID;
+        return id;
     }
 
     public void setID(Long ID) {
-        this.ID = ID;
+        this.id = ID;
     }
 
     public String getUsername() {

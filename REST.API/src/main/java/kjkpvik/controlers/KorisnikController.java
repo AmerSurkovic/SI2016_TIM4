@@ -42,6 +42,11 @@ public class KorisnikController {
         }
     }
 
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    public KorisnikVM getKorisnikById(@RequestParam("Id") Long korisnikId){
+        return korisnikService.getUserById(korisnikId);
+    }
+
     // STATUS: RADI
     @RequestMapping(value = "/kreiraj", method = RequestMethod.POST )
     public ResponseEntity dodajKorisnika(@RequestBody KorisnikVM korisnikVM)

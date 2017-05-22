@@ -54,14 +54,14 @@ export class ComplaintList extends React.Component {
     this.req = makeCancelable(fetch('http://localhost:8080/zalbe/prikazi_privatne_zalbe'));
     this.req.promise.then(response => response.json())
       .then(result => this.setState({ privateComplaints: result }))
-      .catch(error => this.setSTate({ errorMessage: error + "" }));
+      .catch(error => this.setState({ errorMessage: error + "" }));
   }
 
   render() {
     var complaints = this.state.complaints.map((comp) => (<Complaint complaint={comp} />));
-    var publicComplaints = this.state.publicComplaints.map((comp) => (<Complaint complaint={comp}/>));
-    var privateComplaints = this.state.privateComplaints.map((comp) => (<Complaint complaint={comp}/>));
-    console.log(this.state.complaints);
+    var publicComplaints = this.state.publicComplaints.map((comp) => (<Complaint complaint={comp} />));
+    var privateComplaints = this.state.privateComplaints.map((comp) => (<Complaint complaint={comp} />));
+    //console.log(this.state.complaints);
     return (
       <Grid>
         <Row className="show-grid">
