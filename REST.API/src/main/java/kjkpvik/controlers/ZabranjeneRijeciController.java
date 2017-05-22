@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by Kemal Halilbegović on 11.05.2017..
  */
@@ -19,6 +21,12 @@ public class ZabranjeneRijeciController {
     public void setService(ZabranjeneRijeciService zabranjeneRijeciService){
         this.zabranjeneRijeciService = zabranjeneRijeciService;
     }
+
+    @RequestMapping(value = "/prikazi_rijeci", method = RequestMethod.GET)
+    public List<ZabranjeneRijeciVM> getWords() {
+        return zabranjeneRijeciService.getWords();
+    }
+
     @RequestMapping(value = "/kreiraj", method = RequestMethod.POST)
     public ResponseEntity dodajRijec(@RequestBody ZabranjeneRijeciVM rijec)
     {

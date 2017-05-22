@@ -1,3 +1,5 @@
+import AccountService from '../services/AccountService';
+
 var queryString = require ('query-string');
 
 var url = 'http://localhost:8080/';

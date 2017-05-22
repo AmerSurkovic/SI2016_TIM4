@@ -29,11 +29,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/korisnik/kreiraj").permitAll()
+                .antMatchers("/korisnik/get").permitAll()
                 .antMatchers("/zalbe/dodaj_zalbu").permitAll()
                 .antMatchers("/zalbe/prikazi_zalbe").permitAll()
                 .antMatchers("/zalbe/prikazi_privatne_zalbe").permitAll()
                 .antMatchers("/zalbe/prikazi_javne_zalbe").permitAll()
                 .antMatchers("/zrijeci/kreiraj").permitAll()
+                .antMatchers("/zrijeci/prikazi_rijeci").permitAll()
                 .antMatchers("/lokacija/all").permitAll()
                 .antMatchers("/obavijest/sve").permitAll()
                 .antMatchers(HttpMethod.POST,"/login").permitAll()
