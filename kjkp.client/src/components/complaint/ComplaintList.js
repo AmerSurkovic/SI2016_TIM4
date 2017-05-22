@@ -114,11 +114,23 @@ export class ComplaintList extends React.Component {
         break;
         case "ROLE_HR":
         ActionSection=
-          <Panel header="Pregled javnih žalbi" bsStyle="success">
-            <ListGroup>
-              {publicComplaints}
-            </ListGroup>
-          </Panel>;
+        <Panel>
+            <Panel header="Pregled žalbi" bsStyle="info">
+              <ListGroup>
+                {complaints}
+              </ListGroup>
+            </Panel>
+            <Panel header="Pregled javnih žalbi" bsStyle="success">
+              <ListGroup>
+                {publicComplaints}
+              </ListGroup>
+            </Panel>
+            <Panel header="Pregled privatnih žalbi" bsStyle="danger">
+              <ListGroup>
+                {privateComplaints}
+              </ListGroup>
+            </Panel>
+          </Panel>
         break;
       }
     }
