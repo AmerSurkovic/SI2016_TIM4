@@ -28,7 +28,7 @@ public class ObavijestVM {
     }
 
     public ObavijestVM(Obavijest obavijest){
-        //setID(obavijest.getID());
+        setID(obavijest.getID());
         setNaziv(obavijest.getNaziv());
         setTekst(obavijest.getTekst());
         setVrijemeObjave(obavijest.getVrijemeObjave());

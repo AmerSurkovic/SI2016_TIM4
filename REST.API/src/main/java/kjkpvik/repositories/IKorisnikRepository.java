@@ -8,4 +8,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface IKorisnikRepository extends PagingAndSortingRepository<Korisnik, Long> {
     Korisnik findKorisnikByUsername(String username);
+    Korisnik findKorisnikById(Long id);
 }

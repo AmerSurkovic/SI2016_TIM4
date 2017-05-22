@@ -10,6 +10,7 @@ import {
 import { NavbarInstance } from './components/NavbarInstance';
 
 import { AddNews } from './components/news/AddNews';
+import { NewsList } from './components/news/NewsList';
 
 import { ComplaintFormInstance } from './components/complaint/ComplaintForm';
 import { ComplaintList } from './components/complaint/ComplaintList';
@@ -55,12 +56,12 @@ class App extends React.Component {
           <div>
             <NavbarInstance />
 
-            <Route exact path="/" component={ComplaintList} />
+            <Route exact path="/" component={NewsList} />
 
             <Route path="/login" component={() => (<Login onLoginCheck={this.updateAuth} />)} />
             <Route path="/signup" component={CreatingAccount} />
 
-            <Route path="/news/add" component={AddNews}/>
+            <Route path="/news/add" component={AddNews} />
             <Route path="/location/add" component={AddLocationForm} />
             <Route path="/complaint" component={ComplaintFormInstance} />
             <Route path="/location/delete" component={DeleteLocationForm} />

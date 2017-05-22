@@ -21,3 +21,4 @@ var ComplaintService = new function() {
 }
 
 export default ComplaintService;
+ 
