@@ -29,6 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/korisnik/kreiraj").permitAll()
+                .antMatchers("/korisnik/get").permitAll()
                 .antMatchers("/zalbe/dodaj_zalbu").permitAll()
                 .antMatchers("/zalbe/prikazi_zalbe").permitAll()
                 .antMatchers("/zalbe/prikazi_privatne_zalbe").permitAll()
