@@ -1,6 +1,5 @@
 import React from "react";
 import * as ReactBootstrap from 'react-bootstrap';
-import User from '../account/User';
 import { makeCancelable } from '../../globals';
 
 var rb = ReactBootstrap;
