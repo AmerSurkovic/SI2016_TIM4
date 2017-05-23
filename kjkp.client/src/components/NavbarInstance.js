@@ -88,7 +88,7 @@ export class NavbarInstance extends React.Component {
               </NavDropdown>
               <NavDropdown title="Upravljanje tabelom nedozvoljenih rijeci">
                 <MenuItem><Link to="/forbiddenwords/add">Dodaj nedozvoljenu rijec</Link></MenuItem>
-                <MenuItem>Pregled nedozvoljenih rijeci</MenuItem>
+                <MenuItem><Link to="/forbiddenwordsList">Pregled nedozvoljenih rijeci</Link></MenuItem>
               </NavDropdown>
               <NavItem><Link to="/complaintList">Pregled zalbi</Link></NavItem>
             </Nav>;

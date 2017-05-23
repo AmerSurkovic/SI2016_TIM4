@@ -10,6 +10,7 @@ import {
 import { NavbarInstance } from './components/NavbarInstance';
 
 import { AddNews } from './components/news/AddNews';
+import { NewsList } from './components/news/NewsList';
 
 import { ComplaintFormInstance } from './components/complaint/ComplaintForm';
 import { ComplaintList } from './components/complaint/ComplaintList';
@@ -21,6 +22,7 @@ import { AddLocationForm } from './components/location/AddLocationForm';
 import { DeleteLocationForm } from './components/location/DeleteLocationForm';
 
 import { AddingWord } from './components/forbiddenWords/AddingWord';
+import { WordsList } from './components/forbiddenWords/WordsList';
 
 class App extends React.Component {
   constructor(props) {
@@ -54,16 +56,17 @@ class App extends React.Component {
           <div>
             <NavbarInstance />
 
-            <Route exact path="/" component={ComplaintList} />
+            <Route exact path="/" component={NewsList} />
 
             <Route path="/login" component={() => (<Login onLoginCheck={this.updateAuth} />)} />
             <Route path="/signup" component={CreatingAccount} />
 
-            <Route path="/news/add" component={AddNews}/>
+            <Route path="/news/add" component={AddNews} />
             <Route path="/location/add" component={AddLocationForm} />
             <Route path="/complaint" component={ComplaintFormInstance} />
             <Route path="/location/delete" component={DeleteLocationForm} />
             <Route path="/forbiddenwords/add" component={AddingWord} />
+            <Route path="/forbiddenwordsList" component={WordsList} />
             <Route path="/complaintList" component={ComplaintList} />
 
           </div>

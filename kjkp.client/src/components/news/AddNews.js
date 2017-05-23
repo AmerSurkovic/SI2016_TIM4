@@ -12,25 +12,25 @@ var Col = ReactBootstrap.Col;
 var Panel = ReactBootstrap.Panel;
 
 function FieldGroup({ id, label, help, ...props }) {
-  return (
-    <FormGroup controlId={id}>
-      <ControlLabel>{label}</ControlLabel>
-      <FormControl {...props} />
-      {help && <HelpBlock>{help}</HelpBlock>}
-    </FormGroup>
-  );
+    return (
+        <FormGroup controlId={id}>
+            <ControlLabel>{label}</ControlLabel>
+            <FormControl {...props} />
+            {help && <HelpBlock>{help}</HelpBlock>}
+        </FormGroup>
+    );
 }
 
 export class AddNews extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            locations : []
+            locations: []
         };
 
 
         this.getLokacijas = this.getLokacijas.bind(this);
-        this.addObavijest = this.addObavijest
+        this.addObavijest = this.addObavijest.bind(this);
         //ostavi mi krs i looooooom idi s njoooom
     }
 
@@ -41,16 +41,16 @@ export class AddNews extends React.Component {
     getLokacijas() {
         var component = this;
         NewsService.getAllLocations()
-                .then(response => {
-                    return response.json();
-                }).then(json => {
+            .then(response => {
+                return response.json();
+            }).then(json => {
 
-                    component.setState({
-                        locations : json
-                    });
-                  }).catch(error => {
-                      alert(error);
-                    });
+                component.setState({
+                    locations: json
+                });
+            }).catch(error => {
+                alert(error);
+            });
 
     }
 
@@ -60,34 +60,34 @@ export class AddNews extends React.Component {
 
     render() {
         const locations = this.state.locations;
-        return(
+        return (
             <Col md={6} mdOffset={3}>
                 <Panel header="Nova obavijest" bsStyle="success">
-                <form>
-                    <FieldGroup
-                        id="formControlsText"
-                        type="text"
-                        label="Naslov obavijesti"
-                        placeholder="Naslov"
+                    <form>
+                        <FieldGroup
+                            id="formControlsText"
+                            type="text"
+                            label="Naslov obavijesti"
+                            placeholder="Naslov"
                         />
-                    <FormGroup controlId="formControlsTextarea">
-                        <ControlLabel>Tekst obavijesti</ControlLabel>
-                        <FormControl componentClass="textarea" placeholder="Tekst obavijesti..." />
-                    </FormGroup>
-                    <FormGroup controlId="formControlsSelectMultiple">
-                      <ControlLabel>Lokacije</ControlLabel>
-                      <FormControl componentClass="select" size={locations.length > 20 ? 20 : locations.length} multiple>
-                        {
-                            locations.map((location) =>
-                                 <option key={location.id} value={location.id}>{location.naziv}</option>
-                            )
-                        }
-                      </FormControl>
-                    </FormGroup>
-                    <Button type="button" bsStyle="success">
-                        Potvrdi
+                        <FormGroup controlId="formControlsTextarea">
+                            <ControlLabel>Tekst obavijesti</ControlLabel>
+                            <FormControl componentClass="textarea" placeholder="Tekst obavijesti..." />
+                        </FormGroup>
+                        <FormGroup controlId="formControlsSelectMultiple">
+                            <ControlLabel>Lokacije</ControlLabel>
+                            <FormControl componentClass="select" size={locations.length > 20 ? 20 : locations.length} multiple>
+                                {
+                                    locations.map((location) =>
+                                        <option key={location.id} value={location.id}>{location.naziv}</option>
+                                    )
+                                }
+                            </FormControl>
+                        </FormGroup>
+                        <Button type="button" bsStyle="success">
+                            Potvrdi
                     </Button>
-                </form>
+                    </form>
                 </Panel>
             </Col>);
     }
