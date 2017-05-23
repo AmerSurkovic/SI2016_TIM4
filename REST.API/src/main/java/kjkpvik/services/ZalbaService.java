@@ -9,6 +9,7 @@ import kjkpvik.repositories.IZalbaRepository;
 import kjkpvik.viewmodels.ZalbaVM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -41,6 +42,10 @@ public class ZalbaService {
         Sort sortiraj=new Sort(Sort.Direction.DESC, "vrijemePostavljanja");
         List<Zalba> zalbe=(List<Zalba>)iZalbaRepository.findAll(sortiraj);
         return zalbeVMlista(zalbe);
+    }
+
+    public Integer deleteById(Long id){
+        return iZalbaRepository.deleteZalbaById(id);
     }
 
     // get filtriraj (opcija javne/privatne)
