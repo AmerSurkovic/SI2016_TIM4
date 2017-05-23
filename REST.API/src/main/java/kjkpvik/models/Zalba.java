@@ -12,14 +12,14 @@ public class Zalba {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", updatable = false, nullable = false)
-    private Long ID;
+    @Column(name = "id", updatable = false, nullable = false)
+    private Long id;
     private Date vrijemePostavljanja;
     private String tekst;
     private Boolean privatna;
 
     // veza sa korisnikom
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Korisnik.class)
+    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Korisnik.class, cascade = CascadeType.DETACH)
     private Korisnik korisnik;
 
     public Zalba() {
@@ -34,11 +34,11 @@ public class Zalba {
     }
 
     public Long getID() {
-        return ID;
+        return id;
     }
 
     public void setID(Long ID) {
-        this.ID = ID;
+        this.id = ID;
     }
 
     public Date getVrijemePostavljanja() {

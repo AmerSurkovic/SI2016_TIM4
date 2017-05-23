@@ -59,7 +59,6 @@ export class ComplaintList extends React.Component {
   }
 
   render() {
-
     var authenticated = false;
     var user = "";
     var role = "";
