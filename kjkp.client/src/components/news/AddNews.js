@@ -25,12 +25,14 @@ export class AddNews extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            locations: []
+            locations: [],
+            newItem: {}
         };
 
 
         this.getLokacijas = this.getLokacijas.bind(this);
         this.addObavijest = this.addObavijest.bind(this);
+        this.inputFieldValueChanged = this.inputFieldValueChanged.bind(this);
         //ostavi mi krs i looooooom idi s njoooom
     }
 
@@ -54,9 +56,41 @@ export class AddNews extends React.Component {
 
     }
 
+    inputFieldValueChanged(event) {
+        if (event.target.name == "title") {
+            this.setState({
+                title: event.target.value
+            });
+        }
+        else if (event.target.name == "content") {
+            this.setState({
+                content: event.target.value
+            });
+        }
+    }
+
+    onLocationSelectChanged(event) {
+        var selected = [];
+        for (var i = 0; i < event.target.options.length; i++) {
+            var element = event.target.options[i];
+            if (element.selected)
+                selected.push(element.value);
+        }
+        this.setState({
+            selectedLocations: selected
+        });
+    }
+
     addObavijest() {
+        var item = {
+            title: this.state.title,
+            content: this.state.content,
+            locations: this.state.selectedLocations
+        };
         var component = this;
-        //NewsService.create()
+        NewsService.create(item)
+            .then(response => alert(response))
+            .catch(error => alert(error));
     }
 
     render() {
@@ -65,27 +99,25 @@ export class AddNews extends React.Component {
             <Col md={6} mdOffset={3}>
                 <Panel header="Nova obavijest" bsStyle="success">
                     <form>
-                        <FieldGroup
-                            id="formControlsText"
-                            type="text"
-                            label="Naslov obavijesti"
-                            placeholder="Naslov"
-                        />
+                        <FormGroup>
+                            <ControlLabel>Naslov obavijesti</ControlLabel>
+                            <FormControl name="title" onChange={this.inputFieldValueChanged} placeholder="Naslov obavijesti" />
+                        </FormGroup>
                         <FormGroup controlId="formControlsTextarea">
                             <ControlLabel>Tekst obavijesti</ControlLabel>
-                            <FormControl componentClass="textarea" placeholder="Tekst obavijesti..." />
+                            <FormControl name="content" onChange={this.inputFieldValueChanged} componentClass="textarea" placeholder="Tekst obavijesti..." />
                         </FormGroup>
                         <FormGroup controlId="formControlsSelectMultiple">
                             <ControlLabel>Lokacije</ControlLabel>
-                            <FormControl componentClass="select" size={locations.length > 20 ? 20 : locations.length} multiple>
+                            <FormControl onChange={this.onLocationSelectChanged.bind(this)} componentClass="select" size={locations.length > 20 ? 20 : locations.length} multiple>
                                 {
                                     locations.map((location) =>
-                                        <option key={location.id} value={location.id}>{location.naziv}</option>
+                                        <option key={location.id} value={location.naziv}>{location.naziv}</option>
                                     )
                                 }
                             </FormControl>
                         </FormGroup>
-                        <Button type="button" bsStyle="success">
+                        <Button type="button" onClick={this.addObavijest} bsStyle="success">
                             Potvrdi
                     </Button>
                     </form>
