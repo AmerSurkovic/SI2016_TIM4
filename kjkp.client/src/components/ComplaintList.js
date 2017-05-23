@@ -11,10 +11,6 @@ var Col = rb.Col;
 var Panel = rb.Panel;
 var Button = rb.Button;
 
-  // var fillComplaintList = React.createClass ({
-  //   render: function
-  // })
-
 export var ComplaintList = React.createClass ({
 
     getInitialState: function () {
@@ -23,22 +19,22 @@ export var ComplaintList = React.createClass ({
 
     handleClick: function(e) {
       var Complaints = ComplaintService.getPrivateComplaints();
-      return;
+      this.fillComplaintList(Complaints);
     },
 
-    // fillComplaintList: function(complaints) {
-    //     if(complaints == null)
-    //       return;
-    //
-    //     return(
-    //         <ListGroup>
-    //         for(complaint in complaints)
-    //         {
-    //           <ListGroupItem> { complaint.message } </ListGroupItem>
-    //         }
-    //         </ListGroup>
-    //     );
-    // },
+    fillComplaintList: function(complaints) {
+        if(complaints == null)
+          return;
+
+        return(
+            <ListGroup>
+            for(complaint in complaints)
+            {
+              <ListGroupItem> { complaint.message } </ListGroupItem>
+            }
+            </ListGroup>
+        );
+    },
 
     render() {
         return (
