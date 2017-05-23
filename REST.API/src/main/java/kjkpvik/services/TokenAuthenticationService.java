@@ -4,10 +4,12 @@ import com.sun.org.apache.xml.internal.security.algorithms.SignatureAlgorithm;
 import io.jsonwebtoken.Jwts;
 import kjkpvik.models.Korisnik;
 import kjkpvik.repositories.IKorisnikRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -24,7 +26,9 @@ import static io.jsonwebtoken.SignatureAlgorithm.HS512;
 /**
  * Created by Adnan on 5/15/2017.
  */
+@Service
 public class TokenAuthenticationService {
+
 
     private static IKorisnikRepository korisnikRepository;
 
@@ -33,13 +37,20 @@ public class TokenAuthenticationService {
     static final String TOKEN_PREFIX = "Bearer";
     static final String HEADER_STRING = "Authorization";
 
-    public static void addAuthentication(HttpServletResponse res, String username) {
+    public static void addAuthentication(HttpServletRequest req, HttpServletResponse res, String username) {
+        ServletContext servletContext = req.getServletContext();
+        WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+        korisnikRepository = webApplicationContext.getBean(IKorisnikRepository.class);
+
         String JWT = Jwts.builder()
                 .setSubject(username)
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
                 .signWith(HS512, SECRET)
                 .compact();
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + JWT);
+        res.addHeader("Role", korisnikRepository.findKorisnikByUsername(username)
+                                                    .getRola()
+                                                    .getNaziv());
     }
 
     public static Authentication getAuthentication(HttpServletRequest request) {

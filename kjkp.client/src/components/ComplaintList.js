@@ -42,9 +42,7 @@ export var ComplaintList = React.createClass ({
             <Row className="show-grid">
               <Col md={8} mdOffset={2}>
                 <Panel header="Pregled žalbi" bsStyle="info">
-
                   <Button bsStyle="primary" onClick={this.handleClick}>Prikaži</Button>
-
                 </Panel>
               </Col>
             </Row>

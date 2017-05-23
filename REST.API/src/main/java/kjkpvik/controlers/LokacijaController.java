@@ -1,5 +1,6 @@
 package kjkpvik.controlers;
 
+import kjkpvik.models.Lokacija;
 import kjkpvik.viewmodels.LokacijaVM;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class LokacijaController {
     }
 
     // STATUS: RADI
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping (value = "/dodaj", method = RequestMethod.POST)
     public ResponseEntity dodajLokaciju (@RequestBody LokacijaVM lokacija){
 
@@ -40,6 +41,11 @@ public class LokacijaController {
         }
     }
 
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public ResponseEntity dajSveLokacije() {
+        return ResponseEntity.status(HttpStatus.OK)
+                            .body(lokacijaService.dajSveLokacije());
+    }
 
     @RequestMapping (value = "/getlokaciju" , method = RequestMethod.GET)
     public ResponseEntity getLokacija(@RequestParam("ID")Long id)

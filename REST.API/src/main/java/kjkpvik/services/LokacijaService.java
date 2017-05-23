@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import  kjkpvik.viewmodels.LokacijaVM;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 
 /**
@@ -17,6 +18,17 @@ public class LokacijaService {
 
    @Autowired
    private ILokacijaRepository lokacijaRepository;
+
+   public Iterable<Lokacija> dajSveLokacije() {
+       Iterable<Lokacija> lokacije = lokacijaRepository.findAll();
+       lokacije.forEach(new Consumer<Lokacija>() {
+           @Override
+           public void accept(Lokacija lokacija) {
+               lokacija.setOl(null);
+           }
+       });
+       return lokacije;
+   }
 
     //dodavanje
     public Boolean dodajLokaciju (LokacijaVM lokacija ){//u lokaciji se nalazi lista ObavijestLokacija
@@ -45,9 +57,6 @@ public class LokacijaService {
         }
         lokacijaRepository.delete(x);
         return true;
-
-
-
 
     }
 

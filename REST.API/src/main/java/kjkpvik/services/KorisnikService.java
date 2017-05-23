@@ -26,6 +26,8 @@ public class KorisnikService {
     @Autowired
     private IKorisnikRepository korisnikRepository;
 
+    //Korisnik test = korisnikRepository.findKorisnikByID(1);
+
     //regisracija -> dodavanje
 
     //dodavanje role
@@ -52,6 +54,13 @@ public class KorisnikService {
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
         java.util.regex.Matcher m = p.matcher(email);
         return m.matches();
+    }
+
+    public KorisnikVM getUserById(Long id){
+        Korisnik user = korisnikRepository.findKorisnikById(id);
+        KorisnikVM userVM = new KorisnikVM(user.getID(), user.getUsername(), "LEL", user.getEmail());
+
+        return userVM;
     }
 
 

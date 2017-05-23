@@ -8,24 +8,67 @@ import {
 
 //import * as ReactBootstrap from 'react-bootstrap';
 import { NavbarInstance } from './components/NavbarInstance';
-import { ComplaintFormInstance } from './components/ComplaintForm';
-import { ComplaintList } from './components/ComplaintList';
-import { CreatingAccount } from './components/CreatingAccount';
-import { AddLocationForm } from './components/AddLocationForm';
-import { DeleteLocationForm } from './components/DeleteLocationForm';
+
+import { AddNews } from './components/news/AddNews';
+import { NewsList } from './components/news/NewsList';
+
+import { ComplaintFormInstance } from './components/complaint/ComplaintForm';
+import { ComplaintList } from './components/complaint/ComplaintList';
+
+import { Login } from './components/account/Login';
+import { CreatingAccount } from './components/account/CreatingAccount';
+
+import { AddLocationForm } from './components/location/AddLocationForm';
+import { DeleteLocationForm } from './components/location/DeleteLocationForm';
+
+import { AddingWord } from './components/forbiddenWords/AddingWord';
+import { WordsList } from './components/forbiddenWords/WordsList';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      auth: {
+        isAuthenticated: false,
+        username: "",
+        role: ""
+      }
+    };
+    this.updateAuth = this.updateAuth.bind(this);
+  }
+
+  updateAuth(authParam) {
+    this.setState(this.state);
+    // this.setState(
+    //   auth: {
+    //     isAuthenticated: authParam.isAuthenticated,
+    //     username: authParam.username,
+    //     role: authParam.role
+    //   }
+    // );
+  }
+
+
   render() {
     return (
       <div>
-        <NavbarInstance />
         <Router>
           <div>
-            <Route exact path="/" component={ComplaintList} />
+            <NavbarInstance />
+
+            <Route exact path="/" component={NewsList} />
+
+            <Route path="/login" component={() => (<Login onLoginCheck={this.updateAuth} />)} />
             <Route path="/signup" component={CreatingAccount} />
+
+            <Route path="/news/add" component={AddNews} />
             <Route path="/location/add" component={AddLocationForm} />
             <Route path="/complaint" component={ComplaintFormInstance} />
             <Route path="/location/delete" component={DeleteLocationForm} />
+            <Route path="/forbiddenwords/add" component={AddingWord} />
+            <Route path="/forbiddenwordsList" component={WordsList} />
+            <Route path="/complaintList" component={ComplaintList} />
+
           </div>
         </Router>
       </div>

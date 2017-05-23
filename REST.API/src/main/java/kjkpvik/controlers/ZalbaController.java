@@ -6,11 +6,10 @@ import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -26,6 +25,19 @@ public class ZalbaController {
     public void setZalbaService(ZalbaService zalbaService) {
         this.zalbaService = zalbaService;
     }
+
+    @Transactional
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    public ResponseEntity deleteZalba (@RequestParam("Id")Long id ){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(zalbaService.deleteById(id));
+        }
+        catch(ServiceException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getLocalizedMessage());
+        }
+    }
+
 
     // get
     /**
@@ -60,11 +72,11 @@ public class ZalbaController {
      * RADI!
      */
     @RequestMapping(value = "/dodaj_zalbu", method = RequestMethod.POST )
-    public ResponseEntity dodajZalbu(@RequestBody ZalbaVM zalba)
+    public ResponseEntity dodajZalbu(@RequestBody ZalbaVM zalba) //, Principal principal
     {
         try {
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(zalbaService.dodajZalbu(zalba));
+                    .body(zalbaService.dodajZalbu(zalba)); //principal.getName()
         }
         catch (ServiceException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
