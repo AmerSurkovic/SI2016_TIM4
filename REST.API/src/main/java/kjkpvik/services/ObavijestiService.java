@@ -89,7 +89,9 @@ public class ObavijestiService {
     }
 
     public List<ObavijestVM> filtrirajObavijesti(Long lokacijaId){
-        Sort sortiraj=new Sort(Sort.Direction.DESC, "vrijemeObjave");
+        //treba ispitati null
+        //Long lokacijaId = iLokacijaRepository.findLokacijaByNaziv(lokacija).getID();
+        Sort sortiraj = new Sort(Sort.Direction.DESC, "vrijemeObjave");
         List<Obavijest> obavijesti=(List<Obavijest>)iObavijestiRepository.findAll(sortiraj);
         obavijesti=obavijesti.stream().filter(imaLokaciju(lokacijaId)).collect(Collectors.toList());
         return obavijestiVMlista(obavijesti);

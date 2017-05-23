@@ -55,7 +55,8 @@ export class AddNews extends React.Component {
     }
 
     addObavijest() {
-        //TODO
+        var component = this;
+        //NewsService.create()
     }
 
     render() {

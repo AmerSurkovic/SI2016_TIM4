@@ -38,6 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/zrijeci/prikazi_rijeci").permitAll()
                 .antMatchers("/lokacija/all").permitAll()
                 .antMatchers("/obavijest/sve").permitAll()
+                .antMatchers("/obavijest/filtriraj/**").permitAll()
                 .antMatchers(HttpMethod.POST,"/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/zalbe/prikazi_zalbe").permitAll()
                 .anyRequest().authenticated()

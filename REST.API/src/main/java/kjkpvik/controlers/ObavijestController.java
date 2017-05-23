@@ -66,9 +66,9 @@ public class ObavijestController {
     }
 
     // filtriraj obavijesti po lokaciji
-    @RequestMapping(value = "/filtriraj", method = RequestMethod.GET)
-    public List<ObavijestVM> filtrirajObavijesti(Long lokacijaId){
-        return obavijestiService.filtrirajObavijesti(lokacijaId);
+    @RequestMapping(value = "/filtriraj/{id}", method = RequestMethod.GET)
+    public List<ObavijestVM> filtrirajObavijesti(@PathVariable Long id){
+        return obavijestiService.filtrirajObavijesti(id);
     }
 
     // sortiraj obavijesti po lokaciji
