@@ -1,4 +1,4 @@
-import AccountService from '../services/AccountService';
+//import AccountService from '../services/AccountService';
 
 var queryString = require ('query-string');
 
@@ -8,6 +8,7 @@ var header = new Headers({
 });
 
 var ComplaintService = new function() {
+    //var auth = AccountService.getAuthInfo();
 
     this.postComplaint = (text, priv)=>{
         return fetch(url + 'zalbe/dodaj_zalbu', {
@@ -23,4 +24,3 @@ var ComplaintService = new function() {
 }
 
 export default ComplaintService;
- 

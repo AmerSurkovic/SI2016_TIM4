@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -60,11 +61,11 @@ public class ZalbaController {
      * RADI!
      */
     @RequestMapping(value = "/dodaj_zalbu", method = RequestMethod.POST )
-    public ResponseEntity dodajZalbu(@RequestBody ZalbaVM zalba)
+    public ResponseEntity dodajZalbu(@RequestBody ZalbaVM zalba) //, Principal principal
     {
         try {
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(zalbaService.dodajZalbu(zalba));
+                    .body(zalbaService.dodajZalbu(zalba)); //principal.getName()
         }
         catch (ServiceException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
