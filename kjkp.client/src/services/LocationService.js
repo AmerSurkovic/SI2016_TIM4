@@ -7,7 +7,6 @@ var header = new Headers({
 
 var LocationService = new function() {
     this.postNews = (tekst)=>{
-        alert(tekst);
         return fetch(url + 'lokacija/dodaj', {
           method: 'POST',
           headers: header,
