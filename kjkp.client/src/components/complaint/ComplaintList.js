@@ -58,10 +58,11 @@ export class ComplaintList extends React.Component {
   }
 
   render() {
-    var complaints = this.state.complaints.map((comp) => (<Complaint complaint={comp} />));
-    var publicComplaints = this.state.publicComplaints.map((comp) => (<Complaint complaint={comp} />));
-    var privateComplaints = this.state.privateComplaints.map((comp) => (<Complaint complaint={comp} />));
+    var complaints = this.state.complaints.map((comp) => (<Complaint complaint={comp}/>));
+    var publicComplaints = this.state.publicComplaints.map((comp) => (<Complaint complaint={comp}/>));
+    var privateComplaints = this.state.privateComplaints.map((comp) => (<Complaint complaint={comp}/>));
     //console.log(this.state.complaints);
+
     return (
       <Grid>
         <Row className="show-grid">

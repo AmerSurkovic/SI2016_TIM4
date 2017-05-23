@@ -34,6 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/zalbe/prikazi_zalbe").permitAll()
                 .antMatchers("/zalbe/prikazi_privatne_zalbe").permitAll()
                 .antMatchers("/zalbe/prikazi_javne_zalbe").permitAll()
+                .antMatchers("/zalbe/delete").permitAll()
                 .antMatchers("/zrijeci/kreiraj").permitAll()
                 .antMatchers("/lokacija/all").permitAll()
                 .antMatchers(HttpMethod.POST,"/login").permitAll()

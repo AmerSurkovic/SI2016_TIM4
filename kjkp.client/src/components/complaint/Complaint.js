@@ -1,10 +1,11 @@
 import React from "react";
 import * as ReactBootstrap from 'react-bootstrap';
-import User from '../account/User';
 import { makeCancelable } from '../../globals';
+import AccountService from '../../services/AccountService';
 
 var rb = ReactBootstrap;
 var ListGroupItem = rb.ListGroupItem;
+var Button = rb.Button;
 
 class Complaint extends React.Component{
 
@@ -45,7 +46,31 @@ class Complaint extends React.Component{
       return datevalues;
     };
 
+    deleteComplaint(Id){
+      var r = fetch('http://localhost:8080/zalbe/delete?Id=' + Id , {
+          method: 'DELETE',
+          });
+      alert("Complaint deleted!");
+      window.location.reload();
+    }
+
     render(){
+
+      var authenticated = false;
+      var role = "";
+
+      var DeleteButton = <a/>;
+
+      if (AccountService.getAuthInfo() != null) {
+        var auth = AccountService.getAuthInfo();
+
+        authenticated = true;
+        role = auth.role;
+
+        if(authenticated && role == "ROLE_ADMIN"){
+          DeleteButton = <Button bsStyle="danger" onClick = {this.deleteComplaint.bind(this,this.props.complaint.id)}>Delete</Button>;
+        }
+      }
 
       var dateOfComplaint = this.formatDate();
       var id = this.props.complaint.korisnikID;
@@ -55,6 +80,7 @@ class Complaint extends React.Component{
         <ListGroupItem header = {this.state.user}>
         {this.props.complaint.tekst}<br/>
         <b>Datum postavljanja: {dateOfComplaint[2]}.{dateOfComplaint[1]}.{dateOfComplaint[0]} u {dateOfComplaint[3]}h {dateOfComplaint[4]}min</b>
+        <br/><br/>{DeleteButton}
         </ListGroupItem>
       );
     }
