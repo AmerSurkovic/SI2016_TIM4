@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.ws.Response;
 import java.security.Principal;
 
 /**
@@ -54,6 +55,18 @@ public class KorisnikController {
         try {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(korisnikService.dodajKorisnika(korisnikVM, "ROLE_USER"));
+        }
+        catch (ServiceException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getLocalizedMessage());
+        }
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public ResponseEntity update(@RequestBody KorisnikVM userVM){
+        try{
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(korisnikService.update(userVM));
         }
         catch (ServiceException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
