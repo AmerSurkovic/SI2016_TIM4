@@ -17,6 +17,7 @@ import { ComplaintList } from './components/complaint/ComplaintList';
 
 import { Login } from './components/account/Login';
 import { CreatingAccount } from './components/account/CreatingAccount';
+import { EditingAccount } from './components/account/EditingAccount';
 
 import { AddLocationForm } from './components/location/AddLocationForm';
 import { DeleteLocationForm } from './components/location/DeleteLocationForm';
@@ -60,6 +61,7 @@ class App extends React.Component {
 
             <Route path="/login" component={() => (<Login onLoginCheck={this.updateAuth} />)} />
             <Route path="/signup" component={CreatingAccount} />
+            <Route path="/account/edit" component={EditingAccount} />
 
             <Route path="/news/add" component={AddNews} />
             <Route path="/location/add" component={AddLocationForm} />

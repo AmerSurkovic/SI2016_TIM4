@@ -12,4 +12,6 @@ public interface IKorisnikRepository extends PagingAndSortingRepository<Korisnik
     Korisnik findKorisnikById(Long id);
 
     Korisnik findKorisnikByUsername(String username);
+
+    
 }
