@@ -65,7 +65,7 @@ public class ZalbaService {
 
     //add
 
-    public Boolean dodajZalbu(ZalbaVM zalbaVM){
+    public Boolean dodajZalbu(ZalbaVM zalbaVM, String username){
         if(prazanTekst(zalbaVM.getTekst()) || sadrziZabranjenuRijec(zalbaVM.getTekst())){
             return false;
         }
@@ -95,7 +95,7 @@ public class ZalbaService {
         zalba.setTekst(zalbaVM.getTekst());
         zalba.setPrivatna(zalbaVM.getPrivatna());
 
-        Korisnik korisnik=iKorisnikRepository.findOne(zalbaVM.getKorisnikID());
+        Korisnik korisnik=iKorisnikRepository.findKorisnikByUsername(username);
         zalba.setKorisnikID(korisnik);
 
         refVrijeme=new Date();

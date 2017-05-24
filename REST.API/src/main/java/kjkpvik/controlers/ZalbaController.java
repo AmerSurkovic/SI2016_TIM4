@@ -72,11 +72,11 @@ public class ZalbaController {
      * RADI!
      */
     @RequestMapping(value = "/dodaj_zalbu", method = RequestMethod.POST )
-    public ResponseEntity dodajZalbu(@RequestBody ZalbaVM zalba) //, Principal principal
+    public ResponseEntity dodajZalbu(@RequestBody ZalbaVM zalba, Principal principal) //, Principal principal
     {
         try {
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(zalbaService.dodajZalbu(zalba)); //principal.getName()
+                    .body(zalbaService.dodajZalbu(zalba, principal.getName())); //principal.getName()
         }
         catch (ServiceException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)

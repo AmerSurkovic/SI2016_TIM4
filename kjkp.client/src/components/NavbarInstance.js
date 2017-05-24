@@ -23,6 +23,7 @@ export class NavbarInstance extends React.Component {
   onLogout() {
     if (AccountService.deleteAuthInfo()) {
       this.setState(this.state);
+      window.location = "/";
     }
     else {
       return;
