@@ -57,7 +57,7 @@ export class NavbarInstance extends React.Component {
       AuthSection =
         <Nav pullRight>
           <NavDropdown title={"Welcome " + user}>
-            <MenuItem>Postavke profila</MenuItem>
+            <MenuItem><Link to="account/edit">Postavke profila</Link></MenuItem>
             <MenuItem divider />
             <MenuItem onClick={this.onLogout}>Logout</MenuItem>
           </NavDropdown>
