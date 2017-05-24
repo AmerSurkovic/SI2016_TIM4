@@ -7,7 +7,10 @@ import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 /**
  * Created by Sumejja on 10.05.2017..
@@ -23,13 +26,26 @@ public class AnketaController {
     }
 
     @RequestMapping(value = "/kreirajanketu", method = RequestMethod.POST )
-    public ResponseEntity dodajAnketu(@RequestBody AnketaVM anketa)
+    @PreAuthorize("hasAnyRole('ROLE_HR', 'ROLE_ADMIN')")
+    public ResponseEntity dodajAnketu(@RequestBody AnketaVM anketa, Principal principal)
     {
         try {
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(anketeService.dodajAnketu(anketa));
+                    .body(anketeService.dodajAnketu(anketa, principal.getName()));
         }
-        catch (ServiceException e){
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getLocalizedMessage());
+        }
+    }
+
+    @RequestMapping(value = "aktivne", method = RequestMethod.GET)
+    public ResponseEntity getAktivne() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(anketeService.getAktivneAnkete());
+        }
+        catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(e.getLocalizedMessage());
         }
@@ -74,12 +90,13 @@ public class AnketaController {
         }
     }
 
-    @RequestMapping(value = "/ispunianketu", method = RequestMethod.POST )
-    public ResponseEntity ispuniAnketu(@RequestBody OdgovoriVM odgovori){
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @RequestMapping(value = "/ispuni", method = RequestMethod.POST )
+    public ResponseEntity ispuniAnketu(@RequestBody OdgovoriVM odgovori, Principal principal){
 
         try{
             return  ResponseEntity.status(HttpStatus.OK)
-                    .body(anketeService.ispuniAnketu(odgovori));
+                    .body(anketeService.ispuniAnketu(odgovori, principal));
         }
         catch (ServiceException e){
             return  ResponseEntity.status(HttpStatus.BAD_REQUEST)

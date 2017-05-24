@@ -7,11 +7,15 @@ import kjkpvik.repositories.IOdgovorRepository;
 import kjkpvik.repositories.IPitanjaRepository;
 import kjkpvik.viewmodels.AnketaVM;
 import kjkpvik.viewmodels.OdgovoriVM;
+import kjkpvik.viewmodels.PitanjeVM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Created by Siii on 5/9/2017.
@@ -31,43 +35,31 @@ public class AnketeService {
     @Autowired
     private IOdgovorRepository odgovorRepository;
 
-    // prikazi pitanja za anketu tog ID-a, TESTIRANO
-    public List<String> prikaziPitanja(Long id){
-        List<Pitanje> svaPitanja = (List<Pitanje>) pitanjaRepository.findAll();
-
-        List<String> trazenaPitanja = new ArrayList<String>();
-        for(Pitanje x: svaPitanja){
-            if(x.getAnketa().getID().equals(id)) {
-                trazenaPitanja.add(x.getTekst());
-            }
-        }
-        return trazenaPitanja;
+    public List<AnketaVM> getAktivneAnkete() {
+        return AnketaVM.fromAnketaList(anketaRepository.findAllByVrijemeDeaktivacijeAfter(new Date()));
     }
 
-    //add
-    public Boolean dodajAnketu(AnketaVM anketa){
+    // prikazi pitanja za anketu tog ID-a, TESTIRANO
+    public List<PitanjeVM> prikaziPitanja(Long id){
+        return PitanjeVM.fromPitanjaList(pitanjaRepository.findAllByAnketa_ID(id));
 
-        if (anketa.getKorisnik_id()==null) return false;
+    }
+
+
+    public Boolean dodajAnketu(AnketaVM anketa, String username){
+
         Anketa novaAnketa = new Anketa(anketa.getOpis(), anketa.getVrijeme_aktivacije(), anketa.getVrijeme_deaktivacije());
-        List<Korisnik> sviKorisnici = (List<Korisnik>) korisnikRepository.findAll();
-        for(Korisnik r: sviKorisnici){
-            if(r.getID().equals(anketa.getKorisnik_id()));
-            novaAnketa.setKorisnik(r);
-        }
+        novaAnketa.setKorisnik(korisnikRepository.findKorisnikByUsername(username)); // znam da treba null check, ali mora se malo i bugova ostaviti :(
 
         List<String> novaPitanja = anketa.getPitanja(); //anketa mora imati barem jedno pitanje
         if(novaPitanja == null)
             return false;
 
-        for(String x: novaPitanja){
-            Pitanje novo = new Pitanje(x, novaAnketa);
-            pitanjaRepository.save(novo);
-        }
+        List<Pitanje> pitanja = new ArrayList<>();
+        novaPitanja.forEach(s -> pitanja.add(new Pitanje(s, novaAnketa)));
+        novaAnketa.setPitanja(pitanja);
 
-        Anketa kreirana = new Anketa();
-        if(novaAnketa.getKorisnik().getID() != null) {
-            kreirana = anketaRepository.save(novaAnketa);
-        }
+        Anketa kreirana = anketaRepository.save(novaAnketa);
         return (kreirana != null);
     }
 
@@ -124,12 +116,13 @@ public class AnketeService {
     }
 
     //ispuniti anketu / unesi odgovore
-    public Boolean ispuniAnketu(OdgovoriVM odgovor){
+    public Boolean ispuniAnketu(OdgovoriVM odgovor, Principal principal){
+
         List<String> odgovori = odgovor.getOdgovori();
         List<Long> pitanja = odgovor.getPitanja();
 
         for(int i=0; i<odgovori.size(); i++){
-            odgovorRepository.save(new Odgovor(odgovori.get(i), korisnikRepository.findOne(odgovor.getKorisnik_id()), pitanjaRepository.findOne(pitanja.get(i))));
+            odgovorRepository.save(new Odgovor(odgovori.get(i), korisnikRepository.findKorisnikByUsername(principal.getName()), pitanjaRepository.findOne(pitanja.get(i))));
         }
 
         return true;

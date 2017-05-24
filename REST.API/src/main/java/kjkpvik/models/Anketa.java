@@ -24,13 +24,13 @@ public class Anketa {
     private Korisnik korisnik;
 
     // veza sa pitanjem
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "anketa", targetEntity = Pitanje.class)
-    private List<Korisnik> pitanja = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "anketa", targetEntity = Pitanje.class, cascade = CascadeType.ALL)
+    private List<Pitanje> pitanja = new ArrayList<>();
 
     public Anketa() {
     }
 
-    public Anketa(String opis, Date vrijemeAktivacije, Korisnik korisnik, List<Korisnik> pitanja) {
+    public Anketa(String opis, Date vrijemeAktivacije, Korisnik korisnik, List<Pitanje> pitanja) {
 
         this.opis = opis;
         this.vrijemeAktivacije = vrijemeAktivacije;
@@ -91,11 +91,11 @@ public class Anketa {
         this.korisnik = korisnik;
     }
 
-    public List<Korisnik> getPitanja() {
+    public List<Pitanje> getPitanja() {
         return pitanja;
     }
 
-    public void setPitanja(List<Korisnik> pitanja) {
+    public void setPitanja(List<Pitanje> pitanja) {
         this.pitanja = pitanja;
     }
 }

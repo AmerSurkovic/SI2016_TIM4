@@ -27,7 +27,7 @@ public class LokacijaController {
     }
 
     // STATUS: RADI
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping (value = "/dodaj", method = RequestMethod.POST)
     public ResponseEntity dodajLokaciju (@RequestBody LokacijaVM lokacija){
 
