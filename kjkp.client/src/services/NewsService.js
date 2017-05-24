@@ -1,10 +1,21 @@
+import AccountService from './AccountService';
 var baseURL = 'http://localhost:8080/';
 
-var header = new Headers({
-    'Content-Type': 'application/json; charset=utf8'
-});
+var header = {};
 
-import AccountService from './AccountService';
+var auth = AccountService.getAuthInfo();
+if (auth != null) {
+    header = new Headers({
+        'Content-Type': 'application/json; charset=utf8',
+        'Authorization': auth.token
+    });
+}
+else {
+    header = new Headers({
+        'Content-Type': 'application/json; charset=utf8'
+    });
+}
+
 
 var NewsService = new function () {
 

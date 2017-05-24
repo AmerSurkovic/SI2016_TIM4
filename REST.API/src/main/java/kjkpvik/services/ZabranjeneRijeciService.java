@@ -38,10 +38,10 @@ public class ZabranjeneRijeciService {
     }
 
     //add
-    public Boolean dodajZabranjenuRijec(ZabranjeneRijeciVM rijec){//unutar ovoga se nalazi i korisnikID
+    public Boolean dodajZabranjenuRijec(ZabranjeneRijeciVM rijec, String username){//unutar ovoga se nalazi i korisnikID
 
         ZabranjenaRijec zabranjenaRijec = new ZabranjenaRijec(rijec.getRijec());
-        zabranjenaRijec.setKorisnik(korisnikRepository.findOne(rijec.getKorisnikID()));
+        zabranjenaRijec.setKorisnik(korisnikRepository.findKorisnikByUsername(username));
         ZabranjenaRijec kreirana = zabranjeneRijeciRepository.save(zabranjenaRijec);
 
         return (kreirana!=null);

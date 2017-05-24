@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -29,10 +30,10 @@ public class ZabranjeneRijeciController {
     }
 
     @RequestMapping(value = "/kreiraj", method = RequestMethod.POST)
-    public ResponseEntity dodajRijec(@RequestBody ZabranjeneRijeciVM rijec)
+    public ResponseEntity dodajRijec(@RequestBody ZabranjeneRijeciVM rijec, Principal prinicpal)
     {
         try{
-            return ResponseEntity.status(HttpStatus.OK).body(zabranjeneRijeciService.dodajZabranjenuRijec(rijec));
+            return ResponseEntity.status(HttpStatus.OK).body(zabranjeneRijeciService.dodajZabranjenuRijec(rijec, prinicpal.getName()));
         }
         catch(ServiceException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
