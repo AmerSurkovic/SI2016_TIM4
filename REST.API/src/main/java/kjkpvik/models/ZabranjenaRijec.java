@@ -10,12 +10,12 @@ public class ZabranjenaRijec {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", updatable = false, nullable = false)
-    private Long ID;
+    @Column(name = "id", updatable = false, nullable = false)
+    private Long id;
     private String rijec;
 
     // veza sa korisnikom
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Korisnik.class)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Korisnik.class, cascade = CascadeType.DETACH)
     private Korisnik korisnik;
 
     public ZabranjenaRijec() {
@@ -27,11 +27,11 @@ public class ZabranjenaRijec {
     }
 
     public Long getID() {
-        return ID;
+        return id;
     }
 
     public void setID(Long ID) {
-        this.ID = ID;
+        this.id = ID;
     }
 
     public String getRijec() {

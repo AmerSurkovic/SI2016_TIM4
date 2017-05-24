@@ -30,9 +30,7 @@ public class ZabranjeneRijeciService {
         ArrayList<ZabranjeneRijeciVM> wordsVM = new ArrayList<ZabranjeneRijeciVM>();
 
         for(ZabranjenaRijec word : words){
-            Korisnik owner = korisnikRepository.findKorisnikById(word.getKorisnik().getID());
-            KorisnikVM ownerVM = new KorisnikVM(owner.getID(), owner.getUsername(), "not_important", owner.getEmail());
-            wordsVM.add(new ZabranjeneRijeciVM(word.getRijec(), ownerVM));
+            wordsVM.add(new ZabranjeneRijeciVM(word));
         }
 
         return wordsVM;
@@ -62,6 +60,11 @@ public class ZabranjeneRijeciService {
         return  true;
 
     }
+
+    public Integer deleteById(Long id){
+        return zabranjeneRijeciRepository.deleteZabranjenaRijecById(id);
+    }
+
     //get
     public String getZabranjenaRijec(Long ID){
         String zabranjenaRijec = zabranjeneRijeciRepository.findOne(ID).getRijec();
