@@ -2,6 +2,7 @@ import React from "react";
 import * as ReactBootstrap from 'react-bootstrap';
 
 import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 
 import AccountService from '../services/AccountService';
 
@@ -23,7 +24,7 @@ export class NavbarInstance extends React.Component {
   onLogout() {
     if (AccountService.deleteAuthInfo()) {
       this.setState(this.state);
-      window.location = "/";
+      window.location = "/login";
     }
     else {
       return;
@@ -38,13 +39,13 @@ export class NavbarInstance extends React.Component {
 
     var AuthSection =
       <Nav pullRight>
-        <NavItem><Link to="/login">Prijavi se</Link></NavItem>
-        <NavItem><Link to="/signup">Registruj se</Link></NavItem>
+        <LinkContainer to="/login"><NavItem>Login</NavItem></LinkContainer>
+        <LinkContainer to="/signup"><NavItem>Registruj se</NavItem></LinkContainer>
       </Nav>;
 
     var ActionSection =
       <Nav>
-        <NavItem><Link to="/complaintList">Pregled javnih zalbi</Link></NavItem>
+        <LinkContainer to="/complaintList"><NavItem>Pregled javnih zalbi</NavItem></LinkContainer>
         <NavItem>Kontakt informacije</NavItem>
       </Nav>;
 
@@ -58,7 +59,7 @@ export class NavbarInstance extends React.Component {
       AuthSection =
         <Nav pullRight>
           <NavDropdown title={"Welcome " + user}>
-            <MenuItem><Link to="account/edit">Postavke profila</Link></MenuItem>
+            <MenuItem><Link to="/account/edit">Postavke profila</Link></MenuItem>
             <MenuItem divider />
             <MenuItem onClick={this.onLogout}>Logout</MenuItem>
           </NavDropdown>
@@ -77,7 +78,8 @@ export class NavbarInstance extends React.Component {
                 <MenuItem>Pregled aktivnih anketa</MenuItem>
               </NavDropdown>
               <NavItem>Izmjeni kontakt informacije</NavItem>
-              <NavItem><Link to="/complaintList">Pregled zalbi</Link></NavItem>
+              <LinkContainer to="/complaintList"><NavItem>Pregled zalbi</NavItem></LinkContainer>
+
             </Nav>;
           break;
         case "ROLE_HR":
@@ -91,14 +93,14 @@ export class NavbarInstance extends React.Component {
                 <MenuItem><Link to="/forbiddenwords/add">Dodaj nedozvoljenu rijec</Link></MenuItem>
                 <MenuItem><Link to="/forbiddenwordsList">Pregled nedozvoljenih rijeci</Link></MenuItem>
               </NavDropdown>
-              <NavItem><Link to="/complaintList">Pregled zalbi</Link></NavItem>
+              <LinkContainer to="/complaintList"><NavItem>Pregled zalbi</NavItem></LinkContainer>
             </Nav>;
           break;
         case "ROLE_USER":
           ActionSection =
             <Nav>
-              <NavItem><Link to="/complaintList">Pregled zalbi</Link></NavItem>
-              <NavItem><Link to="/complaint">Popuni zalbu</Link></NavItem>
+              <LinkContainer to="/complaintList"><NavItem>Pregled zalbi</NavItem></LinkContainer>
+              <LinkContainer to="/complaint"><NavItem>Popuni zalbu</NavItem></LinkContainer>
               <NavItem>Pregled aktivnih anketa</NavItem>
               <NavItem>Kontakt informacije</NavItem>
             </Nav>;

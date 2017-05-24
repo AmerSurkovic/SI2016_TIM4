@@ -14,6 +14,8 @@ public class Lokacija {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", updatable = false, nullable = false)
     private Long ID;
+
+    @Column(unique = true)
     private String naziv;
 
     //veza sa ObavijestLokacija

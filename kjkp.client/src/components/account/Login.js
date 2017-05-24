@@ -70,7 +70,7 @@ export class Login extends React.Component {
 
     render() {
         if (AccountService.getAuthInfo() != null) {
-            return (<div>You are already logged in!</div>);
+            return (<div>WELCOME!</div>);
         }
         const form = (
 
