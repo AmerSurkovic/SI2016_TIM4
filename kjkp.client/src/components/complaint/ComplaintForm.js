@@ -81,7 +81,7 @@ export var ComplaintFormInstance = React.createClass({
       alert("Can't be empty!");
       return;
     }
-    
+
     if(this.verifyWords(this.state.message)){
       ComplaintService.postComplaint(this.state.message, priv);
       formSubmitEvent.target.reset();

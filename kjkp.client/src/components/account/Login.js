@@ -11,6 +11,9 @@ var div = rb.div;
 var Button = rb.Button;
 var Form = rb.Form;
 var Col = rb.Col;
+var Panel = rb.Panel;
+var Grid = rb.Grid;
+var Row = rb.Row;
 
 
 export class Login extends React.Component {
@@ -73,34 +76,41 @@ export class Login extends React.Component {
             return (<div>WELCOME!</div>);
         }
         const form = (
+            <Grid>
+                <Row className="show-grid">
+                  <Col md={6} mdOffset={3}>
+                    <Panel header="Prijava" bsStyle="info">
+                      <Form horizontal>
+                          <FormGroup controlId="formHorizontalEmail">
+                            <Col md={3}>
+                              <ControlLabel> Korisnicko ime: </ControlLabel>
+                            </Col>
+                            <Col md={8}>
+                              <FormControl value={this.state.username} onChange={this.onChangeUsername} type="text" placeholder="Username" />
+                            </Col>
+                          </FormGroup>
 
-            <Form horizontal>
-                <FormGroup controlId="formHorizontalEmail">
-                    <Col componentClass={ControlLabel} sm={2}>
-                        Korisnicko ime
-                    </Col>
-                    <Col sm={2}>
-                        <FormControl value={this.state.username} onChange={this.onChangeUsername} type="text" placeholder="Username" />
-                    </Col>
-                </FormGroup>
+                          <FormGroup controlId="formHorizontalPassword">
+                            <Col md={3}>
+                              <ControlLabel> Sifra: </ControlLabel>
+                            </Col>
+                            <Col md={8}>
+                              <FormControl value={this.state.password} onChange={this.onChangePassword} type="password" placeholder="Password" />
+                            </Col>
+                          </FormGroup>
 
-                <FormGroup controlId="formHorizontalPassword">
-                    <Col componentClass={ControlLabel} sm={2}>
-                        Sifra
-                    </Col>
-                    <Col sm={2}>
-                        <FormControl value={this.state.password} onChange={this.onChangePassword} type="password" placeholder="Password" />
-                    </Col>
-                </FormGroup>
-
-                <FormGroup>
-                    <Col smOffset={2} sm={10}>
-                        <Button type="button" onClick={this.onLogin}>
-                            Sign in
-                        </Button>
-                    </Col>
-                </FormGroup>
-            </Form>
+                          <FormGroup>
+                            <Col mdOffset={1} bsStyle="primary">
+                                  <Button type="button" onClick={this.onLogin}>
+                                      Sign in
+                                  </Button>
+                            </Col>
+                          </FormGroup>
+                      </Form>
+                    </Panel>
+                  </Col>
+                </Row>
+            </Grid>
         );
         return (
             <div>
