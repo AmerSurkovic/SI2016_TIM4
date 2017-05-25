@@ -100,8 +100,8 @@ export class Login extends React.Component {
                           </FormGroup>
 
                           <FormGroup>
-                            <Col mdOffset={1} bsStyle="primary">
-                                  <Button type="button" onClick={this.onLogin}>
+                            <Col mdOffset={1}>
+                                  <Button bsStyle="primary" type="button" onClick={this.onLogin}>
                                       Sign in
                                   </Button>
                             </Col>

@@ -71,6 +71,8 @@ class App extends React.Component {
             <Route path="/forbiddenwordsList" component={WordsList} />
             <Route path="/complaintList" component={ComplaintList} />
 
+            <Route path="/answerPoll" />
+
           </div>
         </Router>
       </div>
