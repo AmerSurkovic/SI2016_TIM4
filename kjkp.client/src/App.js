@@ -25,6 +25,8 @@ import { DeleteLocationForm } from './components/location/DeleteLocationForm';
 import { AddingWord } from './components/forbiddenWords/AddingWord';
 import { WordsList } from './components/forbiddenWords/WordsList';
 
+import { AddPoll } from './components/poll/AddPoll';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -70,6 +72,7 @@ class App extends React.Component {
             <Route path="/forbiddenwords/add" component={AddingWord} />
             <Route path="/forbiddenwordsList" component={WordsList} />
             <Route path="/complaintList" component={ComplaintList} />
+            <Route path="/poll/create" component={AddPoll} />
           </div>
         </Router>
       </div>
