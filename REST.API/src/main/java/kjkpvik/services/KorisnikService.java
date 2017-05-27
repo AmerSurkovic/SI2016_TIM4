@@ -63,8 +63,15 @@ public class KorisnikService {
         return userVM;
     }
 
-    public Boolean update(KorisnikVM userVM){
-        Korisnik user = korisnikRepository.findKorisnikById(userVM.getID());
+    public KorisnikVM getUserByUsername(String username){
+        Korisnik user = korisnikRepository.findKorisnikByUsername(username);
+        KorisnikVM userVM = new KorisnikVM(user.getID(), user.getUsername(), "LEL", user.getEmail());
+
+        return userVM;
+    }
+
+    public Boolean update(KorisnikVM userVM, String username){
+        Korisnik user = korisnikRepository.findKorisnikByUsername(username);
         user.setUsername(userVM.getUsername());
         user.setEmail(userVM.getEmail());
         user.setPassword(userVM.getPassword());
