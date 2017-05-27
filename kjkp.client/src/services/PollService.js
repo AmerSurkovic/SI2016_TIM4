@@ -14,7 +14,7 @@ var PollService = new function () {
                 'Content-Type': 'application/json; charset=utf8',
                 'Authorization': auth.token
             });
-            return fetch(url + '', {
+            return fetch(url + '/anketa/kreirajanketu', {
                 method: 'POST',
                 headers: header,
                 body: JSON.stringify({
