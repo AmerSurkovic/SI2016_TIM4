@@ -14,6 +14,8 @@ var Form = rb.Form;
 var Col = rb.Col;
 var Label = rb.Label;
 var reqUser = "";
+var currUser = "";
+var currPass = "";
 
 const wellStyles = { maxWidth: 1000, margin: '0 auto 200px' };
 
@@ -23,12 +25,17 @@ export class EditingAccount extends React.Component{
     super(props);
     var auth = AccountService.getAuthInfo();
     reqUser = auth.username;
+    currUser = auth.username;
+    currPass = auth.password;
 
     this.state = {
       userGET: '',
       errorMessage: null,
       reqUser: reqUser,
-      emailGET: ''
+      currUser: currUser,
+      currPass: currPass,
+      emailGET: '',
+      password: ''
     }
     var req=null;
 
@@ -68,16 +75,25 @@ export class EditingAccount extends React.Component{
 
   handleFormSubmit(formSubmitEvent) {
     formSubmitEvent.preventDefault();
-  //  console.log(this.state.userGET);
-//    console.log(this.state.emailGET);
-//    console.log(this.state.password);
-    AccountService.editUser(this.state.userGET, this.state.emailGET, this.state.password);
 
-    console.log(this.state.currentUser);
-//    console.log(this.state.currPass);
+    if(this.state.password!==''){
+        AccountService.editUser(this.state.userGET, this.state.emailGET, this.state.password);
 
-    alert("Molimo Vas da se prijavite sa novim korisničkim informacijama ili sa postojećim ako ste samo mijenjali Vaš e-mail.")
-    this.onLogout();
+        if(this.state.userGET!=this.state.currUser || this.state.password!=this.state.currPass){
+          alert("Vaše pristupne informacije su promijenjene. Molimo Vas da se prijavite sa novim korisničkim informacijama.")
+          this.onLogout();
+        }
+        else{
+          alert("Vaš e-mail je promijenjen!");
+        }
+    }
+    else{
+        alert("Polje lozinke ne može biti prazno!");
+    }
+
+    console.log(this.state.currUser);
+
+
   }
 
   getUser(){
