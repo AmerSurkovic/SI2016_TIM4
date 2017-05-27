@@ -21,7 +21,7 @@ export class PollQuestion extends React.Component {
     }
 
     textChange(e) {
-        this.props.onChange(e.target.value);
+        this.props.onChange(e.target.value, this.state.questionNumber);
         this.setState({ text: e.target.value });
     }
 
