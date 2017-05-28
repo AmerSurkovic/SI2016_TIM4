@@ -45,6 +45,15 @@ public class AnketeService {
 
     }
 
+    public AnketaVM getAnketa(Long id) {
+        Anketa anketa = anketaRepository.findOne(id);
+        AnketaVM anketaVM = new AnketaVM(anketa.getID(), anketa.getOpis(), anketa.getVrijemeAktivacije(),
+                                            anketa.getVrijemeDeaktivacije(), null);
+        anketaVM.setPitanjaVM(prikaziPitanja(id));
+
+        return anketaVM;
+    }
+
 
     public Boolean dodajAnketu(AnketaVM anketa, String username){
 

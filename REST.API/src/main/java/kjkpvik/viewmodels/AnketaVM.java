@@ -18,6 +18,8 @@ public class AnketaVM {
     private Date vrijeme_deaktivacije;
     private List<String> pitanja;
 
+    private List<PitanjeVM> pitanjaVM;
+
     public AnketaVM() {}
 
     public AnketaVM(Long ID, String opis, Date vrijeme_aktivacije, Date vrijeme_deaktivacije){
@@ -86,4 +88,11 @@ public class AnketaVM {
         return vms;
     }
 
+    public List<PitanjeVM> getPitanjaVM() {
+        return pitanjaVM;
+    }
+
+    public void setPitanjaVM(List<PitanjeVM> pitanjaVM) {
+        this.pitanjaVM = pitanjaVM;
+    }
 }

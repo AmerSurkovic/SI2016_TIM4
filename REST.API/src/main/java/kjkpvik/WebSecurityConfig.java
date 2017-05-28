@@ -39,6 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/obavijest/sve").permitAll()
                 .antMatchers("/anketa/aktivne").permitAll()
                 .antMatchers("/anketa/prikazipitanja/**").permitAll()
+                .antMatchers("/anketa/details/**").permitAll()
                 .antMatchers("/obavijest/filtriraj/**").permitAll()
                 .antMatchers(HttpMethod.POST,"/login").permitAll()
                 .anyRequest().authenticated()
