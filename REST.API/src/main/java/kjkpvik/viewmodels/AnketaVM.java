@@ -83,7 +83,7 @@ public class AnketaVM {
     public static List<AnketaVM> fromAnketaList(List<Anketa> anketas) {
         List<AnketaVM> vms = new ArrayList<>();
         anketas.forEach(anketa -> {
-            vms.add(new AnketaVM(anketa.getID(), anketa.getOpis(), null, null, null));
+            vms.add(new AnketaVM(anketa.getID(), anketa.getOpis(), anketa.getVrijemeAktivacije(), anketa.getVrijemeDeaktivacije(), null));
         });
         return vms;
     }
