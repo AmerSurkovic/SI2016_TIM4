@@ -21,6 +21,24 @@ function NewsItem(props) {
     let sadrzaj = props.item.tekst;
     let naslov = props.item.naziv;
     let lokacije = props.item.lokacije;
+    let timestamp = props.item.vrijemeObjave;
+
+    var formatDate = function (timestamp) {
+        var date = new Date(timestamp);
+        var datevalues = [
+            date.getFullYear(),
+            date.getMonth() + 1,
+            date.getDate(),
+            date.getHours(),
+            date.getMinutes(),
+            date.getSeconds(),
+        ];
+        //alert(datevalues);
+        return datevalues;
+    };
+
+    var date = formatDate(timestamp);
+
 
     return (
         <div>
@@ -31,13 +49,16 @@ function NewsItem(props) {
                         <Row>
                             <Col md={1}>
                                 Lokacije:
-                        </Col>
+                            </Col>
                             <Col md={5}>
                                 {
                                     lokacije.map((lokacija) => (<div>{lokacija}</div>))
                                 }
                             </Col>
                         </Row>
+                    </ListGroupItem>
+                    <ListGroupItem key={3}>
+                        <b>Datum postavljanja: {date[2]}.{date[1]}.{date[0]} u {date[3]}h {date[4]}min</b>
                     </ListGroupItem>
                 </ListGroup>
             </Panel>
