@@ -14,7 +14,7 @@ var Col = rb.Col;
 var Panel = rb.Panel;
 var Grid = rb.Grid;
 var Row = rb.Row;
-
+var Jumbotron = rb.Jumbotron;
 
 export class Login extends React.Component {
     constructor(props) {
@@ -73,7 +73,14 @@ export class Login extends React.Component {
 
     render() {
         if (AccountService.getAuthInfo() != null) {
-            return (<div>WELCOME!</div>);
+            return (
+              <Jumbotron>
+              <h2>Kantonalno javno komunalno preduzeće</h2>
+              <h1>Vodovod i kanalizacije</h1>
+              <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+              <p><Button bsStyle="primary">Learn more</Button></p>
+              </Jumbotron>
+            );
         }
         const form = (
             <Grid>

@@ -66,8 +66,7 @@ export class ComplaintList extends React.Component {
     var complaints = this.state.complaints.map((comp) => (<Complaint complaint={comp} />));
     var publicComplaints = this.state.publicComplaints.map((comp) => (<Complaint complaint={comp} />));
     var privateComplaints = this.state.privateComplaints.map((comp) => (<Complaint complaint={comp} />));
-    //console.log(this.state.complaints);
-
+    
     var ActionSection =
       <Panel header="Pregled javnih žalbi" bsStyle="success">
         <ListGroup>

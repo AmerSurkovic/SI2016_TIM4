@@ -26,6 +26,9 @@ import { AddingWord } from './components/forbiddenWords/AddingWord';
 import { WordsList } from './components/forbiddenWords/WordsList';
 
 import { AddPoll } from './components/poll/AddPoll';
+import { ActivePolls } from './components/poll/ActivePolls';
+import { PollQuestions } from './components/poll/PollQuestions';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -53,6 +56,7 @@ class App extends React.Component {
 
 
   render() {
+
     return (
       <div>
         <Router>
@@ -72,7 +76,9 @@ class App extends React.Component {
             <Route path="/forbiddenwords/add" component={AddingWord} />
             <Route path="/forbiddenwordsList" component={WordsList} />
             <Route path="/complaintList" component={ComplaintList} />
+
             <Route path="/poll/create" component={AddPoll} />
+            <Route path="/poll/activePolls" component={ActivePolls} />
           </div>
         </Router>
       </div>
