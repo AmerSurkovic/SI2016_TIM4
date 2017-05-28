@@ -77,7 +77,7 @@ export class NavbarInstance extends React.Component {
                 <MenuItem>Kreiraj novu anketu</MenuItem>
                 <MenuItem>Pregled aktivnih anketa</MenuItem>
               </NavDropdown>*/}
-              <NavItem>Izmjeni kontakt informacije</NavItem>
+              <LinkContainer to="/contact/add"><NavItem>Izmjeni kontakt informacije</NavItem></LinkContainer>
               <LinkContainer to="/complaintList"><NavItem>Pregled zalbi</NavItem></LinkContainer>
 
             </Nav>;
