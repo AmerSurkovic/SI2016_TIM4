@@ -16,7 +16,7 @@ public class Odgovor {
     private String tekst;
 
     //veza sa korisnikom
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Korisnik korisnik;
 
     // veza sa pitanjem

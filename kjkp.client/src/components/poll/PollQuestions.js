@@ -10,8 +10,6 @@ var Panel = rb.Panel;
 var ListGroup = rb.ListGroup;
 var ListGroupItem = rb.ListGroupItem;
 
-import AccountService from '../services/AccountService';
-
 
 export class PollQuestions extends React.Component {
   constructor(props) {

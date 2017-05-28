@@ -34,20 +34,20 @@ public class Korisnik {
     @ManyToOne(targetEntity = Rola.class)
     private Rola rola;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik", targetEntity = Anketa.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik", targetEntity = Anketa.class, cascade = CascadeType.ALL)
     private List<Anketa> ankete = new ArrayList<>();
 
-    @OneToOne(fetch = FetchType.LAZY, targetEntity = Odgovor.class, mappedBy = "korisnik", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Odgovor.class, mappedBy = "korisnik", cascade = CascadeType.ALL)
     @NotFound(action = NotFoundAction.IGNORE)
-    private Odgovor odgovor;
+    private List<Odgovor> odgovori = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik", targetEntity = Zalba.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik", targetEntity = Zalba.class, cascade = CascadeType.ALL)
     private List<Zalba> zalbe = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik", targetEntity = ZabranjenaRijec.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik", targetEntity = ZabranjenaRijec.class, cascade = CascadeType.ALL)
     private List<ZabranjenaRijec> zabranjeneRijeci = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik", targetEntity = Obavijest.class)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "korisnik", targetEntity = Obavijest.class, cascade = CascadeType.ALL)
     private List<Obavijest> obavijesti = new ArrayList<>();
 
     public Long getID() {
@@ -98,14 +98,6 @@ public class Korisnik {
         this.ankete = ankete;
     }
 
-    public Odgovor getOdgovor() {
-        return odgovor;
-    }
-
-    public void setOdgovor(Odgovor odgovor) {
-        this.odgovor = odgovor;
-    }
-
     public List<Zalba> getZalbe() {
         return zalbe;
     }
@@ -128,5 +120,13 @@ public class Korisnik {
 
     public void setObavijesti(List<Obavijest> obavijesti) {
         this.obavijesti = obavijesti;
+    }
+
+    public List<Odgovor> getOdgovori() {
+        return odgovori;
+    }
+
+    public void setOdgovori(List<Odgovor> odgovori) {
+        this.odgovori = odgovori;
     }
 }
