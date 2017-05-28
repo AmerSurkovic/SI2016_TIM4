@@ -87,13 +87,14 @@ export class NavbarInstance extends React.Component {
             <Nav>
               <NavDropdown title="Upravljanje anketama">
                 <MenuItem><Link to="/poll/create"> Kreiraj novu anketu</Link></MenuItem>
-                
+
               </NavDropdown>
               <NavDropdown title="Upravljanje tabelom nedozvoljenih rijeci">
                 <MenuItem><Link to="/forbiddenwords/add">Dodaj nedozvoljenu rijec</Link></MenuItem>
                 <MenuItem><Link to="/forbiddenwordsList">Pregled nedozvoljenih rijeci</Link></MenuItem>
               </NavDropdown>
               <LinkContainer to="/complaintList"><NavItem>Pregled zalbi</NavItem></LinkContainer>
+              <LinkContainer to="/poll/activePolls"><NavItem>Pregled aktivnih anketa</NavItem></LinkContainer>
             </Nav>;
           break;
         case "ROLE_USER":
