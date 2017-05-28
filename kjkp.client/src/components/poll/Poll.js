@@ -10,6 +10,7 @@ import {
 var rb = ReactBootstrap;
 var ListGroupItem = rb.ListGroupItem;
 var Button = rb.Button;
+var Col = rb.Col;
 
 class Poll extends React.Component{
 
@@ -77,21 +78,25 @@ class Poll extends React.Component{
       //var user = <User userid={id}/>;
 
 
-      // const MyPollQuestions = (props) => {
-      //   return (
-      //     <PollQuestions
-      //       poll={this.toggleSidebarOn.bind(this)}
-      //       {...props}
-      //     />
-      //   );
-      // }
-
       var string = "/poll/questions/" + this.state.id;
 
       return(
         <div>
           <ListGroupItem header={this.state.user}>
-            <Link to={string}> {this.props.poll.opis} </Link> <br/>
+            {this.props.poll.opis}
+            <br />
+            <Col>
+              <Link to={string} style={{ textDecoration: 'none' }}>
+                <Button bsStyle="info"> Prikazi pitanja </Button>
+              </Link>
+              {' '}
+              <Link to={string} style={{ textDecoration: 'none' }}>
+                <Button bsStyle="success"> Popuni anketu </Button>
+              </Link>
+              {' '}
+                <Button bsStyle="danger"> Obriši anketu </Button>
+            </Col>
+            <br/>
           </ListGroupItem>
         </div>
 
