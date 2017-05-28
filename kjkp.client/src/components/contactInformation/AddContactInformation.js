@@ -1,6 +1,8 @@
 import React from "react";
 import * as ReactBootstrap from 'react-bootstrap';
 
+import AccountService from '../../services/AccountService';
+
 import ContactInfoService from '../../services/ContactInfoService';
 import { makeCancelable } from '../../globals';
 
@@ -17,26 +19,26 @@ var Panel = rb.Panel;
 
 const wellStyles = { maxWidth: 1000, margin: '0 auto 200px' };
 
-export class AddContactInformation extends React.Component{
+export class AddContactInformation extends React.Component {
 
-  constructor(props){
-      super(props);
+  constructor(props) {
+    super(props);
 
-      this.state = {
-        errorMessage: null,
-        phone: '',
-        address: '',
-        email: ''
-      }
-      var req=null;
+    this.state = {
+      errorMessage: null,
+      phone: '',
+      address: '',
+      email: ''
+    }
+    var req = null;
 
-      this.handlePhoneChange = this.handlePhoneChange.bind(this);
-      this.handleAddressChange = this.handleAddressChange.bind(this);
-      this.handleEmailChange = this.handleEmailChange.bind(this);
-      this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handlePhoneChange = this.handlePhoneChange.bind(this);
+    this.handleAddressChange = this.handleAddressChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.getInfo();
   }
 
@@ -54,10 +56,10 @@ export class AddContactInformation extends React.Component{
 
   handleFormSubmit(formSubmitEvent) {
     formSubmitEvent.preventDefault();
-    if(this.state.phone == "" || this.state.address == "" || this.state.email == ""){
+    if (this.state.phone == "" || this.state.address == "" || this.state.email == "") {
       alert("Polja unosa ne smiju biti prazna. Molim Vas pokušajte ponovno!");
     }
-    else{
+    else {
       ContactInfoService.postContactInfo(this.state.phone, this.state.address, this.state.email);
 
       formSubmitEvent.target.reset();
@@ -65,54 +67,60 @@ export class AddContactInformation extends React.Component{
     }
   }
 
-  getInfo(){
+  getInfo() {
     this.req = makeCancelable(fetch('http://localhost:8080/contact/get'));
     this.req.promise.then(response => response.json())
-      .then(result => this.setState( { phone: result.phone, address: result.address, email: result.email }, () => {} ))
+      .then(result => this.setState({ phone: result.phone, address: result.address, email: result.email }, () => { }))
       .catch(error => this.setState({ errorMessage: error + "" }));
   }
 
-  render(){
-    return(
+  render() {
+
+    if (AccountService.getAuthInfo() == null || AccountService.getAuthInfo().role != "ROLE_ADMIN") {
+      return (<div></div>)
+    }
+
+
+    return (
       <div style={wellStyles} >
 
-      <Panel header="Unos/izmjena kontakt informacija" bsStyle="info">
+        <Panel header="Unos/izmjena kontakt informacija" bsStyle="info">
 
-        <Form horizontal onSubmit={this.handleFormSubmit}>
+          <Form horizontal onSubmit={this.handleFormSubmit}>
 
-          <FormGroup controlId="enteringPhoneNumber">
-            <Col componentClass={ControlLabel} sm={2}  >
-              Broj telefona:
+            <FormGroup controlId="enteringPhoneNumber">
+              <Col componentClass={ControlLabel} sm={2}  >
+                Broj telefona:
               </Col>
-            <Col sm={4}>
-              <FormControl type="text" placeholder="Broj telefona" value={this.state.phone} onChange={this.handlePhoneChange}/>
-            </Col>
-          </FormGroup>
+              <Col sm={4}>
+                <FormControl type="text" placeholder="Broj telefona" value={this.state.phone} onChange={this.handlePhoneChange} />
+              </Col>
+            </FormGroup>
 
-          <FormGroup controlId="enteringEmail">
-            <Col componentClass={ControlLabel} sm={2}>
-              Email:
+            <FormGroup controlId="enteringEmail">
+              <Col componentClass={ControlLabel} sm={2}>
+                Email:
             </Col>
-            <Col sm={4}>
-              <FormControl type="email" placeholder="Email adresa" value={this.state.email} onChange={this.handleEmailChange}/>
-            </Col>
-          </FormGroup>
+              <Col sm={4}>
+                <FormControl type="email" placeholder="Email adresa" value={this.state.email} onChange={this.handleEmailChange} />
+              </Col>
+            </FormGroup>
 
-          <FormGroup controlId="enteringAddress">
-            <Col componentClass={ControlLabel} sm={2}>
-              Adresa kompanije:
+            <FormGroup controlId="enteringAddress">
+              <Col componentClass={ControlLabel} sm={2}>
+                Adresa kompanije:
              </Col>
-            <Col sm={4}>
-              <FormControl type="text" placeholder="Adresa kompanije" value={this.state.address} onChange={this.handleAddressChange}/>
-            </Col>
-          </FormGroup>
+              <Col sm={4}>
+                <FormControl type="text" placeholder="Adresa kompanije" value={this.state.address} onChange={this.handleAddressChange} />
+              </Col>
+            </FormGroup>
 
-          <FormGroup>
-            <Col smOffset={2} sm={10}>
-              <Button type="submit">Unesi</Button>
-            </Col>
-          </FormGroup>
-        </Form>
+            <FormGroup>
+              <Col smOffset={2} sm={10}>
+                <Button type="submit">Unesi</Button>
+              </Col>
+            </FormGroup>
+          </Form>
 
         </Panel>
 

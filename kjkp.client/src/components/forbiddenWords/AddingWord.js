@@ -1,6 +1,7 @@
 import React from "react";
 import * as ReactBootstrap from 'react-bootstrap';
 
+import AccountService from '../../services/AccountService';
 
 import forbiddenWordService from '../../services/ForbiddenWordService';
 
@@ -29,6 +30,11 @@ export var AddingWord = React.createClass({
   },
 
   render() {
+
+    if (AccountService.getAuthInfo() == null || AccountService.getAuthInfo().role != "ROLE_HR") {
+      return (<div></div>)
+    }
+
     return (
       <Grid>
         <Row className="show-grid">

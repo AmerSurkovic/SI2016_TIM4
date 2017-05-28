@@ -1,13 +1,20 @@
+import AccountService from './AccountService';
 var queryString = require('query-string');
 
 var url = 'http://localhost:8080/';
-var header = new Headers({
-    'Content-Type': 'application/json; charset=utf8'
-});
 
-var ContactInfoService = new function() {
+var ContactInfoService = new function () {
 
-    this.postContactInfo = (phoneIN, addressIN, emailIN) => {
+  this.postContactInfo = (phoneIN, addressIN, emailIN) => {
+
+    var header = {};
+    var auth = AccountService.getAuthInfo();
+
+    if (auth != null) {
+      header = new Headers({
+        'Content-Type': 'application/json; charset=utf8',
+        'Authorization': auth.token
+      });
       return fetch(url + 'contact/add', {
         method: 'POST',
         headers: header,
@@ -17,7 +24,15 @@ var ContactInfoService = new function() {
           address: addressIN
         })
       });
+
     }
+    else {
+      alert('You must be logged in to edit contact info!');
+    }
+
+
+
+  }
 }
 
 export default ContactInfoService;
