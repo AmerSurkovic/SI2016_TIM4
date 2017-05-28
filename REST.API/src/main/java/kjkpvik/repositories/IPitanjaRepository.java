@@ -9,5 +9,5 @@ import java.util.List;
  * Created by Sumejja on 10.05.2017..
  */
 public interface IPitanjaRepository extends PagingAndSortingRepository<Pitanje, Long> {
-    List<Pitanje> findAllByAnketa_ID(Long id);
+    List<Pitanje> findAllByAnketa_Id(Long id);
 }

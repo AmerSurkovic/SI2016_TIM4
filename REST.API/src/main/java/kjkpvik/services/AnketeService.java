@@ -41,7 +41,7 @@ public class AnketeService {
 
     // prikazi pitanja za anketu tog ID-a, TESTIRANO
     public List<PitanjeVM> prikaziPitanja(Long id){
-        return PitanjeVM.fromPitanjaList(pitanjaRepository.findAllByAnketa_ID(id));
+        return PitanjeVM.fromPitanjaList(pitanjaRepository.findAllByAnketa_Id(id));
     }
 
     public AnketaVM getAnketa(Long id) {
@@ -86,8 +86,9 @@ public class AnketeService {
     }
 
     //delete - testirano
-    public Boolean obrisiAnketu(AnketaVM anketa){
+    public Boolean obrisiAnketu(Long id){
 
+        Anketa anketa = anketaRepository.findAnketaById(id);
         List<Anketa> sveAnkete = (List<Anketa>) anketaRepository.findAll();
         List<Pitanje> svaPitanja = (List<Pitanje>) pitanjaRepository.findAll();
         List<Odgovor>  sviOdgovori = (List<Odgovor>) odgovorRepository.findAll();

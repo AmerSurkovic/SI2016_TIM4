@@ -14,7 +14,7 @@ public class Anketa {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", updatable = false, nullable = false)
-    private  Long ID;
+    private  Long id;
     private String opis;
     private Date vrijemeAktivacije;
     private Date vrijemeDeaktivacije;
@@ -52,11 +52,11 @@ public class Anketa {
         this.vrijemeDeaktivacije = vrijemeDeaktivacije;
     }
     public Long getID() {
-        return ID;
+        return id;
     }
 
     public void setID(Long ID) {
-        this.ID = ID;
+        this.id = ID;
     }
 
     public String getOpis() {

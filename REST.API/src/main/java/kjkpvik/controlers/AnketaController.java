@@ -64,12 +64,13 @@ public class AnketaController {
         }
     }
 
-    @RequestMapping(value = "/obrisianketu", method = RequestMethod.POST )
-    public ResponseEntity obrisiAnketu(@RequestBody AnketaVM anketa){
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_HR')")
+    @RequestMapping(value = "/obrisianketu", method = RequestMethod.DELETE )
+    public ResponseEntity obrisiAnketu(@RequestParam("Id")Long id) {
 
         try{
             return  ResponseEntity.status(HttpStatus.OK)
-                    .body(anketeService.obrisiAnketu(anketa));
+                    .body(anketeService.obrisiAnketu(id));
         }
         catch (ServiceException e){
             return  ResponseEntity.status(HttpStatus.BAD_REQUEST)

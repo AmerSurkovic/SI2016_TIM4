@@ -12,4 +12,5 @@ import java.util.List;
  */
 public interface IAnketeRepository extends PagingAndSortingRepository<Anketa, Long> {
     List<Anketa> findAllByVrijemeDeaktivacijeAfter(Date date);
+    Anketa findAnketaById(Long id);
 }

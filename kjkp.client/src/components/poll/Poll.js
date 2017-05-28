@@ -22,6 +22,8 @@ class Poll extends React.Component{
       id: this.props.poll.id
     }
     var req = null;
+
+    this.deletePoll = this.deletePoll.bind(this);
   }
 
   componentDidMount() {
@@ -50,12 +52,21 @@ class Poll extends React.Component{
       return datevalues;
     };
 
-    deleteComplaint(Id){
-      var r = fetch('http://localhost:8080/zalbe/delete?Id=' + Id , {
-          method: 'DELETE',
-          });
-      alert("Complaint deleted!");
-      window.location.reload();
+
+
+    deletePoll(Id){
+      var auth = AccountService.getAuthInfo();
+      if(auth!=null){
+        var header = new Headers(
+          {"Authorization":auth.token}
+        );
+        var r = fetch('http://localhost:8080/anketa/obrisianketu?Id=' + Id , {
+            method: 'DELETE',
+            headers: header
+            });
+        alert("Poll deleted!");
+        window.location.reload();
+      }
     }
 
     render(){
@@ -85,7 +96,7 @@ class Poll extends React.Component{
               <Button bsStyle="success"> Popuni anketu </Button>
             </Link>
             {' '}
-              <Button bsStyle="danger"> Obriši anketu </Button>
+              <Button bsStyle="danger" onClick={this.deletePoll.bind(this,this.props.poll.id)}> Obriši anketu </Button>
           </Col>
         )
           break;
@@ -100,7 +111,7 @@ class Poll extends React.Component{
                 <Button bsStyle="success"> Popuni anketu </Button>
               </Link>
               {' '}
-                <Button bsStyle="danger"> Obriši anketu </Button>
+                <Button bsStyle="danger" onClick={this.deletePoll.bind(this,this.props.poll.id)}> Obriši anketu </Button>
             </Col>
           )
             break;
