@@ -48,6 +48,11 @@ public class KorisnikController {
         return korisnikService.getUserById(korisnikId);
     }
 
+    @RequestMapping(value = "/getByUsername", method = RequestMethod.GET)
+    public KorisnikVM getKorisnikByUsername(@RequestParam("username") String username){
+        return korisnikService.getUserByUsername(username);
+    }
+
     // STATUS: RADI
     @RequestMapping(value = "/kreiraj", method = RequestMethod.POST )
     public ResponseEntity dodajKorisnika(@RequestBody KorisnikVM korisnikVM)
@@ -62,11 +67,11 @@ public class KorisnikController {
         }
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public ResponseEntity update(@RequestBody KorisnikVM userVM){
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public ResponseEntity update(@RequestBody KorisnikVM userVM, Principal principal){
         try{
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(korisnikService.update(userVM));
+                    .body(korisnikService.update(userVM, principal.getName()));
         }
         catch (ServiceException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)

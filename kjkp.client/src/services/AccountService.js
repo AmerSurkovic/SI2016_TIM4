@@ -33,6 +33,27 @@ var AccountService = new function () {
         });
     }
 
+    this.editUser = (usernameIN, emailIN, passwordIN, credentials) => {
+
+        var headerAuth = {};
+        var auth = this.getAuthInfo();
+        headerAuth = new Headers({
+            'Content-Type': 'application/json; charset=utf8',
+            'Authorization': auth.token
+        });
+
+        return fetch(url + 'korisnik/update', {
+            method: 'POST',
+            headers: headerAuth,
+            body: JSON.stringify({
+                username: usernameIN,
+                email: emailIN,
+                password: passwordIN
+            })
+        });
+
+    }
+
     this.storeAuthInfo = (auth) => {
         localStorage.setItem('authData', JSON.stringify(auth));
     }
@@ -52,4 +73,3 @@ var AccountService = new function () {
 }
 
 export default AccountService;
-
