@@ -103,4 +103,16 @@ public class AnketaController {
                     .body(e.getLocalizedMessage());
         }
     }
+
+    @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
+    public ResponseEntity getAnketa(@PathVariable Long id) {
+        try{
+            return ResponseEntity.status(HttpStatus.OK)
+                            .body(anketeService.getAnketa(id));
+        }
+        catch (Exception e) {
+            return  ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(e.getLocalizedMessage());
+        }
+    }
 }
