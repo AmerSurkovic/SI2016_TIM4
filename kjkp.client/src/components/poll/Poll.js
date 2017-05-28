@@ -3,11 +3,7 @@ import * as ReactBootstrap from 'react-bootstrap';
 import { makeCancelable } from '../../globals';
 import AccountService from '../../services/AccountService';
 
-import {PollQuestions} from './PollQuestions';
-
 import {
-  BrowserRouter as Router,
-  Route,
   Link
 } from 'react-router-dom';
 
@@ -22,6 +18,7 @@ class Poll extends React.Component{
     this.state = {
       user: '',
       errorMessage: null,
+      id: this.props.poll.id
     }
     var req = null;
   }
@@ -89,10 +86,12 @@ class Poll extends React.Component{
       //   );
       // }
 
+      var string = "/poll/questions/" + this.state.id;
+
       return(
         <div>
           <ListGroupItem header={this.state.user}>
-            <Link to="/poll/questions"> {this.props.poll.opis} </Link> <br/>
+            <Link to={string}> {this.props.poll.opis} </Link> <br/>
           </ListGroupItem>
         </div>
 
