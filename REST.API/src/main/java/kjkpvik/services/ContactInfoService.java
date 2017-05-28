@@ -5,6 +5,7 @@ import kjkpvik.models.ContactInfo;
 import kjkpvik.repositories.IContactInfoRepository;
 import kjkpvik.viewmodels.ContactInfoVM;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 /**

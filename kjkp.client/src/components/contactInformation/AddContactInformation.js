@@ -54,10 +54,15 @@ export class AddContactInformation extends React.Component{
 
   handleFormSubmit(formSubmitEvent) {
     formSubmitEvent.preventDefault();
-    ContactInfoService.postContactInfo(this.state.phone, this.state.address, this.state.email);
+    if(this.state.phone == "" || this.state.address == "" || this.state.email == ""){
+      alert("Polja unosa ne smiju biti prazna. Molim Vas pokušajte ponovno!");
+    }
+    else{
+      ContactInfoService.postContactInfo(this.state.phone, this.state.address, this.state.email);
 
-    formSubmitEvent.target.reset();
-    alert("Svaka vam čast administratore!");
+      formSubmitEvent.target.reset();
+      alert("Unos je bio uspješan!");
+    }
   }
 
   getInfo(){
