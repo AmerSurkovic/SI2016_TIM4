@@ -42,7 +42,6 @@ public class AnketeService {
     // prikazi pitanja za anketu tog ID-a, TESTIRANO
     public List<PitanjeVM> prikaziPitanja(Long id){
         return PitanjeVM.fromPitanjaList(pitanjaRepository.findAllByAnketa_ID(id));
-
     }
 
     public AnketaVM getAnketa(Long id) {

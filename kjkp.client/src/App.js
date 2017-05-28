@@ -81,6 +81,8 @@ class App extends React.Component {
 
             <Route path="/poll/create" component={AddPoll} />
             <Route path="/poll/activePolls" component={ActivePolls} />
+            <Route path="/poll/questions/:id" component={PollQuestions} />
+
 
             <Route path="/contact/add" component={AddContactInformation} />
             <Route path="/contact/view" component={ViewContactInformation} />
