@@ -74,12 +74,18 @@ export class Login extends React.Component {
     render() {
         if (AccountService.getAuthInfo() != null) {
             return (
-              <Jumbotron>
-              <h2>Kantonalno javno komunalno preduzeće</h2>
-              <h1>Vodovod i kanalizacije</h1>
-              <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-              <p><Button bsStyle="primary">Learn more</Button></p>
-              </Jumbotron>
+              <Grid>
+                <Row className="show-grid">
+                    <Col md={10} mdOffset={1}>
+                    <Jumbotron>
+                    <h2>Kantonalno javno komunalno preduzeće</h2>
+                    <h1>Vodovod i kanalizacije</h1>
+                    <p>Dobro došli na zvaničnu stranicu preduzeća za proizvodnju i distribuciju vode, odvođenje i prečišćavanje voda.</p>
+                    <p><Button href="/" bsStyle="primary">Pogledajte obavijesti</Button></p>
+                    </Jumbotron>
+                  </Col>
+                </Row>
+              </Grid>
             );
         }
         const form = (
