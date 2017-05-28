@@ -87,7 +87,7 @@ export var ComplaintFormInstance = React.createClass({
       formSubmitEvent.target.reset();
       this.setState({ radio: 'Privatni' });
     }else{
-      alert("One of the words you are using is forbidden! Pls try again!");
+      alert("One of the words you are using is forbidden! Please try again!");
     }
   },
 
