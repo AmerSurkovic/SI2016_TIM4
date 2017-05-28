@@ -29,6 +29,8 @@ import { AddPoll } from './components/poll/AddPoll';
 import { ActivePolls } from './components/poll/ActivePolls';
 import { PollQuestions } from './components/poll/PollQuestions';
 
+import { AddContactInformation } from './components/contactInformation/AddContactInformation';
+import { ViewContactInformation } from './components/contactInformation/ViewContactInformation';
 
 class App extends React.Component {
   constructor(props) {
@@ -79,6 +81,10 @@ class App extends React.Component {
 
             <Route path="/poll/create" component={AddPoll} />
             <Route path="/poll/activePolls" component={ActivePolls} />
+
+            <Route path="/contact/add" component={AddContactInformation} />
+            <Route path="/contact/view" component={ViewContactInformation} />
+
           </div>
         </Router>
       </div>
