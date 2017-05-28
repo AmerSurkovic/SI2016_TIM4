@@ -28,6 +28,7 @@ import { WordsList } from './components/forbiddenWords/WordsList';
 import { AddPoll } from './components/poll/AddPoll';
 import { ActivePolls } from './components/poll/ActivePolls';
 import { PollQuestions } from './components/poll/PollQuestions';
+import { AnswerPoll } from './components/poll/AnswerPoll';
 
 import { AddContactInformation } from './components/contactInformation/AddContactInformation';
 import { ViewContactInformation } from './components/contactInformation/ViewContactInformation';
@@ -82,7 +83,7 @@ class App extends React.Component {
             <Route path="/poll/create" component={AddPoll} />
             <Route path="/poll/activePolls" component={ActivePolls} />
             <Route path="/poll/questions/:id" component={PollQuestions} />
-
+            <Route path="/poll/answer/:id" component={AnswerPoll} />
 
             <Route path="/contact/add" component={AddContactInformation} />
             <Route path="/contact/view" component={ViewContactInformation} />

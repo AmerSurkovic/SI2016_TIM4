@@ -78,7 +78,8 @@ class Poll extends React.Component{
       //var user = <User userid={id}/>;
 
 
-      var string = "/poll/questions/" + this.state.id;
+      var showQuestionsLink = "/poll/questions/" + this.state.id;
+      var answerQuestionsLink = "/poll/answer/" + this.state.id;
 
       return(
         <div>
@@ -86,11 +87,11 @@ class Poll extends React.Component{
             {this.props.poll.opis}
             <br />
             <Col>
-              <Link to={string} style={{ textDecoration: 'none' }}>
+              <Link to={showQuestionsLink} style={{ textDecoration: 'none' }}>
                 <Button bsStyle="info"> Prikazi pitanja </Button>
               </Link>
               {' '}
-              <Link to={string} style={{ textDecoration: 'none' }}>
+              <Link to={answerQuestionsLink} style={{ textDecoration: 'none' }}>
                 <Button bsStyle="success"> Popuni anketu </Button>
               </Link>
               {' '}
