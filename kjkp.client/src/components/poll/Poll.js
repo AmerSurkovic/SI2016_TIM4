@@ -28,15 +28,6 @@ class Poll extends React.Component{
     //this.getUser();
   }
 
-  getUser() {
-    this.req = makeCancelable(fetch('http://localhost:8080/korisnik/get?Id=' + this.props.poll.korisnikID));
-    this.req.promise.then(response => response.json())
-      .then(result => this.setState( { user: result.username }, () => {
-  console.log(this.state.user);}))
-      .catch(error => this.setState({ errorMessage: error + "" }));
-  }
-
-
     formatDate(){
       var timestamp = this.props.complaint.vrijemePostavljanja,
       date = new Date(timestamp),
@@ -65,27 +56,19 @@ class Poll extends React.Component{
       var authenticated = false;
       var role = "";
 
-      if (AccountService.getAuthInfo() != null) {
+      var showQuestionsLink = "/poll/questions/" + this.state.id;
+      var answerQuestionsLink = "/poll/answer/" + this.state.id;
+      var ActionSection = (<div></div>);
+
+
         var auth = AccountService.getAuthInfo();
 
         authenticated = true;
         role = auth.role;
 
-      }
-
-      //var dateOfComplaint = this.formatDate();
-      //var id = this.props.poll.korisnikID;
-      //var user = <User userid={id}/>;
-
-
-      var showQuestionsLink = "/poll/questions/" + this.state.id;
-      var answerQuestionsLink = "/poll/answer/" + this.state.id;
-
-      return(
-        <div>
-          <ListGroupItem header={this.state.user}>
-            {this.props.poll.opis}
-            <br />
+        switch (role) {
+          case "ROLE_ADMIN":
+          ActionSection = (
             <Col>
               <Link to={showQuestionsLink} style={{ textDecoration: 'none' }}>
                 <Button bsStyle="info"> Prikazi pitanja </Button>
@@ -97,6 +80,48 @@ class Poll extends React.Component{
               {' '}
                 <Button bsStyle="danger"> Obriši anketu </Button>
             </Col>
+          )
+            break;
+            case "ROLE_HR":
+            ActionSection = (
+              <Col>
+                <Link to={showQuestionsLink} style={{ textDecoration: 'none' }}>
+                  <Button bsStyle="info"> Prikazi pitanja </Button>
+                </Link>
+                {' '}
+                <Link to={answerQuestionsLink} style={{ textDecoration: 'none' }}>
+                  <Button bsStyle="success"> Popuni anketu </Button>
+                </Link>
+                {' '}
+                  <Button bsStyle="danger"> Obriši anketu </Button>
+              </Col>
+            )
+              break;
+              case "ROLE_USER":
+              ActionSection = (
+                <Col>
+                  <Link to={showQuestionsLink} style={{ textDecoration: 'none' }}>
+                    <Button bsStyle="info"> Prikazi pitanja </Button>
+                  </Link>
+                  {' '}
+                  <Link to={answerQuestionsLink} style={{ textDecoration: 'none' }}>
+                    <Button bsStyle="success"> Popuni anketu </Button>
+                  </Link>
+                </Col>
+              )
+                break;
+          default:
+
+        }
+
+
+
+      return(
+        <div>
+          <ListGroupItem header={this.state.user}>
+            {this.props.poll.opis}
+            <br />
+              {ActionSection}
             <br/>
           </ListGroupItem>
         </div>
