@@ -77,7 +77,7 @@ export class AnswerPoll extends React.Component {
       this.setState({ pitanjaIDs: pitanjaIDs });
 
       PollService.postPollAnswers(this.state.pitanjaIDs, this.state.odgovori);
-
+      
   }
 
   render() {

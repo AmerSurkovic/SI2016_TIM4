@@ -87,7 +87,7 @@ export class NavbarInstance extends React.Component {
             <Nav>
               <NavDropdown title="Upravljanje anketama">
                 <MenuItem><Link to="/poll/create"> Kreiraj novu anketu</Link></MenuItem>
-                <MenuItem>Pregled popunjenih anketa</MenuItem>
+                
               </NavDropdown>
               <NavDropdown title="Upravljanje tabelom nedozvoljenih rijeci">
                 <MenuItem><Link to="/forbiddenwords/add">Dodaj nedozvoljenu rijec</Link></MenuItem>

@@ -54,7 +54,7 @@ export class PollQuestions extends React.Component {
 
         var ActionSection = (
           <div>
-            <Panel header={this.state.id}>
+            <Panel header={this.state.opis}>
               <ListGroup>
                 {polls}
               </ListGroup>

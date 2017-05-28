@@ -26,6 +26,7 @@ export var AddLocationForm = React.createClass({
 		formSubmitEvent.preventDefault();
 
 		LocationService.postNews(this.state.message);
+
 		//alert(this.state.message);
 		formSubmitEvent.target.reset();
 	},
