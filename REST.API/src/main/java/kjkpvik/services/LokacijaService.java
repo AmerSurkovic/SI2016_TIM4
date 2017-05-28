@@ -32,7 +32,9 @@ public class LokacijaService {
 
     //dodavanje
     public Boolean dodajLokaciju (LokacijaVM lokacija ){//u lokaciji se nalazi lista ObavijestLokacija
-
+        if(lokacijaRepository.findLokacijaByNaziv(lokacija.getNaziv())!=null){
+            return false;
+        }
         Lokacija mojaLokacija = new Lokacija(lokacija.getNaziv());
         //mojaLokacija.setOl(lokacija.getOl());//?
         Lokacija kreirana = lokacijaRepository.save(mojaLokacija);
