@@ -2,6 +2,7 @@ import React from "react";
 import * as ReactBootstrap from 'react-bootstrap';
 
 import NewsService from '../../services/NewsService';
+import AccountService from '../../services/AccountService';
 
 var FormGroup = ReactBootstrap.FormGroup;
 var ControlLabel = ReactBootstrap.ControlLabel;
@@ -104,7 +105,7 @@ export class AddNews extends React.Component {
         var component = this;
         NewsService.create(item)
             .then(response => {
-                alert("Success mmm");
+                alert("Success");
                 this.resetForm();
             })
             .catch(error => alert(error));
@@ -140,6 +141,10 @@ export class AddNews extends React.Component {
     }
 
     render() {
+        if (AccountService.getAuthInfo() == null || AccountService.getAuthInfo().role != "ROLE_ADMIN") {
+            return (<div></div>)
+        }
+
         const locations = this.state.locations;
         return (
             <Col md={6} mdOffset={3}>

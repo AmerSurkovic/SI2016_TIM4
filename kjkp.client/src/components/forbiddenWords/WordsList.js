@@ -2,7 +2,7 @@ import React from "react";
 import * as ReactBootstrap from 'react-bootstrap';
 import Word from '../forbiddenWords/Word';
 import { makeCancelable } from '../../globals';
-
+import AccountService from '../../services/AccountService';
 
 var rb = ReactBootstrap;
 var ListGroup = rb.ListGroup;
@@ -29,14 +29,38 @@ export class WordsList extends React.Component {
 
   //API Requst method
   getWords() {
-    this.req = makeCancelable(fetch('http://localhost:8080/zrijeci/prikazi_rijeci'));
-    this.req.promise.then(response => response.json())
-      .then(result => this.setState({ words: result}))
-      .catch(error => this.setState({ errorMessage: error + "" }));
+
+    var header = {};
+    var auth = AccountService.getAuthInfo();
+
+    if (auth != null && auth.role == 'ROLE_HR') {
+      header = new Headers({
+        'Content-Type': 'application/json; charset=utf8',
+        'Authorization': auth.token
+      });
+
+      this.req = makeCancelable(fetch('http://localhost:8080/zrijeci/prikazi_rijeci', {
+        method: 'GET',
+        headers: header
+      }));
+      this.req.promise.then(response => response.json())
+        .then(result => this.setState({ words: result }))
+        .catch(error => this.setState({ errorMessage: error + "" }));
+    }
+
   }
 
   render() {
+
+    if (AccountService.getAuthInfo() == null || AccountService.getAuthInfo().role != "ROLE_HR") {
+      return (<div></div>)
+    }
+
     var words = this.state.words.map((w) => (<Word word={w} />));
+
+    if (AccountService.getAuthInfo() == null || AccountService.getAuthInfo().role != "ROLE_HR") {
+      return (<div></div>)
+    }
 
     return (
       <Grid>

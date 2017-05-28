@@ -14,8 +14,6 @@ var ForbiddenWordService = new function () {
 
     if (auth != null && auth.role == "ROLE_HR") {
 
-      var header = {};
-      var auth = AccountService.getAuthInfo();
       header = new Headers({
         'Content-Type': 'application/json; charset=utf8',
         'Authorization': auth.token
