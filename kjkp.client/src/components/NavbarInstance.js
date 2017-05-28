@@ -46,7 +46,7 @@ export class NavbarInstance extends React.Component {
     var ActionSection =
       <Nav>
         <LinkContainer to="/complaintList"><NavItem>Pregled javnih zalbi</NavItem></LinkContainer>
-        <NavItem>Kontakt informacije</NavItem>
+        <LinkContainer to="/contact/view"><NavItem>Kontakt informacije</NavItem></LinkContainer>
       </Nav>;
 
     if (AccountService.getAuthInfo() != null) {
@@ -104,7 +104,7 @@ export class NavbarInstance extends React.Component {
                 <MenuItem><Link to="/complaintList">Pregled žalbi</Link></MenuItem>
               </NavDropdown>
               <NavItem><Link to="/poll/activePolls">Pregled aktivnih anketa</Link></NavItem>
-              <NavItem>Kontakt informacije</NavItem>
+              <NavItem><Link to="/contact/view">Kontakt informacije</Link></NavItem>
             </Nav>;
           break;
       }
