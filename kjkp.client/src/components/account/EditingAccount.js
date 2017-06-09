@@ -35,12 +35,14 @@ export class EditingAccount extends React.Component{
       currUser: currUser,
       currPass: currPass,
       emailGET: '',
-      password: ''
+      password: '',
+      oldPassword: ''
     }
     var req=null;
 
     this.handleUserNameChange = this.handleUserNameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleOldPasswordChange = this.handleOldPasswordChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
 
@@ -57,6 +59,10 @@ export class EditingAccount extends React.Component{
 
   handlePasswordChange(e) {
     this.setState({ password: e.target.value });
+  }
+
+  handleOldPasswordChange(e) {
+    this.setState({ oldPassword: e.target.value });
   }
 
   handleEmailChange(e) {
@@ -76,19 +82,20 @@ export class EditingAccount extends React.Component{
   handleFormSubmit(formSubmitEvent) {
     formSubmitEvent.preventDefault();
 
-    if(this.state.password!==''){
-        AccountService.editUser(this.state.userGET, this.state.emailGET, this.state.password);
-
-        if(this.state.userGET!=this.state.currUser || this.state.password!=this.state.currPass){
-          alert("Vaše pristupne informacije su promijenjene. Molimo Vas da se prijavite sa novim korisničkim informacijama.")
-          this.onLogout();
-        }
-        else{
-          alert("Vaš e-mail je promijenjen!");
-        }
+    if(this.state.oldPassword!==''){
+        AccountService.editUser(this.state.userGET, this.state.emailGET, this.state.password, this.state.oldPassword)
+                    .then(response => {
+                        if(!response.ok) {
+                            alert("Stara sifra nije tacna");
+                        }
+                        else {
+                            alert("Vaše pristupne informacije su promijenjene. Molimo Vas da se prijavite sa novim korisničkim informacijama.");
+                        }
+                    })
+                    .catch(error => alert(error));
     }
     else{
-        alert("Polje lozinke ne može biti prazno!");
+        alert("Polje stare lozinke ne može biti prazno!");
     }
 
     console.log(this.state.currUser);
@@ -133,12 +140,21 @@ export class EditingAccount extends React.Component{
             </Col>
           </FormGroup>
 
-          <FormGroup controlId="formHorizontalPassword">
+          <FormGroup controlId="formHorizontalOldPassword">
             <Col componentClass={ControlLabel} sm={2}>
-              Šifra
+              Stara Šifra
              </Col>
             <Col sm={4}>
-              <FormControl type="password" placeholder="Šifra" onChange={this.handlePasswordChange}/>
+              <FormControl type="password" placeholder="Stara sifra" onChange={this.handleOldPasswordChange}/>
+            </Col>
+          </FormGroup>
+
+          <FormGroup controlId="formHorizontalPassword">
+            <Col componentClass={ControlLabel} sm={2}>
+              Nova Šifra
+             </Col>
+            <Col sm={4}>
+              <FormControl type="password" placeholder="Nova sifra, opcionalno" onChange={this.handlePasswordChange}/>
             </Col>
           </FormGroup>
 

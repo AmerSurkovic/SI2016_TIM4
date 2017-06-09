@@ -70,8 +70,10 @@ public class KorisnikController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ResponseEntity update(@RequestBody KorisnikVM userVM, Principal principal){
         try{
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(korisnikService.update(userVM, principal.getName()));
+            if(korisnikService.update(userVM, principal.getName())) {
+                return ResponseEntity.status(HttpStatus.OK).body(true);
+            }
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(false);
         }
         catch (ServiceException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)

@@ -8,6 +8,7 @@ public class KorisnikVM {
     private Long ID;
     private String username;
     private String password;
+    private String oldPassword;
     private String email;
     private String rola; // ovaj dio jos nisam razjasnila
 
@@ -56,5 +57,13 @@ public class KorisnikVM {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getOldPassword() {
+        return oldPassword;
+    }
+
+    public void setOldPassword(String oldPassword) {
+        this.oldPassword = oldPassword;
     }
 }

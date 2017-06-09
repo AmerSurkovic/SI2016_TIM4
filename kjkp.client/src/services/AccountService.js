@@ -42,7 +42,7 @@ var AccountService = new function () {
         });
     }
 
-    this.editUser = (usernameIN, emailIN, passwordIN, credentials) => {
+    this.editUser = (usernameIN, emailIN, passwordIN, oldPw) => {
 
         var headerAuth = {};
         var auth = this.getAuthInfo();
@@ -57,6 +57,7 @@ var AccountService = new function () {
             body: JSON.stringify({
                 username: usernameIN,
                 email: emailIN,
+                oldPassword: oldPw,
                 password: passwordIN
             })
         });

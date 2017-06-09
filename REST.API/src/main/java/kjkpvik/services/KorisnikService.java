@@ -73,12 +73,18 @@ public class KorisnikService {
 
     public Boolean update(KorisnikVM userVM, String username){
         Korisnik user = korisnikRepository.findKorisnikByUsername(username);
-        user.setUsername(userVM.getUsername());
-        user.setEmail(userVM.getEmail());
-        user.setPassword(userVM.getPassword());
 
-        Korisnik createdUser = korisnikRepository.save(user);
-        return createdUser != null;
+        if(user.getPassword().equals(userVM.getOldPassword())) {
+            user.setUsername(userVM.getUsername());
+            user.setEmail(userVM.getEmail());
+            if(!userVM.getPassword().equals("")) {
+                user.setPassword(userVM.getPassword());
+            }
+            Korisnik createdUser = korisnikRepository.save(user);
+            return createdUser != null;
+        }
+        return false;
+
     }
 
     // radi
