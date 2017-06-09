@@ -30,6 +30,15 @@ var AccountService = new function () {
                 email: emailIN,
                 password: passwordIN
             })
+        }).then(function(response){
+          if(!response.ok){
+            throw Error(response.statusText);
+          }
+          alert("Uspješno ste se registrovali!");
+          window.location = "/";
+          return response;
+        }).catch(function(){
+          alert("Korisničko ime već postoji! Molimo Vas odaberite neko drugo korisničko ime.");
         });
     }
 

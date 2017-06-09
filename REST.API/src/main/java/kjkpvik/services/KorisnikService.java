@@ -7,6 +7,7 @@ import kjkpvik.repositories.IObavijestiRepository;
 import kjkpvik.repositories.IRolaRepository;
 import kjkpvik.viewmodels.KorisnikVM;
 import kjkpvik.viewmodels.RolaVM;
+import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -84,7 +85,7 @@ public class KorisnikService {
     public Boolean dodajKorisnika(KorisnikVM korisnikVM, String rola){
 
         if(korisnikRepository.findKorisnikByUsername(korisnikVM.getUsername())!=null){
-            return false;
+            throw new ServiceException("Korisnicko ime postoji u bazi!");
         }
         else if(korisnikVM == null || !isValidEmailAddress(korisnikVM.getEmail())) {
             return false;
