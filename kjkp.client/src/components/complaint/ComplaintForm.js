@@ -88,9 +88,14 @@ export var ComplaintFormInstance = React.createClass({
     }
 
     if (this.verifyWords(this.state.message)) {
-      ComplaintService.postComplaint(this.state.message, priv);
-      formSubmitEvent.target.reset();
-      this.setState({ radio: 'Privatni' });
+      ComplaintService.postComplaint(this.state.message, priv)
+                        .then(response => {
+                            alert("Success");
+                            this.setState({ radio: 'Privatni' });
+                        })
+                        .catch(error => alert(error));
+        formSubmitEvent.target.reset();
+
     } else {
       alert("One of the words you are using is forbidden! Please try again!");
     }

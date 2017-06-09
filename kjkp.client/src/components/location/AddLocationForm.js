@@ -25,7 +25,11 @@ export var AddLocationForm = React.createClass({
 	handleFormSubmit: function (formSubmitEvent) {
 		formSubmitEvent.preventDefault();
 
-		LocationService.postNews(this.state.message);
+		LocationService.postNews(this.state.message)
+						.then(response => {
+							alert("Success!");
+						})
+						.catch(error => alert(error));
 
 		//alert(this.state.message);
 		formSubmitEvent.target.reset();
@@ -46,12 +50,10 @@ export var AddLocationForm = React.createClass({
 								<Form inline>
 									<FormGroup controlId="formBasicText">
 										<ControlLabel>Lokacija</ControlLabel>
-										{' '}
 
 										<FormControl componentClass="textarea" onChange={this.textChange} placeholder="Lokacija" />
 
 									</FormGroup>
-									{' '}
 									<Button type="submit">
 										Unesi
 								    </Button>

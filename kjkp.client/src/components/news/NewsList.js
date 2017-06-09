@@ -2,6 +2,7 @@ import React from "react";
 import * as ReactBootstrap from 'react-bootstrap';
 
 import NewsService from '../../services/NewsService';
+import AccountService from '../../services/AccountService';
 
 var rb = ReactBootstrap;
 var FormGroup = rb.FormGroup;
@@ -38,6 +39,18 @@ function NewsItem(props) {
     };
 
     var date = formatDate(timestamp);
+    var authenticated = false;
+    var role = "";
+
+    var DeleteButton = <a/>;
+
+    if (AccountService.getAuthInfo() != null) {
+      var auth = AccountService.getAuthInfo();
+
+      authenticated = true;
+      role = auth.role;
+
+    }
 
 
     return (
@@ -60,6 +73,15 @@ function NewsItem(props) {
                     <ListGroupItem key={3}>
                         <b>Datum postavljanja: {date[2]}.{date[1]}.{date[0]} u {date[3]}h {date[4]}min</b>
                     </ListGroupItem>
+
+                    {(authenticated && role == "ROLE_ADMIN") ?
+                        <ListGroupItem>
+                            <Button bsStyle="danger">Ukloni obavijest</Button>
+                            <Button bsStyle="warning">Izmijeni obavijest</Button>
+                        </ListGroupItem>
+                        : ""
+                    }
+
                 </ListGroup>
             </Panel>
         </div>
