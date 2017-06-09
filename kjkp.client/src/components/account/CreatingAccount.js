@@ -31,9 +31,16 @@ export var CreatingAccount = React.createClass ({
   handleFormSubmit: function (formSubmitEvent) {
     formSubmitEvent.preventDefault();
 
-    AccountService.postUser(this.state.username, this.state.email, this.state.password);
-    console.log(this.state.username);
-    formSubmitEvent.target.reset();
+    if(this.state.username!='' && this.state.email!='' && this.state.password!=''){
+      AccountService.postUser(this.state.username, this.state.email, this.state.password);
+      formSubmitEvent.target.reset();
+      alert("Uspješno ste se registrovali!");
+      window.location = "/";
+    }
+    else{
+      alert("Jedno od polja unosa je prazno. Unesite sve tražene podatke da bi ste se registrovali na stranicu.");
+    }
+
   },
 
   render() {

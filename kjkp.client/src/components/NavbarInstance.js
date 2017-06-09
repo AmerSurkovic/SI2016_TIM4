@@ -6,8 +6,6 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import AccountService from '../services/AccountService';
 
-
-
 var rb = ReactBootstrap;
 var Navbar = rb.Navbar;
 var Nav = rb.Nav;

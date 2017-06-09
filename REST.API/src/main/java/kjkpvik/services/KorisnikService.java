@@ -83,17 +83,21 @@ public class KorisnikService {
     // radi
     public Boolean dodajKorisnika(KorisnikVM korisnikVM, String rola){
 
-        if(korisnikVM == null || !isValidEmailAddress(korisnikVM.getEmail()))
+        if(korisnikRepository.findKorisnikByUsername(korisnikVM.getUsername())!=null){
             return false;
+        }
+        else if(korisnikVM == null || !isValidEmailAddress(korisnikVM.getEmail())) {
+            return false;
+        }
+        else {
+            // fali ispitivanje za postojanje istog korisnika
 
-        // fali ispitivanje za postojanje istog korisnika
+            Korisnik mojKorisnik = new Korisnik(korisnikVM.getUsername(), korisnikVM.getPassword(), korisnikVM.getEmail());
+            mojKorisnik.setRola(rolaRepository.findRolaByNaziv(rola));
+            Korisnik kreiran = korisnikRepository.save(mojKorisnik);
 
-        Korisnik mojKorisnik = new Korisnik(korisnikVM.getUsername(), korisnikVM.getPassword(), korisnikVM.getEmail());
-        mojKorisnik.setRola(rolaRepository.findRolaByNaziv(rola));
-        Korisnik kreiran = korisnikRepository.save(mojKorisnik);
-
-        return (kreiran != null);
-
+            return (kreiran != null);
+        }
     }
 
     public RolaVM getRolaForUser(String username) {
