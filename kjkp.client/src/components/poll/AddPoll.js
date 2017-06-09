@@ -119,12 +119,23 @@ export class AddPoll extends React.Component {
 
   handleFormSubmit() {
 
-    if (this.state.questions.length === 0) {
-      alert("Anketa mora imati bar jedno pitanje")
+    if (this.state.questions.length === 0 || this.state.text.length === 0) {
+      alert("Anketa ne smije biti prazna")
       return;
     }
 
+    if (this.state.questionsText.length != 0) {
+      for(var i = 0; i < this.state.questionsText.length; i++){
+        if(this.state.questionsText[i] === "" || this.state.questionsText[i] === " ") {
+          alert("Pitanja ne smiju biti prazna")
+          return;
+        }
+      }
+    }
+
     PollService.postPoll(this.state.text, this.getDate(), this.getDate7(), this.state.questionsText);
+
+    window.location.reload();
 
   }
 
