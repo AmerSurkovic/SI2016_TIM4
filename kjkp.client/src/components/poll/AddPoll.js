@@ -134,6 +134,7 @@ export class AddPoll extends React.Component {
     }
 
     PollService.postPoll(this.state.text, this.getDate(), this.getDate7(), this.state.questionsText);
+    alert("Anketa uspješno unesena!");
 
     window.location.reload();
 
