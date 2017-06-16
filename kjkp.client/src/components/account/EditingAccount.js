@@ -104,7 +104,7 @@ export class EditingAccount extends React.Component{
   }
 
   getUser(){
-    this.req = makeCancelable(fetch('http://localhost:8080/korisnik/getByUsername?username=' + this.state.reqUser));
+    this.req = makeCancelable(fetch('https://immense-chamber-20752.herokuapp.com/korisnik/getByUsername?username=' + this.state.reqUser));
     this.req.promise.then(response => response.json())
       .then(result => this.setState( { userGET: result.username, emailGET: result.email }, () => {
     console.log(this.state.user);}))

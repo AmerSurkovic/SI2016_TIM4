@@ -28,7 +28,7 @@ export class PollQuestions extends React.Component {
   }
 
   getQuestions() {
-    this.req = makeCancelable(fetch('http://localhost:8080/anketa/details/' + this.state.id));
+    this.req = makeCancelable(fetch('https://immense-chamber-20752.herokuapp.com/anketa/details/' + this.state.id));
     this.req.promise.then(response => response.json())
       .then(result => this.setState({ opis: result.opis, pitanja: result.pitanjaVM}))
       .catch(error => this.setState({ errorMessage: error + "" }));

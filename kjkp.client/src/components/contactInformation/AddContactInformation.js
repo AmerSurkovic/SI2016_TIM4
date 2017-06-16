@@ -68,7 +68,7 @@ export class AddContactInformation extends React.Component {
   }
 
   getInfo() {
-    this.req = makeCancelable(fetch('http://localhost:8080/contact/get'));
+    this.req = makeCancelable(fetch('https://immense-chamber-20752.herokuapp.com/contact/get'));
     this.req.promise.then(response => response.json())
       .then(result => this.setState({ phone: result.phone, address: result.address, email: result.email }, () => { }))
       .catch(error => this.setState({ errorMessage: error + "" }));

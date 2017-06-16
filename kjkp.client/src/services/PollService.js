@@ -1,6 +1,6 @@
 import AccountService from "./AccountService";
 
-var url = 'http://localhost:8080/';
+var url = 'https://immense-chamber-20752.herokuapp.com/';
 
 var PollService = new function () {
 

@@ -22,7 +22,7 @@ class Word extends React.Component {
         'Authorization': auth.token
       });
 
-      var req = makeCancelable(fetch('http://localhost:8080/zrijeci/delete?Id=' + Id, {
+      var req = makeCancelable(fetch('https://immense-chamber-20752.herokuapp.com/zrijeci/delete?Id=' + Id, {
         method: 'DELETE',
         headers: header
       }));

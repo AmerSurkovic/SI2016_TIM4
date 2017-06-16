@@ -27,7 +27,7 @@ export class ActivePolls extends React.Component {
   }
 
   getPolls() {
-    this.req = makeCancelable(fetch('http://localhost:8080/anketa/aktivne'));
+    this.req = makeCancelable(fetch('https://immense-chamber-20752.herokuapp.com/anketa/aktivne'));
     this.req.promise.then(response => response.json())
       .then(result => this.setState({ polls: result }))
       .catch(error => this.setState({ errorMessage: error + "" }));

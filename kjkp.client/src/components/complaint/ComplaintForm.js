@@ -42,7 +42,7 @@ export var ComplaintFormInstance = React.createClass({
   },
 
   getWords: function () {
-    this.req = makeCancelable(fetch('http://localhost:8080/zrijeci/prikazi_rijeci'));
+    this.req = makeCancelable(fetch('https://immense-chamber-20752.herokuapp.com/zrijeci/prikazi_rijeci'));
     this.req.promise.then(response => response.json())
       .then(result => this.setState({ words: result }))
       .catch(error => this.setState({ errorMessage: error + "" }));

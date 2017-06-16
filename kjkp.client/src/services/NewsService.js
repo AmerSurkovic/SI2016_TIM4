@@ -1,5 +1,5 @@
 import AccountService from './AccountService';
-var baseURL = 'http://localhost:8080/';
+var baseURL = 'https://immense-chamber-20752.herokuapp.com/';
 
 
 var NewsService = new function () {

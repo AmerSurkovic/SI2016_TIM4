@@ -60,7 +60,7 @@ class Poll extends React.Component{
         var header = new Headers(
           {"Authorization":auth.token}
         );
-        var r = fetch('http://localhost:8080/anketa/obrisianketu?Id=' + Id , {
+        var r = fetch('https://immense-chamber-20752.herokuapp.com/anketa/obrisianketu?Id=' + Id , {
             method: 'DELETE',
             headers: header
             });

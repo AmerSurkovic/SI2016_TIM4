@@ -23,7 +23,7 @@ class Complaint extends React.Component{
   }
 
   getUser() {
-    this.req = makeCancelable(fetch('http://localhost:8080/korisnik/get?Id=' + this.props.complaint.korisnikID));
+    this.req = makeCancelable(fetch('https://immense-chamber-20752.herokuapp.com/korisnik/get?Id=' + this.props.complaint.korisnikID));
     this.req.promise.then(response => response.json())
       .then(result => this.setState( { user: result.username }, () => {
   console.log(this.state.user);}))
@@ -47,7 +47,7 @@ class Complaint extends React.Component{
     };
 
     deleteComplaint(Id){
-      var r = fetch('http://localhost:8080/zalbe/delete?Id=' + Id , {
+      var r = fetch('https://immense-chamber-20752.herokuapp.com/zalbe/delete?Id=' + Id , {
           method: 'DELETE',
           });
       alert("Complaint deleted!");

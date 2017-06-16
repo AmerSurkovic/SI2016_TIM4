@@ -36,7 +36,7 @@ export class ComplaintList extends React.Component {
 
   //API request method
   getComplaints() {
-    this.req = makeCancelable(fetch('http://localhost:8080/zalbe/prikazi_zalbe'));
+    this.req = makeCancelable(fetch('https://immense-chamber-20752.herokuapp.com/zalbe/prikazi_zalbe'));
     this.req.promise.then(response => response.json())
       .then(result => this.setState({ complaints: result }))
       .catch(error => this.setState({ errorMessage: error + "" }));
@@ -44,7 +44,7 @@ export class ComplaintList extends React.Component {
 
   //API request method for public complaints
   getPublicComplaints(){
-    this.req = makeCancelable(fetch('http://localhost:8080/zalbe/prikazi_javne_zalbe'));
+    this.req = makeCancelable(fetch('https://immense-chamber-20752.herokuapp.com/zalbe/prikazi_javne_zalbe'));
     this.req.promise.then(response => response.json())
       .then(result => this.setState({ publicComplaints: result }))
       .catch(error => this.setState({ errorMessage: error + "" }));
@@ -52,7 +52,7 @@ export class ComplaintList extends React.Component {
 
   //API request method for private complaints
   getPrivateComplaints(){
-    this.req = makeCancelable(fetch('http://localhost:8080/zalbe/prikazi_privatne_zalbe'));
+    this.req = makeCancelable(fetch('https://immense-chamber-20752.herokuapp.com/zalbe/prikazi_privatne_zalbe'));
     this.req.promise.then(response => response.json())
       .then(result => this.setState({ privateComplaints: result }))
       .catch(error => this.setState({ errorMessage: error + "" }));
